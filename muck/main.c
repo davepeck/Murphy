@@ -19,7 +19,6 @@ randomInt(int min, int max)
 void
 render(void)
 {
-
     Uint8 r, g, b;
     /*  Come up with a random rectangle */
     SDL_Rect rect;
@@ -56,6 +55,9 @@ main(int argc, char *argv[])
 
     /* seed random number generator */
     srand(time(NULL));
+	
+	/* turn off the depth buffer -- big performance win on the phone itself */
+	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 0);	
 
     /* create window and renderer */
     windowID =
