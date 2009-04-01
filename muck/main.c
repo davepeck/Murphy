@@ -39,7 +39,6 @@ render(void)
 
     /* update screen */
     SDL_RenderPresent();
-
 }
 
 int
@@ -61,7 +60,7 @@ main(int argc, char *argv[])
     /* create window and renderer */
     windowID =
         SDL_CreateWindow(NULL, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT,
-                         SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+                         SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS);
     if (windowID == 0) {
         printf("Could not initialize Window\n");
     }
@@ -82,7 +81,7 @@ main(int argc, char *argv[])
             }
         }
         render();
-        SDL_Delay(1);
+        SDL_Delay(0.05);
     }
 
     /* shutdown SDL */

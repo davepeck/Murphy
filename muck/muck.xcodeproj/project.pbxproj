@@ -11,6 +11,8 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
+		55737DE00F833612003C3090 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 55737DDF0F833612003C3090 /* icon.png */; };
+		55737DE20F83361C003C3090 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 55737DE10F83361C003C3090 /* Default.png */; };
 		55A3F6890F832B43002CA23F /* doxyfile in Resources */ = {isa = PBXBuildFile; fileRef = 55A3F65A0F832B43002CA23F /* doxyfile */; };
 		55A3F68A0F832B43002CA23F /* SDL_config.h.default in Resources */ = {isa = PBXBuildFile; fileRef = 55A3F6600F832B43002CA23F /* SDL_config.h.default */; };
 		55A3F68B0F832B43002CA23F /* SDL_config.h.generated in Resources */ = {isa = PBXBuildFile; fileRef = 55A3F6610F832B43002CA23F /* SDL_config.h.generated */; };
@@ -18,8 +20,6 @@
 		FD779ED20E26B9B000F39101 /* libSDLSimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD779ED00E26B9B000F39101 /* libSDLSimulator.a */; };
 		FD779ED30E26B9B000F39101 /* libSDLiPhoneOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD779ED10E26B9B000F39101 /* libSDLiPhoneOS.a */; };
 		FD779EDE0E26BA1200F39101 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD779EDD0E26BA1200F39101 /* CoreAudio.framework */; };
-		FD77A07D0E26BD8C00F39101 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FD77A07C0E26BD8C00F39101 /* Icon.png */; };
-		FD77A07F0E26BDA900F39101 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FD77A07E0E26BDA900F39101 /* Default.png */; };
 		FD77A0850E26BDB800F39101 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD77A0840E26BDB800F39101 /* AudioToolbox.framework */; };
 		FD77A09D0E26BDE500F39101 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = FD77A09C0E26BDE500F39101 /* main.c */; };
 		FDB8BFC60E5A0F6A00980157 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB8BFC50E5A0F6A00980157 /* CoreGraphics.framework */; };
@@ -27,10 +27,12 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* muck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = muck.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* iMurphy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMurphy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		28FD14FF0DC6FC520079059D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		55737DDF0F833612003C3090 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = images/icon.png; sourceTree = "<group>"; };
+		55737DE10F83361C003C3090 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		55A3F6580F832B43002CA23F /* begin_code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = begin_code.h; path = SDL_H/begin_code.h; sourceTree = "<group>"; };
 		55A3F6590F832B43002CA23F /* close_code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = close_code.h; path = SDL_H/close_code.h; sourceTree = "<group>"; };
 		55A3F65A0F832B43002CA23F /* doxyfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = doxyfile; path = SDL_H/doxyfile; sourceTree = "<group>"; };
@@ -84,8 +86,6 @@
 		FD779ED00E26B9B000F39101 /* libSDLSimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDLSimulator.a; path = lib/libSDLSimulator.a; sourceTree = "<group>"; };
 		FD779ED10E26B9B000F39101 /* libSDLiPhoneOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDLiPhoneOS.a; path = lib/libSDLiPhoneOS.a; sourceTree = "<group>"; };
 		FD779EDD0E26BA1200F39101 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		FD77A07C0E26BD8C00F39101 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		FD77A07E0E26BDA900F39101 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		FD77A0840E26BDB800F39101 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		FD77A09C0E26BDE500F39101 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		FDB8BFC50E5A0F6A00980157 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -114,7 +114,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* muck.app */,
+				1D6058910D05DD3D006BFB54 /* iMurphy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,8 +143,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FD77A07E0E26BDA900F39101 /* Default.png */,
-				FD77A07C0E26BD8C00F39101 /* Icon.png */,
+				55737DE10F83361C003C3090 /* Default.png */,
+				55737DDE0F833604003C3090 /* images */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 			);
 			name = Resources;
@@ -162,6 +162,14 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		55737DDE0F833604003C3090 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				55737DDF0F833612003C3090 /* icon.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 		55A3F6510F832AF6002CA23F /* SDL_H */ = {
@@ -232,9 +240,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* muck */ = {
+		1D6058900D05DD3D006BFB54 /* iMurphy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "muck" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "iMurphy" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -244,9 +252,9 @@
 			);
 			dependencies = (
 			);
-			name = muck;
+			name = iMurphy;
 			productName = muck;
-			productReference = 1D6058910D05DD3D006BFB54 /* muck.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* iMurphy.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -261,7 +269,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* muck */,
+				1D6058900D05DD3D006BFB54 /* iMurphy */,
 			);
 		};
 /* End PBXProject section */
@@ -271,12 +279,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD77A07D0E26BD8C00F39101 /* Icon.png in Resources */,
-				FD77A07F0E26BDA900F39101 /* Default.png in Resources */,
 				55A3F6890F832B43002CA23F /* doxyfile in Resources */,
 				55A3F68A0F832B43002CA23F /* SDL_config.h.default in Resources */,
 				55A3F68B0F832B43002CA23F /* SDL_config.h.generated in Resources */,
 				55A3F68C0F832B43002CA23F /* SDL_config.h.in in Resources */,
+				55737DE00F833612003C3090 /* icon.png in Resources */,
+				55737DE20F83361C003C3090 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,7 +316,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/lib\"",
 				);
-				PRODUCT_NAME = muck;
+				PRODUCT_NAME = iMurphy;
 			};
 			name = Debug;
 		};
@@ -324,7 +332,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/lib\"",
 				);
-				PRODUCT_NAME = muck;
+				PRODUCT_NAME = iMurphy;
 			};
 			name = Release;
 		};
@@ -361,7 +369,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/lib\"",
 				);
-				PRODUCT_NAME = muck;
+				PRODUCT_NAME = iMurphy;
 			};
 			name = "Debug - Device";
 		};
@@ -401,7 +409,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "muck" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "iMurphy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
