@@ -50,6 +50,7 @@ extern "C" {
 /* Evaluates to true if the surface needs to be locked before access */
 #define SDL_MUSTLOCK(S)	(((S)->flags & SDL_RLEACCEL) != 0)
 
+	
 /**
  * \struct SDL_Surface
  *

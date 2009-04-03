@@ -38,12 +38,45 @@
 #include <OpenGL/gl.h>          /* Header File For The OpenGL Library */
 #include <OpenGL/glu.h>         /* Header File For The GLU Library */
 #else
-#include <GL/gl.h>              /* Header File For The OpenGL Library */
-#include <GL/glu.h>             /* Header File For The GLU Library */
+// DAVEPECK WAS HERE -- CODING UP JUNXY JUNX
+#include <OpenGLES/ES1/gl.h>              /* Header File For The OpenGL Library */
+#include <OpenGLES/ES1/glext.h>             /* Header File For The GLU Library */
+// DAVEPECK NOT HERE NO MORE HAHAHAHAHAHA
 #endif
 #ifndef NO_SDL_GLEXT
 #undef __glext_h_
 #endif
+
+// DAVEPECK WAS HERE -- HACKING UP SWILL IN UR CODES
+#ifndef GLdouble
+#define GLdouble double
+#endif
+
+#ifndef GLclampd
+#define GLclampd double
+#endif
+
+#ifndef GL_RGBA4
+#define GL_RGBA4				0x8056
+#endif
+#ifndef GL_RGB5_A1
+#define GL_RGB5_A1				0x8057
+#endif
+#ifndef GL_RGB5
+#define GL_RGB5					0x8050
+#endif
+#ifndef GL_RGBA8
+#define GL_RGBA8				0x8058
+#endif
+#ifndef GL_RGB8
+#define GL_RGB8					0x8051
+#endif
+#ifndef GL_UNPACK_ROW_LENGTH
+#define GL_UNPACK_ROW_LENGTH			0x0CF2
+#endif
+
+// DAVEPECK IS LESS HERE
+
 
 /* This file is included because glext.h is not available on some systems.
    If you don't want this version included, simply define "NO_SDL_GLEXT"
@@ -412,12 +445,24 @@ extern "C" {
 #define GL_FOG_COORD_ARRAY_POINTER        GL_FOG_COORDINATE_ARRAY_POINTER
 #define GL_FOG_COORD_ARRAY                GL_FOG_COORDINATE_ARRAY
 #define GL_FOG_COORD_ARRAY_BUFFER_BINDING GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING
+#ifndef GL_SRC0_RGB
 #define GL_SRC0_RGB                       GL_SOURCE0_RGB
+#endif
+#ifndef GL_SRC1_RGB
 #define GL_SRC1_RGB                       GL_SOURCE1_RGB
+#endif
+#ifndef GL_SRC2_RGB
 #define GL_SRC2_RGB                       GL_SOURCE2_RGB
+#endif
+#ifndef GL_SRC0_ALPHA
 #define GL_SRC0_ALPHA                     GL_SOURCE0_ALPHA
+#endif
+#ifndef GL_SRC1_ALPHA
 #define GL_SRC1_ALPHA                     GL_SOURCE1_ALPHA
+#endif
+#ifndef GL_SRC2_ALPHA
 #define GL_SRC2_ALPHA                     GL_SOURCE2_ALPHA
+#endif
 #endif
 
 #ifndef GL_VERSION_2_0
