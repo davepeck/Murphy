@@ -67,13 +67,24 @@ SWError SWEnterSpriteWorld(SWBoolean shouldInitSDL)
     SWError err = kNoError;
     
     if (shouldInitSDL)
-    {
+    {		
         /*initialize SDL Library*/
         if (SDL_Init( SDL_INIT_VIDEO | SDL_INIT_TIMER ) < 0)
         {
             fprintf(stderr, "SDL_Init: %s\n", SDL_GetError());
             err = kFailedToInitSDL;
         }
+		
+		/*
+				
+		// turn off the depth buffer -- big performance win on the phone itself
+		SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 0);	
+		
+		// create window and renderer
+		SDL_WindowID windowID = SDL_CreateWindow(NULL, 0, 0, 320, 480, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS);
+
+		SDL_CreateRenderer(windowID, -1, 0);	
+		*/
     }
     
     gSWInitializedSDL = shouldInitSDL;
@@ -125,7 +136,7 @@ SWError SWCreateSpriteWorld(
     
     while (1)
     {
-        flags = makeFullScreen ? SDL_FULLSCREEN : 0;
+        flags = makeFullScreen ? (SDL_FULLSCREEN | SDL_NOFRAME) : 0;
 
         if (opengl)
         {
@@ -312,13 +323,13 @@ SWError SWCreateSpriteWorldFromVideoSurface(
         err = SWCreateBlankFrame( &backFrameP, tempRect.right, tempRect.bottom, depth, false );
     }
 
-#ifdef HAVE_OPENGL
-    if (err == kNoError && !(videoSurfaceP->flags & SDL_OPENGL))
+// DAVEPECK_CHANGED #ifdef HAVE_OPENGL
+    if (err == kNoError) // DAVEPECK_CHANGED && !(videoSurfaceP->flags & SDL_OPENGL))
     {
             // create work frame
         err = SWCreateBlankFrame( &workFrameP, tempRect.right, tempRect.bottom, depth, false );
     }
-#endif // OpenGL
+// DAVEPECK_CHANGED #endif // OpenGL
 
     if (err == kNoError)
     {

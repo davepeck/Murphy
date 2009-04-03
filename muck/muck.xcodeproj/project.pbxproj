@@ -21,6 +21,11 @@
 		550086FB0F855A71007EA0EF /* SWClasses.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 550086EC0F855A71007EA0EF /* SWClasses.cpp */; };
 		550086FC0F855A71007EA0EF /* Tiling.c in Sources */ = {isa = PBXBuildFile; fileRef = 550086EF0F855A71007EA0EF /* Tiling.c */; };
 		550088120F856B5D007EA0EF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550088110F856B5D007EA0EF /* OpenGLES.framework */; };
+		550089AC0F85BFB3007EA0EF /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 550089A70F85BFB3007EA0EF /* ball.png */; };
+		550089AD0F85BFB3007EA0EF /* meter.png in Resources */ = {isa = PBXBuildFile; fileRef = 550089A80F85BFB3007EA0EF /* meter.png */; };
+		550089AE0F85BFB3007EA0EF /* numbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 550089A90F85BFB3007EA0EF /* numbers.png */; };
+		550089AF0F85BFB3007EA0EF /* tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 550089AA0F85BFB3007EA0EF /* tiles.png */; };
+		550089B00F85BFB3007EA0EF /* tiles2.png in Resources */ = {isa = PBXBuildFile; fileRef = 550089AB0F85BFB3007EA0EF /* tiles2.png */; };
 		55737DE00F833612003C3090 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 55737DDF0F833612003C3090 /* icon.png */; };
 		55737DE20F83361C003C3090 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 55737DE10F83361C003C3090 /* Default.png */; };
 		FD779ED20E26B9B000F39101 /* libSDLSimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD779ED00E26B9B000F39101 /* libSDLSimulator.a */; };
@@ -102,6 +107,12 @@
 		550088940F856E31007EA0EF /* SpriteLayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SpriteLayer.hpp; path = swx/SpriteLayer.hpp; sourceTree = "<group>"; };
 		550088950F856E31007EA0EF /* SpriteWorld.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SpriteWorld.hpp; path = swx/SpriteWorld.hpp; sourceTree = "<group>"; };
 		550088960F856E31007EA0EF /* Tiling.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Tiling.hpp; path = swx/Tiling.hpp; sourceTree = "<group>"; };
+		550089850F85BE43007EA0EF /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		550089A70F85BFB3007EA0EF /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ball.png; path = images/ball.png; sourceTree = "<group>"; };
+		550089A80F85BFB3007EA0EF /* meter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = meter.png; path = images/meter.png; sourceTree = "<group>"; };
+		550089A90F85BFB3007EA0EF /* numbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = numbers.png; path = images/numbers.png; sourceTree = "<group>"; };
+		550089AA0F85BFB3007EA0EF /* tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tiles.png; path = images/tiles.png; sourceTree = "<group>"; };
+		550089AB0F85BFB3007EA0EF /* tiles2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tiles2.png; path = images/tiles2.png; sourceTree = "<group>"; };
 		55737DDF0F833612003C3090 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = images/icon.png; sourceTree = "<group>"; };
 		55737DE10F83361C003C3090 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,7 +120,7 @@
 		FD779ED10E26B9B000F39101 /* libSDLiPhoneOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDLiPhoneOS.a; path = lib/libSDLiPhoneOS.a; sourceTree = "<group>"; };
 		FD779EDD0E26BA1200F39101 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		FD77A0840E26BDB800F39101 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		FD77A09C0E26BDE500F39101 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		FD77A09C0E26BDE500F39101 /* main.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = main.c; sourceTree = "<group>"; };
 		FDB8BFC50E5A0F6A00980157 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -159,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				FD77A09C0E26BDE500F39101 /* main.c */,
+				550089850F85BE43007EA0EF /* main.h */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -269,6 +281,11 @@
 		55737DDE0F833604003C3090 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				550089A70F85BFB3007EA0EF /* ball.png */,
+				550089A80F85BFB3007EA0EF /* meter.png */,
+				550089A90F85BFB3007EA0EF /* numbers.png */,
+				550089AA0F85BFB3007EA0EF /* tiles.png */,
+				550089AB0F85BFB3007EA0EF /* tiles2.png */,
 				55737DDF0F833612003C3090 /* icon.png */,
 			);
 			name = images;
@@ -327,6 +344,11 @@
 			files = (
 				55737DE00F833612003C3090 /* icon.png in Resources */,
 				55737DE20F83361C003C3090 /* Default.png in Resources */,
+				550089AC0F85BFB3007EA0EF /* ball.png in Resources */,
+				550089AD0F85BFB3007EA0EF /* meter.png in Resources */,
+				550089AE0F85BFB3007EA0EF /* numbers.png in Resources */,
+				550089AF0F85BFB3007EA0EF /* tiles.png in Resources */,
+				550089B00F85BFB3007EA0EF /* tiles2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
