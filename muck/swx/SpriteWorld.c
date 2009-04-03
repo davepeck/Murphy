@@ -143,7 +143,7 @@ SWError SWCreateSpriteWorld(
             flags |= SDL_OPENGL;
 
                 // load the library handle
-            /*(void) BKLoadGLfunctions(); DAVEPECK_CHANGED*/
+			/* (void) BKLoadGLfunctions(); */
 
                 // require double buffering
             SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
@@ -340,7 +340,8 @@ SWError SWCreateSpriteWorldFromVideoSurface(
 
     if (err == kNoError)
     {
-#ifdef HAVE_OPENGL
+		// DAVEPECK_CHANGED -- this whole part of the equation is JUST LIKE THAT, y'know?
+/*#ifdef HAVE_OPENGL
         if (videoSurfaceP->flags & SDL_OPENGL)
         {
         	_setupGL( videoSurfaceP->w,  videoSurfaceP->h );
@@ -348,7 +349,7 @@ SWError SWCreateSpriteWorldFromVideoSurface(
             (*spriteWorldPP)->useOpenGL = SDL_TRUE;
         }
         else
-#endif // OpenGL
+//#endif // OpenGL*/
         {
             (*spriteWorldPP)->useOpenGL = SDL_FALSE;
         }

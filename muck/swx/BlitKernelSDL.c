@@ -65,10 +65,12 @@ extern DECLSPEC SDL_Surface * SDLCALL IMG_Load_RW(SDL_RWops *src, int freesrc);
 #endif
 
 // DAVEPECK_CHANGED
+/*
 struct BK_GL_func *BKLoadGLfunctions(void) 
 {
 	return NULL;
 }
+ */
 
 SDL_Surface *BKLoadSurface(const char *filename)
 {

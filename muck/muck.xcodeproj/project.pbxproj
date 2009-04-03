@@ -33,6 +33,7 @@
 		55FBC4970F85F23D00730A2D /* numbers.tga in Resources */ = {isa = PBXBuildFile; fileRef = 55FBC4920F85F23D00730A2D /* numbers.tga */; };
 		55FBC4980F85F23D00730A2D /* tiles.tga in Resources */ = {isa = PBXBuildFile; fileRef = 55FBC4930F85F23D00730A2D /* tiles.tga */; };
 		55FBC4990F85F23D00730A2D /* tiles2.tga in Resources */ = {isa = PBXBuildFile; fileRef = 55FBC4940F85F23D00730A2D /* tiles2.tga */; };
+		55FBC5280F8601D700730A2D /* BlitKernelGL.c in Sources */ = {isa = PBXBuildFile; fileRef = 55FBC5270F8601D700730A2D /* BlitKernelGL.c */; };
 		FD779ED20E26B9B000F39101 /* libSDLSimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD779ED00E26B9B000F39101 /* libSDLSimulator.a */; };
 		FD779ED30E26B9B000F39101 /* libSDLiPhoneOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD779ED10E26B9B000F39101 /* libSDLiPhoneOS.a */; };
 		FD779EDE0E26BA1200F39101 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD779EDD0E26BA1200F39101 /* CoreAudio.framework */; };
@@ -125,6 +126,7 @@
 		55FBC4920F85F23D00730A2D /* numbers.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = numbers.tga; path = images/numbers.tga; sourceTree = "<group>"; };
 		55FBC4930F85F23D00730A2D /* tiles.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = tiles.tga; path = images/tiles.tga; sourceTree = "<group>"; };
 		55FBC4940F85F23D00730A2D /* tiles2.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = tiles2.tga; path = images/tiles2.tga; sourceTree = "<group>"; };
+		55FBC5270F8601D700730A2D /* BlitKernelGL.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = BlitKernelGL.c; path = swx/BlitKernelGL.c; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD779ED00E26B9B000F39101 /* libSDLSimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDLSimulator.a; path = lib/libSDLSimulator.a; sourceTree = "<group>"; };
 		FD779ED10E26B9B000F39101 /* libSDLiPhoneOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDLiPhoneOS.a; path = lib/libSDLiPhoneOS.a; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 		550086AE0F855168007EA0EF /* swx */ = {
 			isa = PBXGroup;
 			children = (
+				55FBC5270F8601D700730A2D /* BlitKernelGL.c */,
 				550088910F856E31007EA0EF /* Scrolling.hpp */,
 				550088920F856E31007EA0EF /* Sprite.hpp */,
 				550088930F856E31007EA0EF /* SpriteFrame.hpp */,
@@ -390,6 +393,7 @@
 				550086FA0F855A71007EA0EF /* SpriteWorldUtils.c in Sources */,
 				550086FB0F855A71007EA0EF /* SWClasses.cpp in Sources */,
 				550086FC0F855A71007EA0EF /* Tiling.c in Sources */,
+				55FBC5280F8601D700730A2D /* BlitKernelGL.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
