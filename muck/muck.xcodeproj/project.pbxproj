@@ -28,6 +28,11 @@
 		550089B00F85BFB3007EA0EF /* tiles2.png in Resources */ = {isa = PBXBuildFile; fileRef = 550089AB0F85BFB3007EA0EF /* tiles2.png */; };
 		55737DE00F833612003C3090 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 55737DDF0F833612003C3090 /* icon.png */; };
 		55737DE20F83361C003C3090 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 55737DE10F83361C003C3090 /* Default.png */; };
+		55FBC4950F85F23D00730A2D /* ball.tga in Resources */ = {isa = PBXBuildFile; fileRef = 55FBC4900F85F23D00730A2D /* ball.tga */; };
+		55FBC4960F85F23D00730A2D /* meter.tga in Resources */ = {isa = PBXBuildFile; fileRef = 55FBC4910F85F23D00730A2D /* meter.tga */; };
+		55FBC4970F85F23D00730A2D /* numbers.tga in Resources */ = {isa = PBXBuildFile; fileRef = 55FBC4920F85F23D00730A2D /* numbers.tga */; };
+		55FBC4980F85F23D00730A2D /* tiles.tga in Resources */ = {isa = PBXBuildFile; fileRef = 55FBC4930F85F23D00730A2D /* tiles.tga */; };
+		55FBC4990F85F23D00730A2D /* tiles2.tga in Resources */ = {isa = PBXBuildFile; fileRef = 55FBC4940F85F23D00730A2D /* tiles2.tga */; };
 		FD779ED20E26B9B000F39101 /* libSDLSimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD779ED00E26B9B000F39101 /* libSDLSimulator.a */; };
 		FD779ED30E26B9B000F39101 /* libSDLiPhoneOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD779ED10E26B9B000F39101 /* libSDLiPhoneOS.a */; };
 		FD779EDE0E26BA1200F39101 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD779EDD0E26BA1200F39101 /* CoreAudio.framework */; };
@@ -115,6 +120,11 @@
 		550089AB0F85BFB3007EA0EF /* tiles2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tiles2.png; path = images/tiles2.png; sourceTree = "<group>"; };
 		55737DDF0F833612003C3090 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = images/icon.png; sourceTree = "<group>"; };
 		55737DE10F83361C003C3090 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		55FBC4900F85F23D00730A2D /* ball.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = ball.tga; path = images/ball.tga; sourceTree = "<group>"; };
+		55FBC4910F85F23D00730A2D /* meter.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = meter.tga; path = images/meter.tga; sourceTree = "<group>"; };
+		55FBC4920F85F23D00730A2D /* numbers.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = numbers.tga; path = images/numbers.tga; sourceTree = "<group>"; };
+		55FBC4930F85F23D00730A2D /* tiles.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = tiles.tga; path = images/tiles.tga; sourceTree = "<group>"; };
+		55FBC4940F85F23D00730A2D /* tiles2.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = tiles2.tga; path = images/tiles2.tga; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD779ED00E26B9B000F39101 /* libSDLSimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDLSimulator.a; path = lib/libSDLSimulator.a; sourceTree = "<group>"; };
 		FD779ED10E26B9B000F39101 /* libSDLiPhoneOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDLiPhoneOS.a; path = lib/libSDLiPhoneOS.a; sourceTree = "<group>"; };
@@ -281,6 +291,11 @@
 		55737DDE0F833604003C3090 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				55FBC4900F85F23D00730A2D /* ball.tga */,
+				55FBC4910F85F23D00730A2D /* meter.tga */,
+				55FBC4920F85F23D00730A2D /* numbers.tga */,
+				55FBC4930F85F23D00730A2D /* tiles.tga */,
+				55FBC4940F85F23D00730A2D /* tiles2.tga */,
 				550089A70F85BFB3007EA0EF /* ball.png */,
 				550089A80F85BFB3007EA0EF /* meter.png */,
 				550089A90F85BFB3007EA0EF /* numbers.png */,
@@ -349,6 +364,11 @@
 				550089AE0F85BFB3007EA0EF /* numbers.png in Resources */,
 				550089AF0F85BFB3007EA0EF /* tiles.png in Resources */,
 				550089B00F85BFB3007EA0EF /* tiles2.png in Resources */,
+				55FBC4950F85F23D00730A2D /* ball.tga in Resources */,
+				55FBC4960F85F23D00730A2D /* meter.tga in Resources */,
+				55FBC4970F85F23D00730A2D /* numbers.tga in Resources */,
+				55FBC4980F85F23D00730A2D /* tiles.tga in Resources */,
+				55FBC4990F85F23D00730A2D /* tiles2.tga in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

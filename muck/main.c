@@ -198,7 +198,7 @@ void SetUpTiling( void )
     SWSetSpriteLayerUnderTileLayer(gSpriteLayerP, 1);
 	
 	// Load first set of tiles
-	const char *tiles_name = GetRawFileName("tiles", "bmp");
+	const char *tiles_name = GetRawFileName("tiles", "tga");
 	err = SWLoadTilesFromSingleFileXY( 
 									  tiles_name,
 									  kTileWidth,
@@ -213,7 +213,7 @@ void SetUpTiling( void )
     FatalError(err);
     
 	// Load masked set of tiles
-	const char *tiles2_name = GetRawFileName("tiles2", "bmp");
+	const char *tiles2_name = GetRawFileName("tiles2", "tga");
 	err = SWLoadTilesFromSingleFileXY( 
 									  tiles2_name,
 									  kTileWidth,
@@ -278,7 +278,7 @@ void CreateBallSprite( void )
 {
     SWError err;
     
-	const char *ball_name = GetRawFileName("ball", "bmp");	
+	const char *ball_name = GetRawFileName("ball", "tga");	
     err = SWCreateSpriteFromFile( &gSimpleSpriteP, NULL, ball_name, 1 );
     FatalError(err);
 	
@@ -299,7 +299,7 @@ void CreateDiamondMeterSprite( void )
     SWError     err;
     
 	// Create the diamond meter sprite
-	const char *meter_name = GetRawFileName("meter", "bmp");	
+	const char *meter_name = GetRawFileName("meter", "tga");	
 	err = SWCreateSpriteFromFile( &gDiamondMeterSpriteP, NULL, meter_name, 1 );
     FatalError(err);
     
@@ -322,7 +322,7 @@ void    CreateStatsNumberSprite( void )
     SWError     err = kNoError;
     
 	// Load gMasterStatsSpriteP
-	const char *numbers_name = GetRawFileName("numbers", "bmp");
+	const char *numbers_name = GetRawFileName("numbers", "tga");
 	err = SWCreateSpriteFromSingleFileXY( 
 										 &gMasterStatsSpriteP,
 										 NULL,
@@ -674,7 +674,7 @@ void UpdateKeys( void )
 	 */
 }
 
-
+	
 
 
 
