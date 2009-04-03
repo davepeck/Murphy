@@ -21,11 +21,6 @@
 		550086FB0F855A71007EA0EF /* SWClasses.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 550086EC0F855A71007EA0EF /* SWClasses.cpp */; };
 		550086FC0F855A71007EA0EF /* Tiling.c in Sources */ = {isa = PBXBuildFile; fileRef = 550086EF0F855A71007EA0EF /* Tiling.c */; };
 		550088120F856B5D007EA0EF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550088110F856B5D007EA0EF /* OpenGLES.framework */; };
-		550089AC0F85BFB3007EA0EF /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 550089A70F85BFB3007EA0EF /* ball.png */; };
-		550089AD0F85BFB3007EA0EF /* meter.png in Resources */ = {isa = PBXBuildFile; fileRef = 550089A80F85BFB3007EA0EF /* meter.png */; };
-		550089AE0F85BFB3007EA0EF /* numbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 550089A90F85BFB3007EA0EF /* numbers.png */; };
-		550089AF0F85BFB3007EA0EF /* tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 550089AA0F85BFB3007EA0EF /* tiles.png */; };
-		550089B00F85BFB3007EA0EF /* tiles2.png in Resources */ = {isa = PBXBuildFile; fileRef = 550089AB0F85BFB3007EA0EF /* tiles2.png */; };
 		55737DE00F833612003C3090 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 55737DDF0F833612003C3090 /* icon.png */; };
 		55737DE20F83361C003C3090 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 55737DE10F83361C003C3090 /* Default.png */; };
 		55FBC4950F85F23D00730A2D /* ball.tga in Resources */ = {isa = PBXBuildFile; fileRef = 55FBC4900F85F23D00730A2D /* ball.tga */; };
@@ -44,7 +39,6 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* iMurphy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMurphy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		550086D90F855A71007EA0EF /* BlitKernel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlitKernel.h; path = swx/BlitKernel.h; sourceTree = "<group>"; };
@@ -114,11 +108,7 @@
 		550088950F856E31007EA0EF /* SpriteWorld.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SpriteWorld.hpp; path = swx/SpriteWorld.hpp; sourceTree = "<group>"; };
 		550088960F856E31007EA0EF /* Tiling.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Tiling.hpp; path = swx/Tiling.hpp; sourceTree = "<group>"; };
 		550089850F85BE43007EA0EF /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
-		550089A70F85BFB3007EA0EF /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ball.png; path = images/ball.png; sourceTree = "<group>"; };
-		550089A80F85BFB3007EA0EF /* meter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = meter.png; path = images/meter.png; sourceTree = "<group>"; };
-		550089A90F85BFB3007EA0EF /* numbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = numbers.png; path = images/numbers.png; sourceTree = "<group>"; };
-		550089AA0F85BFB3007EA0EF /* tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tiles.png; path = images/tiles.png; sourceTree = "<group>"; };
-		550089AB0F85BFB3007EA0EF /* tiles2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tiles2.png; path = images/tiles2.png; sourceTree = "<group>"; };
+		5508BB290F86C5DA000F3A6C /* swScrollingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swScrollingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55737DDF0F833612003C3090 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = images/icon.png; sourceTree = "<group>"; };
 		55737DE10F83361C003C3090 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		55FBC4900F85F23D00730A2D /* ball.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = ball.tga; path = images/ball.tga; sourceTree = "<group>"; };
@@ -159,7 +149,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* iMurphy.app */,
+				5508BB290F86C5DA000F3A6C /* swScrollingDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -299,11 +289,6 @@
 				55FBC4920F85F23D00730A2D /* numbers.tga */,
 				55FBC4930F85F23D00730A2D /* tiles.tga */,
 				55FBC4940F85F23D00730A2D /* tiles2.tga */,
-				550089A70F85BFB3007EA0EF /* ball.png */,
-				550089A80F85BFB3007EA0EF /* meter.png */,
-				550089A90F85BFB3007EA0EF /* numbers.png */,
-				550089AA0F85BFB3007EA0EF /* tiles.png */,
-				550089AB0F85BFB3007EA0EF /* tiles2.png */,
 				55737DDF0F833612003C3090 /* icon.png */,
 			);
 			name = images;
@@ -321,9 +306,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* iMurphy */ = {
+		1D6058900D05DD3D006BFB54 /* swScrollingDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "iMurphy" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "swScrollingDemo" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -333,9 +318,9 @@
 			);
 			dependencies = (
 			);
-			name = iMurphy;
+			name = swScrollingDemo;
 			productName = muck;
-			productReference = 1D6058910D05DD3D006BFB54 /* iMurphy.app */;
+			productReference = 5508BB290F86C5DA000F3A6C /* swScrollingDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -343,14 +328,14 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "muck" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "swscrollingdemo" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* iMurphy */,
+				1D6058900D05DD3D006BFB54 /* swScrollingDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -362,11 +347,6 @@
 			files = (
 				55737DE00F833612003C3090 /* icon.png in Resources */,
 				55737DE20F83361C003C3090 /* Default.png in Resources */,
-				550089AC0F85BFB3007EA0EF /* ball.png in Resources */,
-				550089AD0F85BFB3007EA0EF /* meter.png in Resources */,
-				550089AE0F85BFB3007EA0EF /* numbers.png in Resources */,
-				550089AF0F85BFB3007EA0EF /* tiles.png in Resources */,
-				550089B00F85BFB3007EA0EF /* tiles2.png in Resources */,
 				55FBC4950F85F23D00730A2D /* ball.tga in Resources */,
 				55FBC4960F85F23D00730A2D /* meter.tga in Resources */,
 				55FBC4970F85F23D00730A2D /* numbers.tga in Resources */,
@@ -438,7 +418,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dave Peck";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -450,8 +430,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				PREBINDING = NO;
-				PRODUCT_NAME = murphy;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "75D1E4EF-88E1-4871-B851-D23C7151270C";
+				PRODUCT_NAME = swscrollingdemo;
 				SDKROOT = iphoneos2.0;
 			};
 			name = "Debug - Device";
@@ -470,7 +449,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/lib\"",
 				);
-				PRODUCT_NAME = iMurphy;
+				PRODUCT_NAME = swScrollingDemo;
 			};
 			name = "Debug - Device";
 		};
@@ -510,7 +489,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "iMurphy" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "swScrollingDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -520,7 +499,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "muck" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "swscrollingdemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
