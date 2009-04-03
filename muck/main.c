@@ -20,14 +20,14 @@
 
 #define kWindowWidth                320
 #define kWindowHeight               480
-#define kDepth                  32
+#define kDepth						32
 #define kFullScreenWindow           true       // Try me full screen!
-#define kOpenGL             true
+#define kOpenGL						true
 
 #define kWorldRectInset             0           // Make the SpriteWorld smaller?
 //#define   kInterlacedMode         false       // Skips every other line
 //#define kSyncToVBL                false       // Sync SpriteWorld to VBL?
-#define kMaxFPS                 200     // Set to 0 for unrestricted speed
+#define kMaxFPS						30     // Set to 0 for unrestricted speed
 
 #define kSpriteMoveDelta            20      // Try 5, 10, 20, or 40
 #define kDiamondSpace               8       // How far apart the diamonds are spaced
@@ -417,7 +417,10 @@ void RunAnimation( void )
 		if(event.type == SDL_QUIT)
 			break;
 		
-    } while( ! SDL_GetMouseState( 0, NULL, NULL ) );
+	    UpdateKeys();
+		
+    } while (true);
+	
     
     now = SDL_GetTicks();
     if ( now > then ) {
@@ -663,7 +666,56 @@ void SmoothScrollingWorldMoveProc(
 
 void UpdateKeys( void )
 {        
-	return;
+	int mouse_x, mouse_y;
+	UInt8 button = SDL_GetMouseState(0, &mouse_x, &mouse_y);
+
+	gKeys.left = 0;
+	gKeys.right = 0;
+	gKeys.down = 0;
+	gKeys.up = 0;
+	
+	if (button != 0)
+	{
+		if (mouse_x <= 160)
+		{
+			// Left half of screen.
+			
+			if (mouse_x >= mouse_y)
+			{
+				// Top-right of the left half of the screen
+				gKeys.up = 1;				
+			}
+			else if (mouse_x >= (480 - mouse_y))
+			{
+				// Bottom-right of the left half of the screen
+				gKeys.down = 1;
+			}
+			else
+			{
+				gKeys.left = 1;
+			}
+		}
+		else
+		{
+			// Right half of the screen
+			
+			if ((320-mouse_x) >= mouse_y)
+			{
+				// Top-left of the right half of the screen
+				gKeys.up = 1;
+			}
+			else if ((320-mouse_x) >= (480-mouse_y))
+			{
+				// Bottom-left of the right half of the screen
+				gKeys.down = 1;
+			}
+			else
+			{
+				gKeys.right = 1;
+			}
+		}
+	}
+	
 	/*
     Uint8 *keystate = SDL_GetKeyboardState( NULL );
     
