@@ -13,6 +13,11 @@
 
 #import "EAGLView.h"
 
+#define PIXEL_TILE_SIZE 24.0f
+#define PIXEL_ATLAS_SIZE 512.0f
+/* a tile's size in texture space; PIXEL_TILE_SIZE / PIXEL_ATLAS_SIZE */
+#define TILE_SIZE (0.046875f)
+
 @interface EAGLView (EAGLViewPrivate)
 
 - (BOOL)createFramebuffer;
@@ -23,6 +28,8 @@
 @interface EAGLView (EAGLViewSprite)
 
 - (void)setupView;
+- (void)computeTextureCoordinatesForX:(int)x y:(int)y coordinates:(GLfloat*)coords;
+
 
 @end
 
@@ -156,18 +163,49 @@ const GLfloat spriteVertices[] = {
  */
 };
 
+/*
 // Sets up an array of values for the texture coordinates.
-const GLshort spriteTexcoords[] = {
-0,1,
-1,1,
+const GLfloat spriteTexcoords[] = {
+0,TILE_SIZE,
+TILE_SIZE,TILE_SIZE,
 0,0,
-1,0,
+TILE_SIZE,0,
+
+/* 0, 1,
+ 1, 1,
+ 0, 0,
+ 1, 0 */
+
 /*
 0, 0,
 1, 0,
 0, 1, 
-1, 1,*/
+1, 1,
 };
+*/
+
+GLfloat textureCoordinates[8];
+
+
+-(void)computeTextureCoordinatesForX:(int)x y:(int)y coordinates:(GLfloat*)coords
+{
+	GLfloat xf = (float) x;
+	GLfloat yf = (float) y;
+	
+	GLfloat x_left = xf * TILE_SIZE;
+	GLfloat x_right = x_left + TILE_SIZE;
+	GLfloat y_top = yf * TILE_SIZE;
+	GLfloat y_bottom = y_top + TILE_SIZE;
+	
+	coords[0] = x_left;
+	coords[1] = y_bottom;	
+	coords[2] = x_right;
+	coords[3] = y_bottom;	
+	coords[4] = x_left;
+	coords[5] = y_top;	
+	coords[6] = x_right;
+	coords[7] = y_top;
+}
 
 - (void)setupView
 {
@@ -176,6 +214,7 @@ const GLshort spriteTexcoords[] = {
 	GLubyte *spriteData;
 	size_t	width, height;
 	
+		
 	// Sets up matrices and transforms for OpenGL ES
 	glViewport(0, 0, backingWidth, backingHeight);
 	glMatrixMode(GL_PROJECTION);
@@ -196,7 +235,8 @@ const GLshort spriteTexcoords[] = {
 	// Sets up pointers and enables states needed for using vertex arrays and textures
 	glVertexPointer(2, GL_FLOAT, 0, spriteVertices);
 	glEnableClientState(GL_VERTEX_ARRAY);
-	glTexCoordPointer(2, GL_SHORT, 0, spriteTexcoords);
+	[self computeTextureCoordinatesForX:1 y:1 coordinates:&textureCoordinates[0]];	
+	glTexCoordPointer(2, GL_FLOAT, 0, textureCoordinates);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	
 	// Creates a Core Graphics image from an image file
@@ -226,15 +266,22 @@ const GLshort spriteTexcoords[] = {
 		// Release the image data
 		free(spriteData);
 		
-		// Set the texture parameters to use a minifying filter and a linear filer (weighted average)
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		// Use texture parameters that make sense for THE BAD ASS SHIT I AM DOING
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		
 		
 		// Enable use of the texture
 		glEnable(GL_TEXTURE_2D);
+		
+		/*
 		// Set a blending function to use
 		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 		// Enable blending
 		glEnable(GL_BLEND);
+		*/
 	}
 }
 
@@ -245,12 +292,9 @@ const GLshort spriteTexcoords[] = {
 	[EAGLContext setCurrentContext:context];
 	
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
-	// glRotatef(0.5f, 0.0f, 0.0f, 1.0f);
-	
-	// put the center point at 0,0
-	glTranslatef(0.5f, 0.5f, 0.0f);		/* make sure i understand these numbers */
-	glScalef(1.001f, 1.001f, 1.001f);
-	glTranslatef(-0.5f, -0.5f, 0.0f);	/* and these (do we lose centering here?) */	
+		
+	[self computeTextureCoordinatesForX:(rand() % 12) + 1 y:(rand() % 16) coordinates:&textureCoordinates[0]];	
+	glTexCoordPointer(2, GL_FLOAT, 0, textureCoordinates);
 	
 	glClear(GL_COLOR_BUFFER_BIT);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);

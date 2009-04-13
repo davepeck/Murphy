@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>icon.png</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.davepeck.murphy</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -27,6 +27,6 @@
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>UIStatusBarHidden</key>
-    <true />
+	<true/>
 </dict>
 </plist>
