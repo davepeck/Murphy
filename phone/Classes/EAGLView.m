@@ -194,17 +194,20 @@ GLfloat spriteCoordinates[8];
 	[self computeTextureCoordinatesForTileAtlasS:s t:t coordinates:coords];
 }
 
--(GLfloat)linearMap:(GLfloat)value valueMin:(GLfloat)valueMin valueMax:(GLfloat)valueMax targetMin:(GLfloat)targetMin targetMax:(GLfloat)targetMax
+-(GLfloat)linearMap:(GLfloat)value valueMin:(GLfloat)valueMin valueMax:(GLfloat)valueMax targetMin:(GLfloat)targetMin targetMax:(GLfloat)targetMax;
 {
 	// if value == valueMin, return targetMin
 	// if value == valueMax, return targetMax
-	// if value == (valueMin + valueMax) / 2, return (targetMin + targetMax) / 2
-	// if value == (valueMin + valueMax) * (1/3), return (targetMin + targetMax) * (1/3)
-	// so, if value == (valueMin + valueMax) * X, return (targetMin + targetMax) * X
-	// or: X = value / (valueMin + valueMax)
-	// so: return value * ((targetMin + targetMax) / (valueMin + valueMax))
+	// if value is halfway between valueMin and valueMax, return halfway between targetMin and targetMax. etc.
 	
-	return value * ((targetMin + targetMax) / (valueMin + valueMax));
+    GLfloat valueRange = valueMax - valueMin;
+	GLfloat targetRange = targetMax - targetMin;
+	
+    GLfloat zeroValue = value - valueMin;
+	GLfloat zeroTargetValue = zeroValue * (targetRange / valueRange);
+	GLfloat targetValue = zeroTargetValue + targetMin;
+	
+	return targetValue;
 }
 
 -(void)computeSpriteCoordinatesForScreenGridX:(int)x y:(int)y coordinates:(GLfloat*)coords;
@@ -278,9 +281,11 @@ GLfloat spriteCoordinates[8];
 			
 			coord_index += 8;
 			
-			NSAssert(coord_index <= 2240 && index_index <= 1680, @"We stepped over our coordinate boundaries.");
+			NSAssert((coord_index <= 2240) && (index_index <= 1680), @"We stepped over our coordinate boundaries.");
 		}
 	}
+	
+	NSAssert((coord_index == 2240) && (index_index == 1680), @"We didn't reach our coordinate boundaries.");
 	
 		
 	// Sets up matrices and transforms for OpenGL ES
@@ -359,8 +364,8 @@ GLfloat spriteCoordinates[8];
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
 		
 	glClear(GL_COLOR_BUFFER_BIT);
-	glDrawElements(GL_TRIANGLES, 1680, GL_UNSIGNED_SHORT, (const GLvoid *) coordinateIndexes);
-	
+	glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_SHORT, (const GLvoid *) coordinateIndexes);
+	// glDrawArrays(GL_TRIANGLES, 0, 2240);
 	// glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
