@@ -11,6 +11,7 @@
 #import <OpenGLES/EAGL.h>
 #import <OpenGLES/ES1/gl.h>
 #import <OpenGLES/ES1/glext.h>
+#import "MurphyLevel.h"
 
 /*
 This class wraps the CAEAGLLayer from CoreAnimation into a convenient UIView subclass.
@@ -38,6 +39,11 @@ Note that setting the view non-opaque will only work if the EAGL surface has an 
 	
 	NSTimer *animationTimer;
 	NSTimeInterval animationInterval;	
+	
+	MurphyLevel *level;	
+	GLfloat *tileCoordinates;
+	GLfloat *tileTextureCoordinates;
+	GLushort *coordinateIndexes;
 }
 
 - (void)startAnimation;

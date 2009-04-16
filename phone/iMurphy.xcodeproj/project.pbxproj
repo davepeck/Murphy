@@ -19,6 +19,9 @@
 		551D52370F930198005F2714 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551D52360F930198005F2714 /* CoreGraphics.framework */; };
 		55CB59E30F932D7800071361 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 55CB59E10F932D7800071361 /* Default.png */; };
 		55CB59E40F932D7800071361 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 55CB59E20F932D7800071361 /* icon.png */; };
+		55E52E070F968B4900CC9C2E /* OrangeDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E52E060F968B4900CC9C2E /* OrangeDataScanner.m */; };
+		55E52E0C0F968C7900CC9C2E /* MurphyLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E52E0B0F968C7900CC9C2E /* MurphyLevel.m */; };
+		55E52F140F969B7500CC9C2E /* World.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55E52F130F969B7500CC9C2E /* World.mbl */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,11 @@
 		551D52360F930198005F2714 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		55CB59E10F932D7800071361 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		55CB59E20F932D7800071361 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		55E52E050F968B4900CC9C2E /* OrangeDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrangeDataScanner.h; sourceTree = "<group>"; };
+		55E52E060F968B4900CC9C2E /* OrangeDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrangeDataScanner.m; sourceTree = "<group>"; };
+		55E52E0A0F968C7900CC9C2E /* MurphyLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MurphyLevel.h; sourceTree = "<group>"; };
+		55E52E0B0F968C7900CC9C2E /* MurphyLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MurphyLevel.m; sourceTree = "<group>"; };
+		55E52F130F969B7500CC9C2E /* World.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = World.mbl; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +68,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				55E52E0A0F968C7900CC9C2E /* MurphyLevel.h */,
+				55E52E0B0F968C7900CC9C2E /* MurphyLevel.m */,
+				55E52E050F968B4900CC9C2E /* OrangeDataScanner.h */,
+				55E52E060F968B4900CC9C2E /* OrangeDataScanner.m */,
 				28FD14FC0DC6FC130079059D /* EAGLView.h */,
 				28FD14FD0DC6FC130079059D /* EAGLView.m */,
 				1D3623240D0F684500981E51 /* iMurphyAppDelegate.h */,
@@ -101,6 +113,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				55E52F130F969B7500CC9C2E /* World.mbl */,
 				55CB59E10F932D7800071361 /* Default.png */,
 				55CB59E20F932D7800071361 /* icon.png */,
 				551D52110F930125005F2714 /* example-world-tiles-24-512.png */,
@@ -175,6 +188,7 @@
 				551D52120F930125005F2714 /* example-world-tiles-24-512.png in Resources */,
 				55CB59E30F932D7800071361 /* Default.png in Resources */,
 				55CB59E40F932D7800071361 /* icon.png in Resources */,
+				55E52F140F969B7500CC9C2E /* World.mbl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +202,8 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* iMurphyAppDelegate.m in Sources */,
 				28FD14FE0DC6FC130079059D /* EAGLView.m in Sources */,
+				55E52E070F968B4900CC9C2E /* OrangeDataScanner.m in Sources */,
+				55E52E0C0F968C7900CC9C2E /* MurphyLevel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

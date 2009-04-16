@@ -18,6 +18,26 @@
 /* a tile's size in texture space; PIXEL_TILE_SIZE / PIXEL_ATLAS_SIZE */
 #define TILE_SIZE (0.046875f)
 
+#define PIXEL_SCREEN_WIDTH 320.0f
+#define PIXEL_SCREEN_HEIGHT 480.0f
+
+#define SCREEN_LEFT 0.0f
+#define SCREEN_RIGHT 320.0f
+#define SCREEN_TOP 0.0f
+#define SCREEN_BOTTOM 320.0f
+
+#define VIEWPORT_LEFT -1.0f
+#define VIEWPORT_RIGHT 1.0f
+#define VIEWPORT_TOP 1.5f
+#define VIEWPORT_BOTTOM -1.5f
+
+#define LEVEL_START_X 80
+#define LEVEL_START_Y 40
+
+#define TILES_ACROSS 14
+#define TILES_DOWN 20
+
+
 @interface EAGLView (EAGLViewPrivate)
 
 - (BOOL)createFramebuffer;
@@ -28,8 +48,10 @@
 @interface EAGLView (EAGLViewSprite)
 
 - (void)setupView;
-- (void)computeTextureCoordinatesForX:(int)x y:(int)y coordinates:(GLfloat*)coords;
-
+- (GLfloat)linearMap:(GLfloat)value valueMin:(GLfloat)valueMin valueMax:(GLfloat)valueMax targetMin:(GLfloat)targetMin targetMax:(GLfloat)targetMax;
+- (void)computeTextureCoordinatesForTileAtlasS:(int)s t:(int)t coordinates:(GLfloat*)coords;
+- (void)computeTextureCoordinatesForLevelX:(int)x y:(int)y coordinates:(GLfloat*) coords;
+- (void)computeSpriteCoordinatesForScreenGridX:(int)x y:(int)y coordinates:(GLfloat*)coords;
 
 @end
 
@@ -63,6 +85,8 @@
 		}
 		
 		animationInterval = 1.0 / 60.0;
+				
+		level = [[MurphyLevel murphyLevelWithNamedResource:@"World"] retain];		
 		
 		[self setupView];
 		[self drawView];
@@ -116,7 +140,6 @@
 	}
 }
 
-
 - (void)startAnimation
 {
 	animationTimer = [NSTimer scheduledTimerWithTimeInterval:animationInterval target:self selector:@selector(drawView) userInfo:nil repeats:YES];
@@ -140,71 +163,81 @@
 	}
 }
 
-
-// Sets up an array of values to use as the sprite vertices.
-const GLfloat spriteVertices[] = {
-0.0f, 0.0f,
-1.0f, 0.0f,
-0.0f, 1.0f,
-1.0f, 1.0f,
-
-/*
--1.0f, -1.0f,
-1.0f, -1.0f,
--1.0f, 1.0f,
-1.0f, 1.0f,
-*/
-
-/*
--0.5f, -0.5f,
-0.5f, -0.5f,
--0.5f,  0.5f,
-0.5f,  0.5f,
- */
-};
-
-/*
-// Sets up an array of values for the texture coordinates.
-const GLfloat spriteTexcoords[] = {
-0,TILE_SIZE,
-TILE_SIZE,TILE_SIZE,
-0,0,
-TILE_SIZE,0,
-
-/* 0, 1,
- 1, 1,
- 0, 0,
- 1, 0 */
-
-/*
-0, 0,
-1, 0,
-0, 1, 
-1, 1,
-};
-*/
-
 GLfloat textureCoordinates[8];
+GLfloat spriteCoordinates[8];
 
 
--(void)computeTextureCoordinatesForX:(int)x y:(int)y coordinates:(GLfloat*)coords
+-(void)computeTextureCoordinatesForTileAtlasS:(int)s t:(int)t coordinates:(GLfloat*)coords
 {
-	GLfloat xf = (float) x;
-	GLfloat yf = (float) y;
+	GLfloat sf = (float) s;
+	GLfloat tf = (float) t;
 	
-	GLfloat x_left = xf * TILE_SIZE;
-	GLfloat x_right = x_left + TILE_SIZE;
-	GLfloat y_top = yf * TILE_SIZE;
-	GLfloat y_bottom = y_top + TILE_SIZE;
+	GLfloat s_left = sf * TILE_SIZE;
+	GLfloat s_right = s_left + TILE_SIZE;
+	GLfloat t_top = tf * TILE_SIZE;
+	GLfloat t_bottom = t_top + TILE_SIZE;
 	
-	coords[0] = x_left;
-	coords[1] = y_bottom;	
-	coords[2] = x_right;
-	coords[3] = y_bottom;	
-	coords[4] = x_left;
-	coords[5] = y_top;	
-	coords[6] = x_right;
-	coords[7] = y_top;
+	coords[0] = s_left;
+	coords[1] = t_bottom;	
+	coords[2] = s_right;
+	coords[3] = t_bottom;	
+	coords[4] = s_left;
+	coords[5] = t_top;	
+	coords[6] = s_right;
+	coords[7] = t_top;
+}
+
+-(void)computeTextureCoordinatesForLevelX:(int)x y:(int)y coordinates:(GLfloat*)coords
+{
+	uint8_t s = [level getIconSForX:x Y:y];
+	uint8_t t = [level getIconTForX:x Y:y];
+	[self computeTextureCoordinatesForTileAtlasS:s t:t coordinates:coords];
+}
+
+-(GLfloat)linearMap:(GLfloat)value valueMin:(GLfloat)valueMin valueMax:(GLfloat)valueMax targetMin:(GLfloat)targetMin targetMax:(GLfloat)targetMax
+{
+	// if value == valueMin, return targetMin
+	// if value == valueMax, return targetMax
+	// if value == (valueMin + valueMax) / 2, return (targetMin + targetMax) / 2
+	// if value == (valueMin + valueMax) * (1/3), return (targetMin + targetMax) * (1/3)
+	// so, if value == (valueMin + valueMax) * X, return (targetMin + targetMax) * X
+	// or: X = value / (valueMin + valueMax)
+	// so: return value * ((targetMin + targetMax) / (valueMin + valueMax))
+	
+	return value * ((targetMin + targetMax) / (valueMin + valueMax));
+}
+
+-(void)computeSpriteCoordinatesForScreenGridX:(int)x y:(int)y coordinates:(GLfloat*)coords;
+{
+	// TODO handle offsets.
+	
+	// X=0, Y=0 is top-left (for now)
+	// x max is (PIXEL_SCREEN_WIDTH / PIXEL_TILE_SIZE)
+	// y max is (PIXEL_SCREEN_HEIGHT / PIXEL_TILE_SIZE)
+
+	// first, figure out the pixel positions that you want on the screen
+	GLfloat screen_left = x * PIXEL_TILE_SIZE;
+	GLfloat screen_right = screen_left + PIXEL_TILE_SIZE;
+	GLfloat screen_top = y * PIXEL_TILE_SIZE;
+	GLfloat screen_bottom = screen_top + PIXEL_TILE_SIZE;
+	
+	// okay, now map that pixel position to OpenGL coordinates
+	// how? 
+	// Well, you have a X viewport from -1 to 1. And you have a screen viewport of 0 to 320.
+	// So, map that shit -- linear relationship.
+	GLfloat viewport_left = [self linearMap:screen_left valueMin:SCREEN_LEFT valueMax:SCREEN_RIGHT targetMin:VIEWPORT_LEFT targetMax:VIEWPORT_RIGHT];
+	GLfloat viewport_right = [self linearMap:screen_right valueMin:SCREEN_LEFT valueMax:SCREEN_RIGHT targetMin:VIEWPORT_LEFT targetMax:VIEWPORT_RIGHT];
+	GLfloat viewport_top = [self linearMap:screen_top valueMin:SCREEN_TOP valueMax:SCREEN_BOTTOM targetMin:VIEWPORT_TOP targetMax:VIEWPORT_BOTTOM];
+	GLfloat viewport_bottom = [self linearMap:screen_bottom valueMin:SCREEN_TOP valueMax:SCREEN_BOTTOM targetMin:VIEWPORT_TOP targetMax:VIEWPORT_BOTTOM];
+	
+	coords[0] = viewport_left;
+	coords[1] = viewport_bottom;	
+	coords[2] = viewport_right;
+	coords[3] = viewport_bottom;	
+	coords[4] = viewport_left;
+	coords[5] = viewport_top;	
+	coords[6] = viewport_right;
+	coords[7] = viewport_top;
 }
 
 - (void)setupView
@@ -213,30 +246,62 @@ GLfloat textureCoordinates[8];
 	CGContextRef spriteContext;
 	GLubyte *spriteData;
 	size_t	width, height;
+		
+	// Compute our tile and texture coordinates, along with indicies into them.	
+	tileCoordinates = malloc(sizeof(GLfloat) * 2240);			// there will be 14 * 20 tiles on screen; each has 4 coordinates, each of which is 2 entries (x, then y) in this array
+	tileTextureCoordinates = malloc(sizeof(GLfloat) * 2240);	// again for the textures
+	coordinateIndexes = malloc(sizeof(GLushort) * 1680);					// because we have to have disconnected geometry, we need 6 indicies for each of our coordinates
+	
+	// XXX TODO DAVEPECK
+	// Are there ways to simplify the arrays above?
+	//
+	// For the tileCoordinates array, we can substantially reduce the number of coordinates by congealing coordinates shared by neighbors.
+	// For the tileTextureCoordinates array, perhaps we can tie the coordinates to the number of textures rather than the number of tiles on-screen.
+	//
+	// If we're lucky, both arrays will then be 256 or fewer elements, which means our index array can be of bytes rather than shorts!
+	
+	GLushort coord_index = 0;
+	GLushort index_index = 0;
+	for (int y = 0; y < TILES_DOWN; y++)
+	{
+		for (int x = 0; x < TILES_ACROSS; x++)
+		{
+			[self computeSpriteCoordinatesForScreenGridX:x y:y coordinates:&tileCoordinates[coord_index]];
+			[self computeTextureCoordinatesForLevelX:(x + LEVEL_START_X) y:(y + LEVEL_START_Y) coordinates:&tileTextureCoordinates[coord_index]];
+			
+			coordinateIndexes[index_index++] = coord_index;
+			coordinateIndexes[index_index++] = coord_index + 2;
+			coordinateIndexes[index_index++] = coord_index + 4;			
+			coordinateIndexes[index_index++] = coord_index + 2;
+			coordinateIndexes[index_index++] = coord_index + 4;
+			coordinateIndexes[index_index++] = coord_index + 6;
+			
+			coord_index += 8;
+			
+			NSAssert(coord_index <= 2240 && index_index <= 1680, @"We stepped over our coordinate boundaries.");
+		}
+	}
 	
 		
 	// Sets up matrices and transforms for OpenGL ES
 	glViewport(0, 0, backingWidth, backingHeight);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	//glOrthof(-1.0f, 1.0f, -1.5f, 1.5f, -1.0f, 1.0f);
-	glOrthof(0.0f, 1.0f, 0.0f, 1.5f, -1.0f, 1.0f);
+	glOrthof(-1.0f, 1.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+	//glOrthof(0.0f, 1.0f, 0.0f, 1.5f, -1.0f, 1.0f);
 	
 	glMatrixMode(GL_MODELVIEW);
-	
-	
+		
 	// DAVEPECK where does this belong in, really?
-	glTranslatef(0.0f, 0.25f, 0.0f);
-	
-	
+	//glTranslatef(0.0f, 0.25f, 0.0f);
+		
 	// Clears the view with black
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	
 	// Sets up pointers and enables states needed for using vertex arrays and textures
-	glVertexPointer(2, GL_FLOAT, 0, spriteVertices);
+	glVertexPointer(2, GL_FLOAT, 0, tileCoordinates);
 	glEnableClientState(GL_VERTEX_ARRAY);
-	[self computeTextureCoordinatesForX:1 y:1 coordinates:&textureCoordinates[0]];	
-	glTexCoordPointer(2, GL_FLOAT, 0, textureCoordinates);
+	glTexCoordPointer(2, GL_FLOAT, 0, tileTextureCoordinates);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	
 	// Creates a Core Graphics image from an image file
@@ -293,11 +358,10 @@ GLfloat textureCoordinates[8];
 	
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
 		
-	[self computeTextureCoordinatesForX:(rand() % 12) + 1 y:(rand() % 16) coordinates:&textureCoordinates[0]];	
-	glTexCoordPointer(2, GL_FLOAT, 0, textureCoordinates);
-	
 	glClear(GL_COLOR_BUFFER_BIT);
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+	glDrawElements(GL_TRIANGLES, 1680, GL_UNSIGNED_SHORT, (const GLvoid *) coordinateIndexes);
+	
+	// glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
 	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
