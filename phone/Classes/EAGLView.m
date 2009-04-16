@@ -24,7 +24,7 @@
 #define SCREEN_LEFT 0.0f
 #define SCREEN_RIGHT 320.0f
 #define SCREEN_TOP 0.0f
-#define SCREEN_BOTTOM 320.0f
+#define SCREEN_BOTTOM 480.0f
 
 #define VIEWPORT_LEFT -1.0f
 #define VIEWPORT_RIGHT 1.0f
@@ -265,6 +265,7 @@ GLfloat spriteCoordinates[8];
 	
 	GLushort coord_index = 0;
 	GLushort index_index = 0;
+	GLushort half_coord_index = 0;
 	for (int y = 0; y < TILES_DOWN; y++)
 	{
 		for (int x = 0; x < TILES_ACROSS; x++)
@@ -272,14 +273,15 @@ GLfloat spriteCoordinates[8];
 			[self computeSpriteCoordinatesForScreenGridX:x y:y coordinates:&tileCoordinates[coord_index]];
 			[self computeTextureCoordinatesForLevelX:(x + LEVEL_START_X) y:(y + LEVEL_START_Y) coordinates:&tileTextureCoordinates[coord_index]];
 			
-			coordinateIndexes[index_index++] = coord_index;
-			coordinateIndexes[index_index++] = coord_index + 2;
-			coordinateIndexes[index_index++] = coord_index + 4;			
-			coordinateIndexes[index_index++] = coord_index + 2;
-			coordinateIndexes[index_index++] = coord_index + 4;
-			coordinateIndexes[index_index++] = coord_index + 6;
+			coordinateIndexes[index_index++] = half_coord_index;
+			coordinateIndexes[index_index++] = half_coord_index + 1;
+			coordinateIndexes[index_index++] = half_coord_index + 2;			
+			coordinateIndexes[index_index++] = half_coord_index + 1;
+			coordinateIndexes[index_index++] = half_coord_index + 2;
+			coordinateIndexes[index_index++] = half_coord_index + 3;
 			
 			coord_index += 8;
+			half_coord_index += 4;
 			
 			NSAssert((coord_index <= 2240) && (index_index <= 1680), @"We stepped over our coordinate boundaries.");
 		}
@@ -364,7 +366,7 @@ GLfloat spriteCoordinates[8];
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
 		
 	glClear(GL_COLOR_BUFFER_BIT);
-	glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_SHORT, (const GLvoid *) coordinateIndexes);
+	glDrawElements(GL_TRIANGLES, 1680, GL_UNSIGNED_SHORT, (const GLvoid *) coordinateIndexes);
 	// glDrawArrays(GL_TRIANGLES, 0, 2240);
 	// glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	
