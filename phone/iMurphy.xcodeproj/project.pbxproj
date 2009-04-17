@@ -22,6 +22,10 @@
 		55E52E070F968B4900CC9C2E /* OrangeDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E52E060F968B4900CC9C2E /* OrangeDataScanner.m */; };
 		55E52E0C0F968C7900CC9C2E /* MurphyLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E52E0B0F968C7900CC9C2E /* MurphyLevel.m */; };
 		55E52F140F969B7500CC9C2E /* World.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55E52F130F969B7500CC9C2E /* World.mbl */; };
+		55E5302A0F980D5600CC9C2E /* TileAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E530290F980D5600CC9C2E /* TileAtlas.m */; };
+		55E530570F98191B00CC9C2E /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E530560F98191B00CC9C2E /* Texture.m */; };
+		55E530830F981D8E00CC9C2E /* TileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E530820F981D8E00CC9C2E /* TileMap.m */; };
+		55E530990F9824AA00CC9C2E /* TileGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E530980F9824AA00CC9C2E /* TileGrid.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +50,14 @@
 		55E52E0A0F968C7900CC9C2E /* MurphyLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MurphyLevel.h; sourceTree = "<group>"; };
 		55E52E0B0F968C7900CC9C2E /* MurphyLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MurphyLevel.m; sourceTree = "<group>"; };
 		55E52F130F969B7500CC9C2E /* World.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = World.mbl; sourceTree = "<group>"; };
+		55E530280F980D5600CC9C2E /* TileAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileAtlas.h; sourceTree = "<group>"; };
+		55E530290F980D5600CC9C2E /* TileAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileAtlas.m; sourceTree = "<group>"; };
+		55E530550F98191B00CC9C2E /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
+		55E530560F98191B00CC9C2E /* Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture.m; sourceTree = "<group>"; };
+		55E530810F981D8E00CC9C2E /* TileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileMap.h; sourceTree = "<group>"; };
+		55E530820F981D8E00CC9C2E /* TileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileMap.m; sourceTree = "<group>"; };
+		55E530970F9824AA00CC9C2E /* TileGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileGrid.h; sourceTree = "<group>"; };
+		55E530980F9824AA00CC9C2E /* TileGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileGrid.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +150,14 @@
 		551D51650F929F1C005F2714 /* Sprite */ = {
 			isa = PBXGroup;
 			children = (
+				55E530550F98191B00CC9C2E /* Texture.h */,
+				55E530560F98191B00CC9C2E /* Texture.m */,
+				55E530280F980D5600CC9C2E /* TileAtlas.h */,
+				55E530290F980D5600CC9C2E /* TileAtlas.m */,
+				55E530810F981D8E00CC9C2E /* TileMap.h */,
+				55E530820F981D8E00CC9C2E /* TileMap.m */,
+				55E530970F9824AA00CC9C2E /* TileGrid.h */,
+				55E530980F9824AA00CC9C2E /* TileGrid.m */,
 			);
 			name = Sprite;
 			sourceTree = "<group>";
@@ -204,6 +224,10 @@
 				28FD14FE0DC6FC130079059D /* EAGLView.m in Sources */,
 				55E52E070F968B4900CC9C2E /* OrangeDataScanner.m in Sources */,
 				55E52E0C0F968C7900CC9C2E /* MurphyLevel.m in Sources */,
+				55E5302A0F980D5600CC9C2E /* TileAtlas.m in Sources */,
+				55E530570F98191B00CC9C2E /* Texture.m in Sources */,
+				55E530830F981D8E00CC9C2E /* TileMap.m in Sources */,
+				55E530990F9824AA00CC9C2E /* TileGrid.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
