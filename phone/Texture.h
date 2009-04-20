@@ -33,6 +33,8 @@
 +(id)textureWithResourcePNG:(NSString*)resourceName;
 
 @property (readonly) BOOL engaged;
+@property (readonly) uint16_t width;
+@property (readonly) uint16_t height;
 
 -(void)engage;
 -(void)disengage;

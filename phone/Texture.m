@@ -56,7 +56,7 @@ static Texture *currently_engaged = NULL;
 			height = i;
 		}
 		
-		// Disingage the previous texture, if any
+		// Disengage the previous texture, if any
 		if (currently_engaged != NULL)
 		{
 			[currently_engaged disengage];
@@ -65,7 +65,7 @@ static Texture *currently_engaged = NULL;
 		// Create a bitmap from the image...	
 		GLubyte *textureData = (GLubyte *) malloc(width * height * 4);	
 		CGContextRef textureContext = CGBitmapContextCreate(textureData, width, height, 8, width * 4, CGImageGetColorSpace(textureImage), kCGImageAlphaPremultipliedLast);
-		CGContextDrawImage(textureContext, CGRectMake(0.0, 0.0, (CGFloat)width, (CGFloat)height), textureImage);
+		CGContextDrawImage(textureContext, CGRectMake(0.0, 0.0, (CGFloat)originalWidth, (CGFloat)originalHeight), textureImage);
 		CGContextRelease(textureContext);
 		
 		// Create a GL texture from the bitmap, and engage
@@ -74,6 +74,13 @@ static Texture *currently_engaged = NULL;
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
 		free(textureData);
 		
+		// Choose our default texture parameters: pixelate to high hell if we need to
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+				
+		// Finish engaging this texture		
 		currently_engaged = self;
 		engaged = YES;		
 	}
@@ -102,6 +109,8 @@ static Texture *currently_engaged = NULL;
 }
 
 @synthesize engaged;
+@synthesize width;
+@synthesize height;
 
 -(void)engage
 {

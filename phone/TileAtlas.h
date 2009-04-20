@@ -20,10 +20,13 @@
 	uint16_t tilePixelHeight;	
 	uint8_t tilesAcross;
 	uint8_t tilesDown;		
+	
+	GLfloat tileWidthInTextureSpace;
+	GLfloat tileHeightInTextureSpace;
 }
 
 +(id)tileAtlasWithFile:(NSString*)path tilePixelWidth:(uint16_t)tilePixelWidth tilePixelHeight:(uint16_t)tilePixelHeight tilesAcross:(uint16_t)tilesAcross tilesDown:(uint16_t)tilesDown;
-+(id)tileAtlasWithResourcePNG:(NSString*)resourceName;
++(id)tileAtlasWithResourcePNG:(NSString*)resourceName tilePixelWidth:(uint16_t)tilePixelWidth tilePixelHeight:(uint16_t)tilePixelHeight tilesAcross:(uint16_t)tilesAcross tilesDown:(uint16_t)tilesDown;
 
 @property (readonly) Texture *texture;
 @property (readonly) uint8_t tilesAcross;
