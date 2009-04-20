@@ -20,14 +20,21 @@
 
 -(id)initWithFile:(NSString*)path tilePixelWidth:(uint16_t)width tilePixelHeight:(uint16_t)height tilesAcross:(uint16_t)across tilesDown:(uint16_t)down;
 {
-	texture = [[Texture textureWithFile:path] retain];
-	tilePixelWidth = width;
-	tilePixelHeight = height;
-	tilesAcross = across;
-	tilesDown = down;
+	self = [super init];
 	
-	tileWidthInTextureSpace = ((GLfloat)texture.width) / ((GLfloat)tilePixelWidth);
-	tileHeightInTextureSpace = ((GLfloat)texture.height) / ((GLfloat)tilePixelHeight);
+	if (self != nil)
+	{
+		texture = [[Texture textureWithFile:path] retain];
+		tilePixelWidth = width;
+		tilePixelHeight = height;
+		tilesAcross = across;
+		tilesDown = down;
+		
+		tileWidthInTextureSpace = ((GLfloat)texture.width) / ((GLfloat)tilePixelWidth);
+		tileHeightInTextureSpace = ((GLfloat)texture.height) / ((GLfloat)tilePixelHeight);
+	}
+	
+	return self;
 }
 
 -(void)dealloc

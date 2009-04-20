@@ -29,12 +29,12 @@ static Texture *currently_engaged = NULL;
 	{		
 		// Grab the CoreGraphics image
 		CGImageRef textureImage = [UIImage imageWithContentsOfFile:path].CGImage;
-		NSAssert(textureImage != NULL, "TODO handle this error");
+		NSAssert(textureImage != NULL, @"TODO handle this error");
 		
 		// How big is this thing?
 		size_t actualWidth = CGImageGetWidth(textureImage);
 		size_t actualHeight = CGImageGetHeight(textureImage);	
-		NSAssert(actualWidth <= 1024 && actualHeight <= 1024, "TODO handle this error");
+		NSAssert(actualWidth <= 1024 && actualHeight <= 1024, @"TODO handle this error");
 		originalWidth = (uint16_t) actualWidth;
 		originalHeight = (uint16_t) actualHeight;
 		
@@ -105,7 +105,7 @@ static Texture *currently_engaged = NULL;
 
 +(id)textureWithResourcePNG:(NSString*)resourceName
 {	
-	return [Texture textureWithFile:[[NSBundle mainBundle] pathForResource:name ofType:@"png"]];
+	return [Texture textureWithFile:[[NSBundle mainBundle] pathForResource:resourceName ofType:@"png"]];
 }
 
 @synthesize engaged;
