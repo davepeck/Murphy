@@ -27,17 +27,14 @@
 	uint16_t height;		// will always be a power of 2
 	
 	BOOL engaged;
-	GLenum textureUnit;
 }
 
 +(id)textureWithFile:(NSString*)path;
 +(id)textureWithResourcePNG:(NSString*)resourceName;
 
 @property (readonly) BOOL engaged;
-@property (readonly) GLenum textureUnit;
 
 -(void)engage;
--(void)engageOnUnit:(GLenum)textureUnit;		/* GL_TEXTURE0 or GL_TEXTURE1 on the iPhone */
 -(void)disengage;
 
 @end
