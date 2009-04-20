@@ -114,6 +114,8 @@ static Texture *currently_engaged = NULL;
 
 -(void)engage
 {
+	if (engaged) { return; }
+	
 	if (currently_engaged != NULL)
 	{
 		[currently_engaged disengage];

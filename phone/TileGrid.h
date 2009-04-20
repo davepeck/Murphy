@@ -20,10 +20,16 @@
 	uint16_t height;	
 	uint16_t *grid;
 	
-	GLfloat originX;	  // which is to say: the X value here represents the left of the viewport we need to draw into
-	GLfloat originY;
+	GLfloat gridLeft;	  // where in GL space does our grid start?
+	GLfloat gridTop;
 	GLfloat pixelWidth;   // these probably don't belong here, but for now...
 	GLfloat pixelHeight;
+	
+	GLfloat *tileCoordinates;
+	GLfloat *tileTextureCoordinates;
+	GLfloat *tileIndexes;
+	GLushort numCoordinates;
+	GLushort numIndexes;
 }
 
 +(id)tileGridWithMap:(TileMap *)map width:(uint16_t)width height:(uint16_t)height;
@@ -37,7 +43,7 @@
 
 
 // Do these belong here?
--(void)setViewportOriginX:(GLfloat)originX y:(GLfloat)originY;
+-(void)setGridLeft:(GLfloat)myLeft top:(GLfloat)myTop;
 -(void)setPixelWidth:(GLfloat)pixelWidth height:(GLfloat)pixelHeight;
 -(void)drawInViewportLeft:(GLfloat)left top:(GLfloat)top right:(GLfloat)right bottom:(GLfloat)bottom;
 
