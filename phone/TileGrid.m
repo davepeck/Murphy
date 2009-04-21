@@ -129,27 +129,53 @@
 	uint16_t tilesAcrossScreen = (uint16_t) ceilf(pixelWidth / tilePixelWidth);
 	uint16_t tilesDownScreen = (uint16_t) ceilf(pixelHeight / tilePixelHeight);
 	
-	// Okay, now we know the gl-space size of a tile. But what portion of our grid is intersected?
+	// Okay, now we know the gl-space size of a tile. But what portion of our grid is intersected?	
+	int16_t visibleLeft = floorf((left - gridLeft) / glTileWidth);
+	int16_t visibleTop = floorf((top - gridTop) / glTileHeight);
+	int16_t visibleRight = visibleLeft + tilesAcrossScreen;
+	int16_t visibleBottom = visibleTop + tilesDownScreen;
 	
-	// The entire tile grid is a rectangle from (gridLeft, gridTop) to (gridLeft + (width * glTileWidth), gridTop - (height * glTileHeight))
-	// what portion of that is hit by (left, top) to (right, bottom)?
-	// in other words, what are (visibleGridLeft, visibleGridTop) to (visibleGridRight, visibleGridBottom)?
+	// In order to account for partial intersection, extend our "visible" grid in all directions
+	visibleLeft -= 1;
+	visibleTop -= 1;
+	visibleRight += 1;
+	visibleBottom += 1;
 	
-	// well, (left-gridLeft) / glTileWidth will tell me what visibleGridLeft is... (or will it be off by 1?)
-	// let's say gridLeft is 0, left is 1, and glTileWidth is 0.1. Then we get 10.
-	// how about gridLeft is 0, left is 0.1, and glTileWidth 0.2. Then we get 0.5, which truncates down to zero!
+	// make sure we're displaying in-bounds
+	if (visibleLeft < 0) 
+	{
+		visibleLeft = 0;
+	}
 	
-	uint16_t visibleLeft = floorf((left - gridLeft) / glTileWidth);
-	uint16_t visibleTop = floorf((top - gridTop) / glTileHeight);
-	uint16_t visibleRight = visibleLeft + tilesAcrossScreen;
-	uint16_t visibleBottom = visibleTop + tilesDownScreen;
+	if (visibleRight >= width)
+	{
+		visibleRight = width - 1;
+	}
+	
+	if (visibleTop < 0)
+	{
+		visibleTop = 0;
+	}
+	
+	if (visibleBottom >= height)
+	{
+		visibleBottom = 0;
+	}
+	
+	// Compute values for the viewPort's left and top that are snapped to the appropriate tile boundary
+	GLfloat snappedLeft = gridLeft + (visibleLeft * glTileWidth);
+	GLfloat snappedTop = gridTop - (visibleTop * glTileHeight);	
 	
 	// how big must our arrays be?
 	// Vertex & Texture: We need 4 points per tile, 2 entries per point = tilesAcrossScreen * tilesDownScreen * 4 * 2
 	// How many indicies? Well, we want two triangles per tile, or 6 indicies = tilesAcrossScreen * tilesDownScreen * 6
-	GLushort nextNumCoordinates = tilesAcrossScreen * tilesDownScreen * 8;
-	GLushort nextNumIndexes = tilesAcrossScreen * tilesDownScreen * 6;
+	uint16_t currentTilesAcrossScreen = visibleRight - visibleLeft;
+	uint16_t currentTilesDownScreen = visibleBottom - visibleTop;	
+	GLushort nextNumCoordinates = currentTilesDownScreen * currentTilesAcrossScreen * 8;
+	GLushort nextNumIndexes = currentTilesDownScreen * currentTilesAcrossScreen * 6;
 	
+	// If the number of tiles changed since last time, free up our memory and allocate some new memory
+	// PERFORMANCE: should the number really change?
 	if (tileCoordinates == nil || nextNumCoordinates != numCoordinates)
 	{
 		if (tileCoordinates != nil)
@@ -174,8 +200,8 @@
 		tileTextureCoordinates = malloc(sizeof(GLfloat) * numCoordinates);
 		tileIndexes = malloc(sizeof(GLushort) * numIndexes);		
 	}
-	
-	
+
+	// Now go ahead and compute all the coordinates for the damned thing
 	GLushort coord_index = 0;
 	GLushort index_index = 0;
 	GLushort half_coord_index = 0;
@@ -187,12 +213,12 @@
 	// PERFORMANCE: okay, look, we're doing a ton of unnecessary computations here. Fix that.	
 	for (uint16_t y = visibleTop; y < visibleBottom; y++)
 	{
-		vertexTop = top - ((y - visibleTop) * glTileHeight);
+		vertexTop = snappedTop - ((y - visibleTop) * glTileHeight);
 		vertexBottom = vertexTop - glTileHeight;
 		
 		for (uint16_t x = visibleLeft; x < visibleRight; x++)
 		{
-			vertexLeft = left + ((x - visibleLeft) * glTileWidth);
+			vertexLeft = snappedLeft + ((x - visibleLeft) * glTileWidth);
 			vertexRight = vertexLeft + glTileWidth;
 			
 			tileCoordinates[coord_index]   = vertexLeft;
