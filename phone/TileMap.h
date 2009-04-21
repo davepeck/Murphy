@@ -21,6 +21,7 @@
 	uint16_t stopTileId;
 	uint8_t *tileIdToS;
 	uint8_t *tileIdToT;	
+	NSMutableDictionary *animations;
 }
 
 +(id)tileMapWithAtlas:(TileAtlas *)atlas startTileId:(uint16_t)startTileId;
@@ -29,8 +30,15 @@
 @property (readonly) uint16_t startTileId;
 @property (readonly) uint16_t stopTileId;
 
+-(uint16_t)tileIdForAtlasS:(uint8_t)s t:(uint8_t)t; /* helper function */
+
 -(void)textureCoordinatesForTileId:(uint16_t)tileId coordinates:(GLfloat*)coordinates;
 -(void)getMapForTileId:(uint16_t)tileId s:(uint8_t *)s t:(uint8_t *)t;
 -(void)setMapForTileId:(uint16_t)tileId s:(uint8_t)s t:(uint8_t)t;
+
+// TODO these are swill as designed
+-(void)setMapForTileId:(uint16_t)tileId withTileId:(uint16_t)newTileId;
+-(void)animateTileId:(uint16_t)tileIdFrom toTileId:(uint16_t)tileIdTo timeInterval:(NSTimeInterval)animationInterval;
+-(void)stopAnimatingTileId:(uint16_t)tileIdFrom;
 
 @end

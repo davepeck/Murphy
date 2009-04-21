@@ -11,6 +11,8 @@
 @interface TileMap (Private)
 
 -(id)initWithAtlas:(TileAtlas *)atlas startTileId:(uint16_t)startId;
+-(void)getDefaultMapForTileId:(uint16_t)tileId s:(uint8_t *)s t:(uint8_t *)t;
+-(void)animationTick:(NSTimer*)animationTimer;
 -(void)dealloc;
 
 @end
@@ -48,13 +50,23 @@
 			}
 		}
 		
+		animations = [[NSMutableDictionary dictionaryWithCapacity:4] retain];
 	}
 	
 	return self;
 }
 
 -(void)dealloc
-{
+{	
+	for (id key in animations) 
+	{
+		NSTimer *animationTimer = [animations objectForKey:key];
+		[animationTimer invalidate];
+	}	
+	
+	[animations release];
+	animations = nil;
+	
 	[atlas release];
 	atlas = nil;
 	
@@ -65,6 +77,35 @@
 	
 	[super dealloc];
 }
+
+-(void)getDefaultMapForTileId:(uint16_t)tileId s:(uint8_t *)s t:(uint8_t *)t
+{
+	*s = (tileId - startTileId) % (atlas.tilesAcross);
+	*t = (tileId - startTileId) / (atlas.tilesAcross);
+}
+
+-(void)animationTick:(NSTimer*)animationTimer
+{
+	NSMutableDictionary *userInfo = [animationTimer userInfo];
+	NSNumber *tileIdFromNumber = [userInfo objectForKey:@"tileIdFrom"];
+	NSNumber *tileIdToNumber = [userInfo objectForKey:@"tileIdTo"];
+	NSNumber *tileIdCurrentNumber = [userInfo objectForKey:@"tileIdCurrent"];
+	
+	uint16_t tileIdFrom = [tileIdFromNumber unsignedShortValue];
+	uint16_t tileIdTo = [tileIdToNumber unsignedShortValue];
+	uint16_t tileIdCurrent = [tileIdCurrentNumber unsignedShortValue];
+
+	tileIdCurrent += 1;
+	if (tileIdCurrent > tileIdTo)
+	{
+		tileIdCurrent = tileIdFrom;
+	}
+	
+	[userInfo setObject:[NSNumber numberWithUnsignedShort:tileIdCurrent] forKey:@"tileIdCurrent"];
+	
+	[self setMapForTileId:tileIdFrom withTileId:tileIdCurrent];
+}
+
 
 @end
 
@@ -102,6 +143,49 @@
 	uint16_t index = (tileId - startTileId);
 	tileIdToS[index] = s;
 	tileIdToT[index] = t;
+}
+
+-(uint16_t)tileIdForAtlasS:(uint8_t)s t:(uint8_t)t /* helper function */
+{
+	return ((uint16_t) t * (uint16_t) atlas.tilesAcross) + s + startTileId;
+}
+
+-(void)setMapForTileId:(uint16_t)tileId withTileId:(uint16_t)newTileId
+{
+	uint8_t s;
+	uint8_t t;
+	
+	// TODO this method is swill
+	
+	if (newTileId == tileId)
+	{
+		[self getDefaultMapForTileId:tileId s:&s t:&t];
+	}
+	else
+	{
+		[self getMapForTileId:newTileId s:&s t:&t];
+	}
+	
+	[self setMapForTileId:tileId s:s t:t];
+}
+
+-(void)animateTileId:(uint16_t)tileIdFrom toTileId:(uint16_t)tileIdTo timeInterval:(NSTimeInterval)animationInterval
+{
+	NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithCapacity:3];	
+	[userInfo setObject:[NSNumber numberWithUnsignedShort:tileIdFrom] forKey:@"tileIdFrom"];
+	[userInfo setObject:[NSNumber numberWithUnsignedShort:tileIdTo] forKey:@"tileIdTo"];
+	[userInfo setObject:[NSNumber numberWithUnsignedShort:tileIdFrom] forKey:@"tileIdCurrent"];
+	
+	NSTimer *animationTimer = [NSTimer scheduledTimerWithTimeInterval:animationInterval target:self selector:@selector(animationTick:) userInfo:userInfo repeats:YES];
+	[animations setObject:animationTimer forKey:[NSNumber numberWithUnsignedShort:tileIdFrom]];
+}
+
+-(void)stopAnimatingTileId:(uint16_t)tileIdFrom
+{
+	NSNumber *key = [NSNumber numberWithUnsignedShort:tileIdFrom];
+	NSTimer *animationTimer = [animations objectForKey:key];
+	[animationTimer invalidate];
+	[animations removeObjectForKey:key];
 }
 
 @end

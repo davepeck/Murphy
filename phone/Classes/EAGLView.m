@@ -20,6 +20,22 @@
 
 #define MOVE_INCREMENT 0.025f
 
+const uint16_t TILE_WATER_FIRST = 238;
+const uint16_t TILE_WATER_LAST = 241; 
+const uint16_t TILE_WHIRLPOOL_FIRST = 256;
+const uint16_t TILE_WHIRLPOOL_LAST = 259;
+const uint16_t TILE_RADAR_FIRST = 270;
+const uint16_t TILE_RADAR_LAST = 273;
+const uint16_t TILE_LIFE_FIRST = 288;
+const uint16_t TILE_LIFE_LAST = 293;
+const uint16_t TILE_LEVEL1_FIRST = 1;
+const uint16_t TILE_LEVEL1_LAST = 8;
+const uint16_t TILE_LEVEL2_FIRST = 19;
+const uint16_t TILE_LEVEL2_LAST = 26;
+const uint16_t TILE_LEVEL3_FIRST = 37;
+const uint16_t TILE_LEVEL3_LAST = 44;
+
+
 @interface EAGLView (EAGLViewPrivate)
 
 - (BOOL)createFramebuffer;
@@ -150,8 +166,8 @@
 	glOrthof(0.0f, 1.0f, 0.0f, 1.5f, -1.0f, 1.0f);	
 	glMatrixMode(GL_MODELVIEW);
 	
-	currentViewportLeft = 0.0;
-	currentViewportTop = 1.5f;
+	currentViewportLeft = 3.875006f;
+	currentViewportTop = -1.824998f;
 	
 	// Load our world textures
 	MurphyLevel *levelFile = [MurphyLevel murphyLevelWithNamedResource:@"World"];		
@@ -174,7 +190,15 @@
 	
 	[tileGrid setPixelWidth:320.0 height:480.0];
 	[tileGrid setGridLeft:0.0f top:1.5f];
-		
+	
+	[tileGrid.map animateTileId:TILE_WATER_FIRST toTileId:TILE_WATER_LAST timeInterval:0.25f];
+	[tileGrid.map animateTileId:TILE_WHIRLPOOL_FIRST toTileId:TILE_WHIRLPOOL_LAST timeInterval:0.5f];
+	[tileGrid.map animateTileId:TILE_RADAR_FIRST toTileId:TILE_RADAR_LAST timeInterval:0.6f];
+	[tileGrid.map animateTileId:TILE_LIFE_FIRST toTileId:TILE_LIFE_LAST timeInterval:0.73f];
+	[tileGrid.map animateTileId:TILE_LEVEL1_FIRST toTileId:TILE_LEVEL1_LAST timeInterval:0.4f];
+	[tileGrid.map animateTileId:TILE_LEVEL2_FIRST toTileId:TILE_LEVEL2_LAST timeInterval:0.3f];
+	[tileGrid.map animateTileId:TILE_LEVEL3_FIRST toTileId:TILE_LEVEL3_LAST timeInterval:0.7f];
+	
 	// Clears the view with black
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);	
 }

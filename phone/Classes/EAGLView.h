@@ -49,6 +49,11 @@ Note that setting the view non-opaque will only work if the EAGL surface has an 
 	BOOL movingRight;
 	BOOL movingUp;
 	BOOL movingDown;
+	
+	uint16_t water;
+	uint16_t whirlpool;
+	uint16_t radar;
+	uint16_t life;	
 }
 
 - (void)startAnimation;
