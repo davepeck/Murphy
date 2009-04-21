@@ -191,13 +191,13 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 	[tileGrid setPixelWidth:320.0 height:480.0];
 	[tileGrid setGridLeft:0.0f top:1.5f];
 	
-	[tileGrid.map animateTileId:TILE_WATER_FIRST toTileId:TILE_WATER_LAST timeInterval:0.25f];
-	[tileGrid.map animateTileId:TILE_WHIRLPOOL_FIRST toTileId:TILE_WHIRLPOOL_LAST timeInterval:0.5f];
-	[tileGrid.map animateTileId:TILE_RADAR_FIRST toTileId:TILE_RADAR_LAST timeInterval:0.6f];
-	[tileGrid.map animateTileId:TILE_LIFE_FIRST toTileId:TILE_LIFE_LAST timeInterval:0.73f];
-	[tileGrid.map animateTileId:TILE_LEVEL1_FIRST toTileId:TILE_LEVEL1_LAST timeInterval:0.4f];
-	[tileGrid.map animateTileId:TILE_LEVEL2_FIRST toTileId:TILE_LEVEL2_LAST timeInterval:0.3f];
-	[tileGrid.map animateTileId:TILE_LEVEL3_FIRST toTileId:TILE_LEVEL3_LAST timeInterval:0.7f];
+	[tileGrid.map animateTileId:TILE_WATER_FIRST toTileId:TILE_WATER_LAST timeInterval:0.5f allInRange:YES];
+	[tileGrid.map animateTileId:TILE_WHIRLPOOL_FIRST toTileId:TILE_WHIRLPOOL_LAST timeInterval:0.4f allInRange:NO];
+	[tileGrid.map animateTileId:TILE_RADAR_FIRST toTileId:TILE_RADAR_LAST timeInterval:0.6f allInRange:NO];
+	[tileGrid.map animateTileId:TILE_LIFE_FIRST toTileId:TILE_LIFE_LAST timeInterval:0.73f allInRange:YES];
+	[tileGrid.map animateTileId:TILE_LEVEL1_FIRST toTileId:TILE_LEVEL1_LAST timeInterval:0.2f allInRange:NO];
+	[tileGrid.map animateTileId:TILE_LEVEL2_FIRST toTileId:TILE_LEVEL2_LAST timeInterval:0.3f allInRange:NO];
+	[tileGrid.map animateTileId:TILE_LEVEL3_FIRST toTileId:TILE_LEVEL3_LAST timeInterval:0.7f allInRange:NO];
 	
 	// Clears the view with black
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);	

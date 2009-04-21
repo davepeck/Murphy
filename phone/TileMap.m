@@ -90,6 +90,9 @@
 	NSNumber *tileIdFromNumber = [userInfo objectForKey:@"tileIdFrom"];
 	NSNumber *tileIdToNumber = [userInfo objectForKey:@"tileIdTo"];
 	NSNumber *tileIdCurrentNumber = [userInfo objectForKey:@"tileIdCurrent"];
+	NSNumber *allInRangeNumber = [userInfo objectForKey:@"allInRange"];
+	
+	BOOL allInRange = [allInRangeNumber boolValue];
 	
 	uint16_t tileIdFrom = [tileIdFromNumber unsignedShortValue];
 	uint16_t tileIdTo = [tileIdToNumber unsignedShortValue];
@@ -103,7 +106,24 @@
 	
 	[userInfo setObject:[NSNumber numberWithUnsignedShort:tileIdCurrent] forKey:@"tileIdCurrent"];
 	
-	[self setMapForTileId:tileIdFrom withTileId:tileIdCurrent];
+	if (allInRange)
+	{
+		uint16_t currentOffset = tileIdCurrent - tileIdFrom;
+		
+		for (uint16_t i = tileIdFrom; i <= tileIdTo; i++)
+		{			
+			uint16_t moveTo = i + currentOffset;
+			while (moveTo > tileIdTo)
+			{
+				moveTo = moveTo - ((tileIdTo - tileIdFrom) + 1);
+			}
+			[self setMapForTileId:i withTileId:moveTo];
+		}
+	}
+	else
+	{	
+		[self setMapForTileId:tileIdFrom withTileId:tileIdCurrent];
+	}
 }
 
 
@@ -156,25 +176,17 @@
 	uint8_t t;
 	
 	// TODO this method is swill
-	
-	if (newTileId == tileId)
-	{
-		[self getDefaultMapForTileId:tileId s:&s t:&t];
-	}
-	else
-	{
-		[self getMapForTileId:newTileId s:&s t:&t];
-	}
-	
+	[self getDefaultMapForTileId:newTileId s:&s t:&t];
 	[self setMapForTileId:tileId s:s t:t];
 }
 
--(void)animateTileId:(uint16_t)tileIdFrom toTileId:(uint16_t)tileIdTo timeInterval:(NSTimeInterval)animationInterval
+-(void)animateTileId:(uint16_t)tileIdFrom toTileId:(uint16_t)tileIdTo timeInterval:(NSTimeInterval)animationInterval allInRange:(BOOL)allInRange
 {
 	NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithCapacity:3];	
 	[userInfo setObject:[NSNumber numberWithUnsignedShort:tileIdFrom] forKey:@"tileIdFrom"];
 	[userInfo setObject:[NSNumber numberWithUnsignedShort:tileIdTo] forKey:@"tileIdTo"];
 	[userInfo setObject:[NSNumber numberWithUnsignedShort:tileIdFrom] forKey:@"tileIdCurrent"];
+	[userInfo setObject:[NSNumber numberWithBool:allInRange] forKey:@"allInRange"];
 	
 	NSTimer *animationTimer = [NSTimer scheduledTimerWithTimeInterval:animationInterval target:self selector:@selector(animationTick:) userInfo:userInfo repeats:YES];
 	[animations setObject:animationTimer forKey:[NSNumber numberWithUnsignedShort:tileIdFrom]];
