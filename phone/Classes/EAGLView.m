@@ -18,14 +18,16 @@
 #import "TileMap.h"
 #import "TileGrid.h"
 
-#define PIXEL_SCREEN_WIDTH 320.0f
-#define PIXEL_SCREEN_HEIGHT 480.0f
+#define MOVE_INCREMENT 0.025f
 
 @interface EAGLView (EAGLViewPrivate)
 
 - (BOOL)createFramebuffer;
 - (void)destroyFramebuffer;
 - (void)setupView;
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 
 @end
 
@@ -60,6 +62,11 @@
 		}
 		
 		animationInterval = 1.0 / 60.0;
+		
+		movingLeft = NO;
+		movingRight = NO;
+		movingUp = NO;
+		movingDown = NO;
 				
 		[self setupView];
 		[self drawView];
@@ -143,12 +150,15 @@
 	glOrthof(0.0f, 1.0f, 0.0f, 1.5f, -1.0f, 1.0f);	
 	glMatrixMode(GL_MODELVIEW);
 	
+	currentViewportLeft = 0.0;
+	currentViewportTop = 1.5f;
+	
 	// Load our world textures
 	MurphyLevel *levelFile = [MurphyLevel murphyLevelWithNamedResource:@"World"];		
 	TileAtlas *worldAtlas = [TileAtlas tileAtlasWithResourcePNG:@"example-world-tiles-24-512" tilePixelWidth:24 tilePixelHeight:24 tilesAcross:18 tilesDown:20];
 	TileMap *worldMap = [TileMap tileMapWithAtlas:worldAtlas startTileId:0];
 	tileGrid = [[TileGrid tileGridWithMap:worldMap width:levelFile.width height:levelFile.height] retain];
-	
+
 	// Fill the tileGrid
 	for (uint16_t y = 0; y < levelFile.height; y++)
 	{
@@ -177,8 +187,49 @@
 	
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
 		
+	if (movingUp)
+	{
+		currentViewportTop += MOVE_INCREMENT;
+		if (currentViewportTop > tileGrid.gridTop)
+		{
+			currentViewportTop = tileGrid.gridTop;
+		}
+	}
+	
+	if (movingDown)
+	{
+		currentViewportTop -= MOVE_INCREMENT;
+		if (currentViewportTop - 1.5f < tileGrid.gridBottom)
+		{
+			currentViewportTop = tileGrid.gridBottom + 1.5f;
+		}
+	}
+	
+	if (movingLeft)
+	{
+		currentViewportLeft -= MOVE_INCREMENT;
+		if (currentViewportLeft < tileGrid.gridLeft)
+		{
+			currentViewportLeft = tileGrid.gridLeft;
+		}
+	}
+	
+	if (movingRight)
+	{
+		currentViewportLeft += MOVE_INCREMENT;
+		if (currentViewportLeft + 1.0f > tileGrid.gridRight)
+		{
+			currentViewportLeft = tileGrid.gridRight - 1.0f;
+		}		
+	}
+	
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrthof(currentViewportLeft, currentViewportLeft + 1.0f, currentViewportTop - 1.5f, currentViewportTop, -1.0f, 1.0f);	
+	glMatrixMode(GL_MODELVIEW);
+	
 	glClear(GL_COLOR_BUFFER_BIT);
-	[tileGrid drawInViewportLeft:0.0f top:1.5f right:1.0f bottom:0.0f];
+	[tileGrid drawInViewportLeft:currentViewportLeft top:currentViewportTop right:currentViewportLeft + 1.0f bottom:currentViewportTop - 1.5f];
 		
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
 	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
@@ -200,4 +251,113 @@
 	[super dealloc];
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event 
+{
+	UITouch *touch = [touches anyObject];
+	CGPoint point = [touch locationInView:self];
+//	NSLog(@"Touch Began at: (%f, %f)", point.x, point.y);
+	
+	movingUp = NO;
+	movingDown = NO;
+	movingLeft = NO;
+	movingRight = NO;
+	
+	if (point.x <= 160.0)
+	{
+		// Left half of screen.
+		
+		if (point.x >= point.y)
+		{
+			// Top-right of the left half of the screen
+			movingUp = YES;
+		}
+		else if (point.x >= (480.0 - point.y))
+		{
+			// Bottom-right of the left half of the screen
+			movingDown = YES;
+		}
+		else
+		{
+			movingLeft = YES;
+		}
+	}
+	else
+	{
+		// Right half of the screen
+		
+		if ((320.0 - point.x) >= point.y)
+		{
+			// Top-left of the right half of the screen
+			movingUp = YES;
+		}
+		else if ((320.0 - point.x) >= (480.0 - point.y))
+		{
+			// Bottom-left of the right half of the screen
+			movingDown = YES;
+		}
+		else
+		{
+			movingRight = YES;
+		}
+	}
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event 
+{
+	UITouch *touch = [touches anyObject];
+	CGPoint point = [touch locationInView:self];
+//	NSLog(@"Touch Moved at: (%f, %f)", point.x, point.y);
+	
+	movingUp = NO;
+	movingDown = NO;
+	movingLeft = NO;
+	movingRight = NO;
+	
+	if (point.x <= 160.0)
+	{
+		// Left half of screen.
+		
+		if (point.x >= point.y)
+		{
+			// Top-right of the left half of the screen
+			movingUp = YES;
+		}
+		else if (point.x >= (480.0 - point.y))
+		{
+			// Bottom-right of the left half of the screen
+			movingDown = YES;
+		}
+		else
+		{
+			movingLeft = YES;
+		}
+	}
+	else
+	{
+		// Right half of the screen
+		
+		if ((320.0 - point.x) >= point.y)
+		{
+			// Top-left of the right half of the screen
+			movingUp = YES;
+		}
+		else if ((320.0 - point.x) >= (480.0 - point.y))
+		{
+			// Bottom-left of the right half of the screen
+			movingDown = YES;
+		}
+		else
+		{
+			movingRight = YES;
+		}
+	}
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	movingUp = NO;
+	movingDown = NO;
+	movingLeft = NO;
+	movingRight = NO;	
+}
 @end

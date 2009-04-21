@@ -22,14 +22,16 @@
 	
 	GLfloat gridLeft;	  // where in GL space does our grid start?
 	GLfloat gridTop;
+	GLfloat gridRight;
+	GLfloat gridBottom;
 	GLfloat pixelWidth;   // these probably don't belong here, but for now...
 	GLfloat pixelHeight;
-	
+			
 	GLfloat *tileCoordinates;
 	GLfloat *tileTextureCoordinates;
 	GLushort *tileIndexes;
 	GLushort numCoordinates;
-	GLushort numIndexes;
+	GLushort numIndexes;	
 }
 
 +(id)tileGridWithMap:(TileMap *)map width:(uint16_t)width height:(uint16_t)height;
@@ -37,6 +39,10 @@
 @property (readonly) TileMap *map;
 @property (readonly) uint16_t width;
 @property (readonly) uint16_t height;
+@property (readonly) GLfloat gridLeft;
+@property (readonly) GLfloat gridTop;
+@property (readonly) GLfloat gridRight;
+@property (readonly) GLfloat gridBottom;
 
 -(uint16_t)getTileIdAtX:(uint16_t)x y:(uint16_t)y;
 -(void)setTileIdAtX:(uint16_t)x y:(uint16_t)y tileId:(uint16_t)tileId;

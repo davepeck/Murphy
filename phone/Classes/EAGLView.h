@@ -41,6 +41,14 @@ Note that setting the view non-opaque will only work if the EAGL surface has an 
 	NSTimeInterval animationInterval;	
 	
 	TileGrid *tileGrid;
+	
+	GLfloat currentViewportLeft;
+	GLfloat currentViewportTop;
+	
+	BOOL movingLeft;
+	BOOL movingRight;
+	BOOL movingUp;
+	BOOL movingDown;
 }
 
 - (void)startAnimation;

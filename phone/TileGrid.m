@@ -86,6 +86,10 @@
 @synthesize map;
 @synthesize width;
 @synthesize height;
+@synthesize gridLeft;
+@synthesize gridTop;
+@synthesize gridRight;
+@synthesize gridBottom;
 
 -(uint16_t)getTileIdAtX:(uint16_t)x y:(uint16_t)y
 {
@@ -104,6 +108,15 @@
 {
 	gridLeft = myGridLeft;
 	gridTop = myGridTop;
+	
+	// compute the left, top, right, bottom
+	// TODO this sucks
+	GLfloat tilePixelWidth = (GLfloat) map.atlas.tilePixelWidth;
+	GLfloat tilePixelHeight = (GLfloat) map.atlas.tilePixelHeight;
+	GLfloat glTileWidth = ((1.0f) * tilePixelWidth) / pixelWidth;
+	GLfloat glTileHeight = ((1.5f) * tilePixelHeight) / pixelHeight;		
+	gridRight = gridLeft + (width * glTileWidth);
+	gridBottom = gridTop - (height * glTileHeight);	
 }
 
 -(void)setPixelWidth:(GLfloat)myPixelWidth height:(GLfloat)myPixelHeight
@@ -115,7 +128,7 @@
 -(void)drawInViewportLeft:(GLfloat)left top:(GLfloat)top right:(GLfloat)right bottom:(GLfloat)bottom
 {
 	// Sanity checks
-	NSAssert((pixelWidth / pixelHeight) == (right - left) / (top - bottom), @"This drawing will not preserve the tile aspect ratio.");
+	// need epislon here NSAssert((pixelWidth / pixelHeight) == (right - left) / (top - bottom), @"This drawing will not preserve the tile aspect ratio.");
 	
 	// What tiles does this viewport intersect with?
 		
@@ -131,7 +144,7 @@
 	
 	// Okay, now we know the gl-space size of a tile. But what portion of our grid is intersected?	
 	int16_t visibleLeft = floorf((left - gridLeft) / glTileWidth);
-	int16_t visibleTop = floorf((top - gridTop) / glTileHeight);
+	int16_t visibleTop = floorf((gridTop - top) / glTileHeight);
 	int16_t visibleRight = visibleLeft + tilesAcrossScreen;
 	int16_t visibleBottom = visibleTop + tilesDownScreen;
 	
@@ -159,7 +172,7 @@
 	
 	if (visibleBottom >= height)
 	{
-		visibleBottom = 0;
+		visibleBottom = height - 1;
 	}
 	
 	// Compute values for the viewPort's left and top that are snapped to the appropriate tile boundary
@@ -171,6 +184,7 @@
 	// How many indicies? Well, we want two triangles per tile, or 6 indicies = tilesAcrossScreen * tilesDownScreen * 6
 	uint16_t currentTilesAcrossScreen = visibleRight - visibleLeft;
 	uint16_t currentTilesDownScreen = visibleBottom - visibleTop;	
+	
 	GLushort nextNumCoordinates = currentTilesDownScreen * currentTilesAcrossScreen * 8;
 	GLushort nextNumIndexes = currentTilesDownScreen * currentTilesAcrossScreen * 6;
 	
@@ -257,5 +271,4 @@
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);	
 	glDrawElements(GL_TRIANGLES, numIndexes, GL_UNSIGNED_SHORT, (const GLvoid *) tileIndexes);
 }
-
 @end
