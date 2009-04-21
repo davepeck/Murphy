@@ -95,16 +95,11 @@
 	return [MurphyLevel murphyLevelWithFile:[[NSBundle mainBundle] pathForResource:name ofType:@"mbl"]];
 }
 
--(uint8_t) getIconSForX:(uint16_t)x Y:(uint16_t)y
-{	
-	uint32_t index = [self iconIndexForX:x Y:y];
-	return iconS[index];
-}
-
--(uint8_t) getIconTForX:(uint16_t)x Y:(uint16_t)y
+-(void) getIconForX:(uint16_t)x y:(uint16_t)y s:(uint8_t *)s t:(uint8_t *)t
 {
 	uint32_t index = [self iconIndexForX:x Y:y];
-	return iconT[index];
+	*s = iconS[index];
+	*t = iconT[index];
 }
 
 @end

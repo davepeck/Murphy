@@ -27,7 +27,6 @@
 +(id)murphyLevelWithFile:(NSString*)path;
 +(id)murphyLevelWithNamedResource:(NSString*)name;
 
--(uint8_t) getIconSForX:(uint16_t)x Y:(uint16_t)y;
--(uint8_t) getIconTForX:(uint16_t)x Y:(uint16_t)y;
+-(void) getIconForX:(uint16_t)x y:(uint16_t)y s:(uint8_t *)s t:(uint8_t *)t;
 
 @end
