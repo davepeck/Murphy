@@ -187,7 +187,7 @@
 	// PERFORMANCE: okay, look, we're doing a ton of unnecessary computations here. Fix that.	
 	for (uint16_t y = visibleTop; y < visibleBottom; y++)
 	{
-		vertexTop = top + ((y - visibleTop) * glTileHeight);
+		vertexTop = top - ((y - visibleTop) * glTileHeight);
 		vertexBottom = vertexTop - glTileHeight;
 		
 		for (uint16_t x = visibleLeft; x < visibleRight; x++)
@@ -204,7 +204,8 @@
 			tileCoordinates[coord_index+6] = vertexRight;
 			tileCoordinates[coord_index+7] = vertexTop;
 			
-			[map textureCoordinatesForTileId:[self getTileIdAtX:x y:y] coordinates:&tileTextureCoordinates[coord_index]];
+			uint16_t tileId = [self getTileIdAtX:x y:y];
+			[map textureCoordinatesForTileId:tileId coordinates:&tileTextureCoordinates[coord_index]];
 						
 			tileIndexes[index_index++] = half_coord_index;
 			tileIndexes[index_index++] = half_coord_index + 1;

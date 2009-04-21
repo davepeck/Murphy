@@ -30,8 +30,8 @@
 		tilesAcross = across;
 		tilesDown = down;
 		
-		tileWidthInTextureSpace = ((GLfloat)texture.width) / ((GLfloat)tilePixelWidth);
-		tileHeightInTextureSpace = ((GLfloat)texture.height) / ((GLfloat)tilePixelHeight);
+		tileWidthInTextureSpace = ((GLfloat)tilePixelWidth) / ((GLfloat)texture.width);
+		tileHeightInTextureSpace = ((GLfloat)tilePixelHeight) / ((GLfloat)texture.height);
 	}
 	
 	return self;
@@ -75,7 +75,7 @@
 	GLfloat s_left = sf * tileWidthInTextureSpace;
 	GLfloat s_right = s_left + tileWidthInTextureSpace;
 	GLfloat t_top = tf * tileHeightInTextureSpace;
-	GLfloat t_bottom = t_top + tileHeightInTextureSpace;
+	GLfloat t_bottom = t_top + tileHeightInTextureSpace; /* tile textures are inverted when we load them */
 	
 	coordinates[0] = s_left;
 	coordinates[1] = t_bottom;	

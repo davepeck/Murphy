@@ -80,6 +80,8 @@ static Texture *currently_engaged = NULL;
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 				
+		glEnable(GL_TEXTURE_2D);
+		
 		// Finish engaging this texture		
 		currently_engaged = self;
 		engaged = YES;		
@@ -124,6 +126,7 @@ static Texture *currently_engaged = NULL;
 	currently_engaged = self;
 	engaged = YES;
 	glBindTexture(GL_TEXTURE_2D, name);	
+	glEnable(GL_TEXTURE_2D);
 }
 
 -(void)disengage

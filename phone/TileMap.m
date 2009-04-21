@@ -83,7 +83,9 @@
 {
 	NSAssert(tileId >= startTileId && tileId < stopTileId, @"Tile ID is out of bounds.");	
 	uint16_t index = (tileId - startTileId);
-	[atlas textureCoordinatesForS:tileIdToS[index] t:tileIdToT[index] coordinates:coordinates];
+	uint8_t s = tileIdToS[index];
+	uint8_t t = tileIdToT[index];
+	[atlas textureCoordinatesForS:s t:t coordinates:coordinates];
 }
 
 -(void)getMapForTileId:(uint16_t)tileId s:(uint8_t *)s t:(uint8_t *)t

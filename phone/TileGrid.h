@@ -27,7 +27,7 @@
 	
 	GLfloat *tileCoordinates;
 	GLfloat *tileTextureCoordinates;
-	GLfloat *tileIndexes;
+	GLushort *tileIndexes;
 	GLushort numCoordinates;
 	GLushort numIndexes;
 }
