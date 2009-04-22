@@ -23,8 +23,11 @@
 
 #define MOTION_DAMP 0.95f
 #define TOO_SMALL_MOTION 0.0001f
+#define FLICK_TIME_BACK 0.075f
 #define MIN_PIXELS_FOR_FLICK 5
-#define STABLE_TOUCH_TIME ((double)0.015)
+#define MOTION_MULTIPLIER 0.25f
+#define MOTION_MAX 0.065
+
 
 const uint16_t TILE_WATER_FIRST = 238;
 const uint16_t TILE_WATER_LAST = 241; 
@@ -88,7 +91,7 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 		
 		xMotion = 0.0f;
 		yMotion = 0.0f;
-		dateInMotion = nil;
+		touchBuffer = nil;
 				
 		[self setupView];
 		[self drawView];
@@ -276,10 +279,11 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 // Stop animating and release resources when they are no longer needed.
 - (void)dealloc
 {
-	if (dateInMotion != nil)
+	if (touchBuffer != nil)
 	{
-		[dateInMotion release];
-	}
+		[touchBuffer release];
+		touchBuffer = nil;
+	}	
 	
 	[self stopAnimation];
 	
@@ -296,98 +300,175 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event 
 {
-	// no-op
+	xMotion = 0.0;
+	yMotion = 0.0;
+	
+	if (touchBuffer != nil)
+	{
+		[touchBuffer release];
+		touchBuffer = nil;
+	}
+	
+	touchBuffer = [[NSBuffer bufferWithCapacity:25] retain];
+	
+	UITouch *touch = [touches anyObject];
+	CGPoint new = [touch locationInView:self];
+	
+	[touchBuffer addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+							[NSNumber numberWithDouble:new.x], @"locationX",
+							[NSNumber numberWithDouble:new.y], @"locationY",
+							[NSDate date], @"timeStamp", nil]];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event 
 {
-	if (dateInMotion != nil)
-	{
-		[dateInMotion release];
-		dateInMotion = nil;
-	}	
-	dateInMotion = [[NSDate date] retain];	
-	
 	UITouch *touch = [touches anyObject];
-	CGPoint old = [touch locationInView:self];
-	CGPoint new = [touch previousLocationInView:self];
+	CGPoint new = [touch locationInView:self];
+	CGPoint old = [touch previousLocationInView:self];
+	
+	[touchBuffer addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+							[NSNumber numberWithDouble:new.x], @"locationX",
+							[NSNumber numberWithDouble:new.y], @"locationY",
+							[NSDate date], @"timeStamp", nil]];	
 	
 	GLfloat glOldX = LINEAR_MAP(old.x, 0.0f, 320.0f, 0.0f, 1.0f);
 	GLfloat glOldY = LINEAR_MAP(old.y, 0.0f, 480.0f, 1.5f, 0.0f);
 	GLfloat glNewX = LINEAR_MAP(new.x, 0.0f, 320.0f, 0.0f, 1.0f);
 	GLfloat glNewY = LINEAR_MAP(new.y, 0.0f, 480.0f, 1.5f, 0.0f);
 	
-	currentViewportLeft += (glNewX - glOldX);
-	currentViewportTop += (glNewY - glOldY);
+	currentViewportLeft += (glOldX - glNewX);
+	currentViewportTop += (glOldY - glNewY);
 	[self ensureViewportBoundaries];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	if (dateInMotion == nil)
-	{
-		return;
-	}
-	
-	NSTimeInterval timeElapsed = [dateInMotion timeIntervalSinceNow] * -1.0;	
+	NSDate *endTime = [NSDate date];
 	
 	UITouch *touch = [touches anyObject];
-	CGPoint old = [touch locationInView:self];
-	CGPoint new = [touch previousLocationInView:self];
+	CGPoint new = [touch locationInView:self];
+	CGPoint old = [touch previousLocationInView:self];
 
-	NSLog(@"elapsed: %f  pixel delta: (%f, %f)", timeElapsed, (new.x - old.x), (new.y - old.y));
+	[touchBuffer addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+							[NSNumber numberWithDouble:new.x], @"locationX",
+							[NSNumber numberWithDouble:new.y], @"locationY",
+							endTime, @"timeStamp", nil]];	
 	
-	if (abs(old.x - new.x) < MIN_PIXELS_FOR_FLICK) 
-	{
-		new.x = old.x;
-	}
+	// NSLog(@"end touches...");
 	
-	if (abs(old.y - new.y) < MIN_PIXELS_FOR_FLICK)
-	{
-		new.y = old.y;
-	}	
-	
-	if (old.x == new.x && old.y == new.y)
-	{
-		return;
-	}
-	
+	// do standard motion first
 	GLfloat glOldX = LINEAR_MAP(old.x, 0.0f, 320.0f, 0.0f, 1.0f);
 	GLfloat glOldY = LINEAR_MAP(old.y, 0.0f, 480.0f, 1.5f, 0.0f);
 	GLfloat glNewX = LINEAR_MAP(new.x, 0.0f, 320.0f, 0.0f, 1.0f);
 	GLfloat glNewY = LINEAR_MAP(new.y, 0.0f, 480.0f, 1.5f, 0.0f);
 	
-	// this is the key part: you want to normalize your delta based on some time duration.
-	// so: if the difference between last and current was 1 second, that is slower than if it was 0.5 seconds
-	// the question is: what time difference should you use where the delta becomes the actual motion?
-	// that is STABLE_TOUCH_TIME. if you are EQUAL to STABLE_TOUCH_TIME, motion == delta
-	// if you are HALF of STABLE_TOUCH_TIME, motion == 2 * delta
-	// if your are TWICE STABLE_TOUCH_TIME, motion == 0.5 * delta
-	GLfloat multiplier = (GLfloat) (STABLE_TOUCH_TIME / timeElapsed); 
+	currentViewportLeft += (glOldX - glNewX);
+	currentViewportTop += (glOldY - glNewY);
+	[self ensureViewportBoundaries];
 	
-	xMotion = (glNewX - glOldX) * multiplier;
-	yMotion = (glNewY - glOldY) * multiplier;
+	// find the first buffered location that is less than FLICK_TIME_BACK seconds behind our endTime
+	NSUInteger lessThanIndex = 999;
 	
-	if (xMotion < -0.05)
+	for (NSUInteger testIndex = 0; testIndex < touchBuffer.length; testIndex++)
 	{
-		xMotion = -0.05;
-	}
-	if (xMotion > 0.05)
-	{
-		xMotion = 0.05;
-	}
-	if (yMotion < -0.05)
-	{
-		yMotion = -0.05;
-	}
-	if (yMotion > 0.05)
-	{
-		yMotion = 0.05;
+		NSDictionary *dict = [touchBuffer objectAtIndex:testIndex];
+		NSTimeInterval delta = [endTime timeIntervalSinceDate:[dict objectForKey:@"timeStamp"]];
+		if (delta < FLICK_TIME_BACK)
+		{
+			lessThanIndex = testIndex;
+			break;
+		}
 	}
 	
-	NSLog(@"   >>> motion: (%f, %f)", xMotion, yMotion);
+	if (lessThanIndex == 999)
+	{
+		// NSLog(@"XXXXXXX Couldn't find a reasonable lessThanIndex. Oops.");
+		[touchBuffer release];
+		touchBuffer = nil;
+		return;
+	}
 	
-	[dateInMotion release];
-	dateInMotion = nil;
+	if (lessThanIndex == 0)
+	{
+		// NSLog(@"XXXXXXX Defaulting the lessThanIndex (must be a short gesture.)");
+		lessThanIndex = 1;
+	}
+	
+	// use linear interpolation to "decide" where the touch was exactly FLICK_TIME_BACK seconds ago	
+	// NSLog(@"   >>> lessThanIndex is %i", lessThanIndex); 
+	
+	NSDictionary *lessThanDict = [touchBuffer objectAtIndex:lessThanIndex];
+	NSDictionary *greaterThanDict = [touchBuffer objectAtIndex:(lessThanIndex - 1)];
+	
+	double lessThanX = [[lessThanDict objectForKey:@"locationX"] doubleValue];
+	double lessThanY = [[lessThanDict objectForKey:@"locationY"] doubleValue];
+	NSDate *lessThanTime = [lessThanDict objectForKey:@"timeStamp"];
+	double greaterThanX = [[greaterThanDict objectForKey:@"locationX"] doubleValue];
+	double greaterThanY = [[greaterThanDict objectForKey:@"locationY"] doubleValue];
+	NSDate *greaterThanTime = [greaterThanDict objectForKey:@"timeStamp"];
+
+	NSTimeInterval lessThanBack = [endTime timeIntervalSinceDate:lessThanTime];
+	NSTimeInterval greaterThanBack = [endTime timeIntervalSinceDate:greaterThanTime];
+		
+	double between = LINEAR_MAP(FLICK_TIME_BACK,lessThanBack,greaterThanBack,0.0f,1.0f);
+	//NSAssert((between >= 0.0f) && (between <= 1.0f), @"Should never happen!");
+	
+	// NSLog(@"   >>> between is %f", between); 
+	
+	double flickX = (greaterThanX * between) + (lessThanX * (1.0f-between));
+	double flickY = (greaterThanY * between) + (lessThanY * (1.0f-between));
+	
+	// NSLog(@"   >>> flick: (%f, %f) and new: (%f, %f)", flickX, flickY, new.x, new.y); 
+	
+	// now: fully dampen the motion if it is within the "they aren't flicking" variance
+	if (abs(new.x - flickX) < MIN_PIXELS_FOR_FLICK) 
+	{
+		flickX = new.x;
+	}
+	
+	if (abs(new.y - flickY) < MIN_PIXELS_FOR_FLICK)
+	{
+		flickY = new.y;
+	}	
+	
+	if (new.x == flickX && new.y == flickY)
+	{
+		[touchBuffer release];
+		touchBuffer = nil;
+		return;
+	}
+
+	// Convert to GL coordinates and compute the final motion
+	GLfloat glFlickX = LINEAR_MAP(flickX, 0.0f, 320.0f, 0.0f, 1.0f);
+	GLfloat glFlickY = LINEAR_MAP(flickY, 0.0f, 480.0f, 1.5f, 0.0f);
+
+	xMotion = (glFlickX - glNewX) * MOTION_MULTIPLIER;
+	yMotion = (glFlickY - glNewY) * MOTION_MULTIPLIER;
+
+	// Clamp the motion to prevent insanity for very short gestures.
+	// To keep the direction "correct", make sure this clamping preserves
+	// the aspect ratio. In other words, find the "largest" offender and
+	// clamp that down to MOTION_MAX
+	GLfloat absX = fabs(xMotion);
+	GLfloat absY = fabs(yMotion);
+	if (absX >= MOTION_MAX && absX >= absY)
+	{
+	//	NSLog(@"   >>> Scaling along X");
+		GLfloat scaleFactor = MOTION_MAX / absX;
+		xMotion *= scaleFactor;
+		yMotion *= scaleFactor;
+	}
+	else if (absY >= MOTION_MAX)
+	{
+	//	NSLog(@"   >>> Clamping along Y");
+		GLfloat scaleFactor = MOTION_MAX / absY;
+		xMotion *= scaleFactor;
+		yMotion *= scaleFactor;
+	}
+		
+	//NSLog(@"   >>> motion: (%f, %f)", xMotion, yMotion);
+	
+	[touchBuffer release];
+	touchBuffer = nil;
 }
 @end

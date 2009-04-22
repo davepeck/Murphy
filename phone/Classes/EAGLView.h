@@ -12,6 +12,7 @@
 #import <OpenGLES/ES1/gl.h>
 #import <OpenGLES/ES1/glext.h>
 #import "TileGrid.h"
+#import "NSBuffer.h"
 
 /*
 This class wraps the CAEAGLLayer from CoreAnimation into a convenient UIView subclass.
@@ -48,7 +49,7 @@ Note that setting the view non-opaque will only work if the EAGL surface has an 
 	GLfloat xMotion;
 	GLfloat yMotion;
 	
-	NSDate *dateInMotion;
+	NSBuffer *touchBuffer;
 }
 
 - (void)startAnimation;

@@ -23,11 +23,11 @@
 	
 	if (self != nil)
 	{
+		capacity = myCapacity;
 		buffer = malloc(sizeof(id) * capacity);
 		bzero(buffer, sizeof(id) * capacity);
-		capacity = myCapacity;
 		length = 0;
-		head = -1;
+		head = 0;
 	}
 	
 	return self;
@@ -68,9 +68,10 @@
 		if (buffer[head] != nil)
 		{
 			[buffer[head] release];
+			buffer[head] = nil;
 		}
 			
-		buffer[head] = object;		
+		buffer[head] = [object retain];		
 		head += 1;		
 		
 		if (head == capacity)
