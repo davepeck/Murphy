@@ -51,6 +51,7 @@
 // Do these belong here?
 -(void)setGridLeft:(GLfloat)myLeft top:(GLfloat)myTop;
 -(void)setPixelWidth:(GLfloat)pixelWidth height:(GLfloat)pixelHeight;
+-(void)alignViewportToPixel:(GLfloat *)left top:(GLfloat *)top;
 -(void)drawInViewportLeft:(GLfloat)left top:(GLfloat)top right:(GLfloat)right bottom:(GLfloat)bottom;
 
 @end

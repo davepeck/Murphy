@@ -73,9 +73,9 @@
 	GLfloat tf = (float) t;
 	
 	GLfloat s_left = sf * tileWidthInTextureSpace;
-	GLfloat s_right = s_left + tileWidthInTextureSpace;
+	GLfloat s_right = (sf + 1.0) * tileWidthInTextureSpace;
 	GLfloat t_top = tf * tileHeightInTextureSpace;
-	GLfloat t_bottom = t_top + tileHeightInTextureSpace; /* tile textures are inverted when we load them */
+	GLfloat t_bottom = (tf + 1.0) * tileHeightInTextureSpace; /* tile textures are inverted when we load them */
 	
 	coordinates[0] = s_left;
 	coordinates[1] = t_bottom;	

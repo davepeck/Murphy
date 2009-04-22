@@ -125,6 +125,32 @@
 	pixelHeight = myPixelHeight;
 }
 
+-(void)alignViewportToPixel:(GLfloat *)left top:(GLfloat *)top
+{
+	// General suckiness.
+	GLfloat offsetLeft = *left - gridLeft;
+	GLfloat offsetTop = gridTop - *top;
+	
+	GLfloat glPixelWidth = 1.0f / pixelWidth;
+	GLfloat glPixelHeight = 1.5f / pixelHeight;
+	
+	offsetLeft -= fmodf(offsetLeft, glPixelWidth);
+	offsetTop -= fmodf(offsetTop, glPixelHeight);
+	
+	if (offsetLeft < 0.0f)
+	{
+		offsetLeft = 0.0f;
+	}
+	
+	if (offsetTop < 0.0f)
+	{
+		offsetTop = 0.0f;
+	}
+	
+	*left = gridLeft + offsetLeft;
+	*top = gridTop - offsetTop;
+}
+
 -(void)drawInViewportLeft:(GLfloat)left top:(GLfloat)top right:(GLfloat)right bottom:(GLfloat)bottom
 {
 	// Sanity checks
@@ -228,12 +254,12 @@
 	for (uint16_t y = visibleTop; y < visibleBottom; y++)
 	{
 		vertexTop = snappedTop - ((y - visibleTop) * glTileHeight);
-		vertexBottom = vertexTop - glTileHeight;
+		vertexBottom = snappedTop - (((y + 1) - visibleTop) * glTileHeight);
 		
 		for (uint16_t x = visibleLeft; x < visibleRight; x++)
 		{
 			vertexLeft = snappedLeft + ((x - visibleLeft) * glTileWidth);
-			vertexRight = vertexLeft + glTileWidth;
+			vertexRight = snappedLeft + (((x + 1) - visibleLeft) * glTileWidth);
 			
 			tileCoordinates[coord_index]   = vertexLeft;
 			tileCoordinates[coord_index+1] = vertexBottom;

@@ -267,9 +267,15 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 		[self ensureViewportBoundaries];
 	}
 	
+	
+	GLfloat displayViewportLeft = currentViewportLeft;
+	GLfloat displayViewportTop = currentViewportTop;
+	
+	[tileGrid alignViewportToPixel:&displayViewportLeft top:&displayViewportTop];
+	
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrthof(currentViewportLeft, currentViewportLeft + 1.0f, currentViewportTop - 1.5f, currentViewportTop, -1.0f, 1.0f);	
+	glOrthof(displayViewportLeft, displayViewportLeft + 1.0f, displayViewportTop - 1.5f, displayViewportTop, -1.0f, 1.0f);	
 	
 	if (chaos)
 	{
@@ -286,7 +292,7 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 	glMatrixMode(GL_MODELVIEW);
 	
 	glClear(GL_COLOR_BUFFER_BIT);
-	[tileGrid drawInViewportLeft:currentViewportLeft top:currentViewportTop right:currentViewportLeft + 1.0f bottom:currentViewportTop - 1.5f];
+	[tileGrid drawInViewportLeft:displayViewportLeft top:displayViewportTop right:displayViewportLeft + 1.0f bottom:displayViewportTop - 1.5f];
 		
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
 	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
