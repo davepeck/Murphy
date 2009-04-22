@@ -91,6 +91,9 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 		
 		xMotion = 0.0f;
 		yMotion = 0.0f;
+		chaos = NO;
+		chaosAngle = 0.0;
+		
 		touchBuffer = nil;
 				
 		[self setupView];
@@ -267,6 +270,19 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrthof(currentViewportLeft, currentViewportLeft + 1.0f, currentViewportTop - 1.5f, currentViewportTop, -1.0f, 1.0f);	
+	
+	if (chaos)
+	{
+		glTranslatef(chaosCenterX, chaosCenterY, 0.0);
+		glRotatef(chaosAngle, 0.2, 0.5, 1.0);
+		glTranslatef(-chaosCenterX, -chaosCenterY, 0.0);
+		
+		chaosAngle += 2.0;
+		if (chaosAngle > 360.0)
+		{
+			chaosAngle = chaosAngle - 360.0;
+		}
+	}
 	glMatrixMode(GL_MODELVIEW);
 	
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -318,6 +334,22 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 							[NSNumber numberWithDouble:new.x], @"locationX",
 							[NSNumber numberWithDouble:new.y], @"locationY",
 							[NSDate date], @"timeStamp", nil]];
+	
+	// THE CHAOS MAKER!
+	if ([touch tapCount] >= 3)
+	{
+		if (chaos)
+		{
+			chaos = NO;
+		}
+		else
+		{
+			chaosAngle = 0.0;
+			chaosCenterX = LINEAR_MAP(new.x, 0.0f, 320.0f, currentViewportLeft, currentViewportLeft+1.0f);
+			chaosCenterY = LINEAR_MAP(new.y, 0.0f, 480.0f, currentViewportTop, currentViewportTop-1.5f);			
+			chaos = YES;
+		}
+	}
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event 

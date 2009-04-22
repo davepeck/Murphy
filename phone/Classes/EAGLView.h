@@ -49,6 +49,11 @@ Note that setting the view non-opaque will only work if the EAGL surface has an 
 	GLfloat xMotion;
 	GLfloat yMotion;
 	
+	BOOL chaos;
+	GLfloat chaosAngle;
+	GLfloat chaosCenterX;
+	GLfloat chaosCenterY;
+	
 	NSBuffer *touchBuffer;
 }
 
