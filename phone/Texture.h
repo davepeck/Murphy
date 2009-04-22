@@ -26,6 +26,9 @@
 	uint16_t width;			// will always be a power of 2
 	uint16_t height;		// will always be a power of 2
 	
+	GLfloat halfTexelWide;
+	GLfloat halfTexelHigh;
+	
 	BOOL engaged;
 }
 
@@ -35,6 +38,8 @@
 @property (readonly) BOOL engaged;
 @property (readonly) uint16_t width;
 @property (readonly) uint16_t height;
+@property (readonly) GLfloat halfTexelWide;
+@property (readonly) GLfloat halfTexelHigh;
 
 -(void)engage;
 -(void)disengage;

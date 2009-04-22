@@ -77,6 +77,13 @@
 	GLfloat t_top = tf * tileHeightInTextureSpace;
 	GLfloat t_bottom = (tf + 1.0) * tileHeightInTextureSpace; /* tile textures are inverted when we load them */
 	
+	// inset by half a texel in order to ensure smoothness even when doing subpixel/subtexel rendering
+	// (for example, when rotating/shearing/scaling the 2D world.)
+	s_left += texture.halfTexelWide;
+	s_right -= texture.halfTexelWide;
+	t_top += texture.halfTexelHigh;
+	t_bottom -= texture.halfTexelHigh;
+	
 	coordinates[0] = s_left;
 	coordinates[1] = t_bottom;	
 	coordinates[2] = s_right;

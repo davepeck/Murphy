@@ -82,6 +82,11 @@ static Texture *currently_engaged = NULL;
 				
 		glEnable(GL_TEXTURE_2D);
 		
+		// a lot of times you want to inset your texture coordinates by this amount
+		// in order to avoid edge artifacts when doing subpixel rendering.
+		halfTexelWide = 1.0 / (2.0f * ((GLfloat) width));
+		halfTexelHigh = 1.0 / (2.0f * ((GLfloat) height));
+		
 		// Finish engaging this texture		
 		currently_engaged = self;
 		engaged = YES;		
@@ -113,6 +118,8 @@ static Texture *currently_engaged = NULL;
 @synthesize engaged;
 @synthesize width;
 @synthesize height;
+@synthesize halfTexelWide;
+@synthesize halfTexelHigh;
 
 -(void)engage
 {
