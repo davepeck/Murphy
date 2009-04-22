@@ -26,6 +26,7 @@
 		55E530570F98191B00CC9C2E /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E530560F98191B00CC9C2E /* Texture.m */; };
 		55E530830F981D8E00CC9C2E /* TileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E530820F981D8E00CC9C2E /* TileMap.m */; };
 		55E530990F9824AA00CC9C2E /* TileGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E530980F9824AA00CC9C2E /* TileGrid.m */; };
+		55F7C9450F9E553E00D3C4E4 /* dist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55F7C9440F9E553E00D3C4E4 /* dist.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		55E530820F981D8E00CC9C2E /* TileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileMap.m; sourceTree = "<group>"; };
 		55E530970F9824AA00CC9C2E /* TileGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileGrid.h; sourceTree = "<group>"; };
 		55E530980F9824AA00CC9C2E /* TileGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileGrid.m; sourceTree = "<group>"; };
+		55F7C9440F9E553E00D3C4E4 /* dist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dist.plist; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +111,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				55F7C9440F9E553E00D3C4E4 /* dist.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				55CB59E30F932D7800071361 /* Default.png in Resources */,
 				55CB59E40F932D7800071361 /* icon.png in Resources */,
 				55E52F140F969B7500CC9C2E /* World.mbl in Resources */,
+				55F7C9450F9E553E00D3C4E4 /* dist.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +264,33 @@
 			};
 			name = Release;
 		};
+		55F7C9310F9E54BE00D3C4E4 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = dist.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dave Peck";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CC4E1ED8-F342-46D4-85BD-4CA4344D6DE2";
+				SDKROOT = iphoneos2.2.1;
+			};
+			name = AdHoc;
+		};
+		55F7C9320F9E54BE00D3C4E4 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = iMurphy_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = iMurphy;
+			};
+			name = AdHoc;
+		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -297,6 +328,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				55F7C9320F9E54BE00D3C4E4 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -306,6 +338,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				55F7C9310F9E54BE00D3C4E4 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
