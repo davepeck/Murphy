@@ -17,8 +17,12 @@
 #import "TileAtlas.h"
 #import "TileMap.h"
 #import "TileGrid.h"
+#import "SpriteMath.h"
 
 #define MOVE_INCREMENT 0.025f
+
+#define MOTION_DAMP 0.95f
+#define TOO_SMALL_MOTION 0.00001f
 
 const uint16_t TILE_WATER_FIRST = 238;
 const uint16_t TILE_WATER_LAST = 241; 
@@ -44,6 +48,7 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)ensureViewportBoundaries;
 
 @end
 
@@ -79,10 +84,8 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 		
 		animationInterval = 1.0 / 60.0;
 		
-		movingLeft = NO;
-		movingRight = NO;
-		movingUp = NO;
-		movingDown = NO;
+		xMotion = 0.0f;
+		yMotion = 0.0f;
 				
 		[self setupView];
 		[self drawView];
@@ -203,6 +206,29 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);	
 }
 
+- (void)ensureViewportBoundaries
+{
+	if (currentViewportTop > tileGrid.gridTop)
+	{
+		currentViewportTop = tileGrid.gridTop;
+	}
+
+	if (currentViewportTop - 1.5f < tileGrid.gridBottom)
+	{
+		currentViewportTop = tileGrid.gridBottom + 1.5f;
+	}
+	
+	if (currentViewportLeft < tileGrid.gridLeft)
+	{
+		currentViewportLeft = tileGrid.gridLeft;
+	}
+
+	if (currentViewportLeft + 1.0f > tileGrid.gridRight)
+	{
+		currentViewportLeft = tileGrid.gridRight - 1.0f;
+	}			
+}
+
 // Updates the OpenGL view when the timer fires
 - (void)drawView
 {
@@ -211,40 +237,25 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 	
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
 		
-	if (movingUp)
+	if (xMotion != 0.0f || yMotion != 0.0f)
 	{
-		currentViewportTop += MOVE_INCREMENT;
-		if (currentViewportTop > tileGrid.gridTop)
+		currentViewportLeft += xMotion;
+		currentViewportTop += yMotion;
+		
+		xMotion *= MOTION_DAMP;
+		yMotion *= MOTION_DAMP;
+		
+		if (fabs(xMotion) < TOO_SMALL_MOTION)
 		{
-			currentViewportTop = tileGrid.gridTop;
+			xMotion = 0.0f;
 		}
-	}
-	
-	if (movingDown)
-	{
-		currentViewportTop -= MOVE_INCREMENT;
-		if (currentViewportTop - 1.5f < tileGrid.gridBottom)
+		
+		if (fabs(yMotion) < TOO_SMALL_MOTION)
 		{
-			currentViewportTop = tileGrid.gridBottom + 1.5f;
+			yMotion = 0.0f;
 		}
-	}
-	
-	if (movingLeft)
-	{
-		currentViewportLeft -= MOVE_INCREMENT;
-		if (currentViewportLeft < tileGrid.gridLeft)
-		{
-			currentViewportLeft = tileGrid.gridLeft;
-		}
-	}
-	
-	if (movingRight)
-	{
-		currentViewportLeft += MOVE_INCREMENT;
-		if (currentViewportLeft + 1.0f > tileGrid.gridRight)
-		{
-			currentViewportLeft = tileGrid.gridRight - 1.0f;
-		}		
+		
+		[self ensureViewportBoundaries];
 	}
 	
 	glMatrixMode(GL_PROJECTION);
@@ -277,111 +288,39 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event 
 {
-	UITouch *touch = [touches anyObject];
-	CGPoint point = [touch locationInView:self];
-//	NSLog(@"Touch Began at: (%f, %f)", point.x, point.y);
-	
-	movingUp = NO;
-	movingDown = NO;
-	movingLeft = NO;
-	movingRight = NO;
-	
-	if (point.x <= 160.0)
-	{
-		// Left half of screen.
-		
-		if (point.x >= point.y)
-		{
-			// Top-right of the left half of the screen
-			movingUp = YES;
-		}
-		else if (point.x >= (480.0 - point.y))
-		{
-			// Bottom-right of the left half of the screen
-			movingDown = YES;
-		}
-		else
-		{
-			movingLeft = YES;
-		}
-	}
-	else
-	{
-		// Right half of the screen
-		
-		if ((320.0 - point.x) >= point.y)
-		{
-			// Top-left of the right half of the screen
-			movingUp = YES;
-		}
-		else if ((320.0 - point.x) >= (480.0 - point.y))
-		{
-			// Bottom-left of the right half of the screen
-			movingDown = YES;
-		}
-		else
-		{
-			movingRight = YES;
-		}
-	}
+	// no-op
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event 
 {
 	UITouch *touch = [touches anyObject];
-	CGPoint point = [touch locationInView:self];
-//	NSLog(@"Touch Moved at: (%f, %f)", point.x, point.y);
+	CGPoint old = [touch locationInView:self];
+	CGPoint new = [touch previousLocationInView:self];
 	
-	movingUp = NO;
-	movingDown = NO;
-	movingLeft = NO;
-	movingRight = NO;
+	GLfloat glOldX = LINEAR_MAP(old.x, 0.0f, 320.0f, 0.0f, 1.0f);
+	GLfloat glOldY = LINEAR_MAP(old.y, 0.0f, 480.0f, 1.5f, 0.0f);
+	GLfloat glNewX = LINEAR_MAP(new.x, 0.0f, 320.0f, 0.0f, 1.0f);
+	GLfloat glNewY = LINEAR_MAP(new.y, 0.0f, 480.0f, 1.5f, 0.0f);
 	
-	if (point.x <= 160.0)
-	{
-		// Left half of screen.
-		
-		if (point.x >= point.y)
-		{
-			// Top-right of the left half of the screen
-			movingUp = YES;
-		}
-		else if (point.x >= (480.0 - point.y))
-		{
-			// Bottom-right of the left half of the screen
-			movingDown = YES;
-		}
-		else
-		{
-			movingLeft = YES;
-		}
-	}
-	else
-	{
-		// Right half of the screen
-		
-		if ((320.0 - point.x) >= point.y)
-		{
-			// Top-left of the right half of the screen
-			movingUp = YES;
-		}
-		else if ((320.0 - point.x) >= (480.0 - point.y))
-		{
-			// Bottom-left of the right half of the screen
-			movingDown = YES;
-		}
-		else
-		{
-			movingRight = YES;
-		}
-	}
+	currentViewportLeft += (glNewX - glOldX);
+	currentViewportTop += (glNewY - glOldY);
+	[self ensureViewportBoundaries];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	movingUp = NO;
-	movingDown = NO;
-	movingLeft = NO;
-	movingRight = NO;	
+	UITouch *touch = [touches anyObject];
+	CGPoint old = [touch locationInView:self];
+	CGPoint new = [touch previousLocationInView:self];
+	
+	if (old.x == new.x && old.y == new.y) { return; }
+	
+	GLfloat glOldX = LINEAR_MAP(old.x, 0.0f, 320.0f, 0.0f, 1.0f);
+	GLfloat glOldY = LINEAR_MAP(old.y, 0.0f, 480.0f, 1.5f, 0.0f);
+	GLfloat glNewX = LINEAR_MAP(new.x, 0.0f, 320.0f, 0.0f, 1.0f);
+	GLfloat glNewY = LINEAR_MAP(new.y, 0.0f, 480.0f, 1.5f, 0.0f);
+	
+	xMotion = (glNewX - glOldX);
+	yMotion = (glNewY - glOldY);
 }
 @end
