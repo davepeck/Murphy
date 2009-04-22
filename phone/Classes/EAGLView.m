@@ -22,7 +22,9 @@
 #define MOVE_INCREMENT 0.025f
 
 #define MOTION_DAMP 0.95f
-#define TOO_SMALL_MOTION 0.00001f
+#define TOO_SMALL_MOTION 0.0001f
+#define MIN_PIXELS_FOR_FLICK 5
+#define STABLE_TOUCH_TIME ((double)0.015)
 
 const uint16_t TILE_WATER_FIRST = 238;
 const uint16_t TILE_WATER_LAST = 241; 
@@ -86,6 +88,7 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 		
 		xMotion = 0.0f;
 		yMotion = 0.0f;
+		dateInMotion = nil;
 				
 		[self setupView];
 		[self drawView];
@@ -273,6 +276,11 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 // Stop animating and release resources when they are no longer needed.
 - (void)dealloc
 {
+	if (dateInMotion != nil)
+	{
+		[dateInMotion release];
+	}
+	
 	[self stopAnimation];
 	
 	if ([EAGLContext currentContext] == context) 
@@ -293,6 +301,13 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event 
 {
+	if (dateInMotion != nil)
+	{
+		[dateInMotion release];
+		dateInMotion = nil;
+	}	
+	dateInMotion = [[NSDate date] retain];	
+	
 	UITouch *touch = [touches anyObject];
 	CGPoint old = [touch locationInView:self];
 	CGPoint new = [touch previousLocationInView:self];
@@ -309,18 +324,70 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+	if (dateInMotion == nil)
+	{
+		return;
+	}
+	
+	NSTimeInterval timeElapsed = [dateInMotion timeIntervalSinceNow] * -1.0;	
+	
 	UITouch *touch = [touches anyObject];
 	CGPoint old = [touch locationInView:self];
 	CGPoint new = [touch previousLocationInView:self];
+
+	NSLog(@"elapsed: %f  pixel delta: (%f, %f)", timeElapsed, (new.x - old.x), (new.y - old.y));
 	
-	if (old.x == new.x && old.y == new.y) { return; }
+	if (abs(old.x - new.x) < MIN_PIXELS_FOR_FLICK) 
+	{
+		new.x = old.x;
+	}
+	
+	if (abs(old.y - new.y) < MIN_PIXELS_FOR_FLICK)
+	{
+		new.y = old.y;
+	}	
+	
+	if (old.x == new.x && old.y == new.y)
+	{
+		return;
+	}
 	
 	GLfloat glOldX = LINEAR_MAP(old.x, 0.0f, 320.0f, 0.0f, 1.0f);
 	GLfloat glOldY = LINEAR_MAP(old.y, 0.0f, 480.0f, 1.5f, 0.0f);
 	GLfloat glNewX = LINEAR_MAP(new.x, 0.0f, 320.0f, 0.0f, 1.0f);
 	GLfloat glNewY = LINEAR_MAP(new.y, 0.0f, 480.0f, 1.5f, 0.0f);
 	
-	xMotion = (glNewX - glOldX);
-	yMotion = (glNewY - glOldY);
+	// this is the key part: you want to normalize your delta based on some time duration.
+	// so: if the difference between last and current was 1 second, that is slower than if it was 0.5 seconds
+	// the question is: what time difference should you use where the delta becomes the actual motion?
+	// that is STABLE_TOUCH_TIME. if you are EQUAL to STABLE_TOUCH_TIME, motion == delta
+	// if you are HALF of STABLE_TOUCH_TIME, motion == 2 * delta
+	// if your are TWICE STABLE_TOUCH_TIME, motion == 0.5 * delta
+	GLfloat multiplier = (GLfloat) (STABLE_TOUCH_TIME / timeElapsed); 
+	
+	xMotion = (glNewX - glOldX) * multiplier;
+	yMotion = (glNewY - glOldY) * multiplier;
+	
+	if (xMotion < -0.05)
+	{
+		xMotion = -0.05;
+	}
+	if (xMotion > 0.05)
+	{
+		xMotion = 0.05;
+	}
+	if (yMotion < -0.05)
+	{
+		yMotion = -0.05;
+	}
+	if (yMotion > 0.05)
+	{
+		yMotion = 0.05;
+	}
+	
+	NSLog(@"   >>> motion: (%f, %f)", xMotion, yMotion);
+	
+	[dateInMotion release];
+	dateInMotion = nil;
 }
 @end

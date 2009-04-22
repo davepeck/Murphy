@@ -47,6 +47,8 @@ Note that setting the view non-opaque will only work if the EAGL surface has an 
 	
 	GLfloat xMotion;
 	GLfloat yMotion;
+	
+	NSDate *dateInMotion;
 }
 
 - (void)startAnimation;
