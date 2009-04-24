@@ -279,7 +279,7 @@ const NSUInteger DEFAULT_CAPACITY = 20;
 		// been at time NOW - FLICK_TIME_BACK
 		recentIndex += 1;
 	}
-
+	
 	// We have the two points closest to FLICK_TIME_BACK seconds
 	// Use linear interpolation to decide where the point _would_ have been at FLICK_TIME_BACK seconds
 	TouchInfo recentInfo = [self getHistoryAtIndex:recentIndex];
@@ -289,12 +289,12 @@ const NSUInteger DEFAULT_CAPACITY = 20;
 	double flickY = [self linearInterpolate:previousInfo.y to:recentInfo.y percent:crossoverTimePercent];
 	
 	// Dampen the motion along each axis if it is too small to matter
-	if (abs(last.x - flickX) < flickThresholdX)
+	if (fabs(last.x - flickX) < flickThresholdX)
 	{
 		flickX = last.x;
 	}
 	
-	if (abs(last.y - flickY) < flickThresholdY)
+	if (fabs(last.y - flickY) < flickThresholdY)
 	{
 		flickY = last.y;
 	}
@@ -328,6 +328,8 @@ const NSUInteger DEFAULT_CAPACITY = 20;
 	}
 	
 	// done! assign our motion!
+	motionX = rawMotionX;
+	motionY = rawMotionY;
 }
 
 -(void)animate

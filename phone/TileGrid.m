@@ -28,6 +28,7 @@
 		width = tilesWide;
 		height = tilesHigh;
 		grid = malloc(sizeof(uint16_t) * width * height);
+		bzero(grid, sizeof(uint16_t) * width * height);
 		
 		// TODO move this stuff
 		gridLeft = 0.0;
@@ -186,9 +187,9 @@
 		visibleLeft = 0;
 	}
 	
-	if (visibleRight >= width)
+	if (visibleRight > width)
 	{
-		visibleRight = width - 1;
+		visibleRight = width;
 	}
 	
 	if (visibleTop < 0)
@@ -196,9 +197,9 @@
 		visibleTop = 0;
 	}
 	
-	if (visibleBottom >= height)
+	if (visibleBottom > height)
 	{
-		visibleBottom = height - 1;
+		visibleBottom = height;
 	}
 	
 	// Compute values for the viewPort's left and top that are snapped to the appropriate tile boundary

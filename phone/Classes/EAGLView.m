@@ -19,16 +19,6 @@
 #import "TileGrid.h"
 #import "SpriteMath.h"
 
-#define MOVE_INCREMENT 0.025f
-
-#define MOTION_DAMP 0.975f
-#define TOO_SMALL_MOTION 0.0001f
-#define FLICK_TIME_BACK 0.075f
-#define MIN_PIXELS_FOR_FLICK 5
-#define MOTION_MULTIPLIER 0.25f
-#define MOTION_MAX 0.065
-
-
 const uint16_t TILE_WATER_FIRST = 238;
 const uint16_t TILE_WATER_LAST = 241; 
 const uint16_t TILE_WHIRLPOOL_FIRST = 256;
@@ -44,7 +34,6 @@ const uint16_t TILE_LEVEL2_LAST = 26;
 const uint16_t TILE_LEVEL3_FIRST = 37;
 const uint16_t TILE_LEVEL3_LAST = 44;
 
-
 @interface EAGLView (EAGLViewPrivate)
 
 - (BOOL)createFramebuffer;
@@ -53,7 +42,6 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
-- (void)ensureViewportBoundaries;
 
 @end
 
@@ -89,13 +77,9 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 		
 		animationInterval = 1.0 / 60.0;
 		
-		xMotion = 0.0f;
-		yMotion = 0.0f;
 		chaos = NO;
 		chaosAngle = 0.0;
 		
-		touchBuffer = nil;
-				
 		[self setupView];
 		[self drawView];
 	}
@@ -178,9 +162,6 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 	glOrthof(0.0f, 1.0f, 0.0f, 1.5f, -1.0f, 1.0f);	
 	glMatrixMode(GL_MODELVIEW);
 	
-	currentViewportLeft = 3.875006f;
-	currentViewportTop = -1.824998f;
-	
 	// Load our world textures
 	MurphyLevel *levelFile = [MurphyLevel murphyLevelWithNamedResource:@"World"];		
 	TileAtlas *worldAtlas = [TileAtlas tileAtlasWithResourcePNG:@"example-world-tiles-24-512" tilePixelWidth:24 tilePixelHeight:24 tilesAcross:18 tilesDown:20];
@@ -211,31 +192,12 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 	[tileGrid.map animateTileId:TILE_LEVEL2_FIRST toTileId:TILE_LEVEL2_LAST timeInterval:0.3f allInRange:NO];
 	[tileGrid.map animateTileId:TILE_LEVEL3_FIRST toTileId:TILE_LEVEL3_LAST timeInterval:0.7f allInRange:NO];
 	
+	flickDynamics = [[FlickDynamics flickDynamicsWithViewportWidth:1.0f viewportHeight:1.5f scrollBoundsLeft:tileGrid.gridLeft scrollBoundsTop:tileGrid.gridTop scrollBoundsRight:tileGrid.gridRight scrollBoundsBottom:tileGrid.gridBottom] retain];
+	flickDynamics.currentScrollLeft = 3.875006f;
+	flickDynamics.currentScrollTop = -1.824998f;
+	
 	// Clears the view with black
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);	
-}
-
-- (void)ensureViewportBoundaries
-{
-	if (currentViewportTop > tileGrid.gridTop)
-	{
-		currentViewportTop = tileGrid.gridTop;
-	}
-
-	if (currentViewportTop - 1.5f < tileGrid.gridBottom)
-	{
-		currentViewportTop = tileGrid.gridBottom + 1.5f;
-	}
-	
-	if (currentViewportLeft < tileGrid.gridLeft)
-	{
-		currentViewportLeft = tileGrid.gridLeft;
-	}
-
-	if (currentViewportLeft + 1.0f > tileGrid.gridRight)
-	{
-		currentViewportLeft = tileGrid.gridRight - 1.0f;
-	}			
 }
 
 // Updates the OpenGL view when the timer fires
@@ -245,31 +207,11 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 	[EAGLContext setCurrentContext:context];
 	
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
-		
-	if (xMotion != 0.0f || yMotion != 0.0f)
-	{
-		currentViewportLeft += xMotion;
-		currentViewportTop += yMotion;
-		
-		xMotion *= MOTION_DAMP;
-		yMotion *= MOTION_DAMP;
-		
-		if (fabs(xMotion) < TOO_SMALL_MOTION)
-		{
-			xMotion = 0.0f;
-		}
-		
-		if (fabs(yMotion) < TOO_SMALL_MOTION)
-		{
-			yMotion = 0.0f;
-		}
-		
-		[self ensureViewportBoundaries];
-	}
 	
+	[flickDynamics animate];
 	
-	GLfloat displayViewportLeft = currentViewportLeft;
-	GLfloat displayViewportTop = currentViewportTop;
+	GLfloat displayViewportLeft = flickDynamics.currentScrollLeft;
+	GLfloat displayViewportTop = flickDynamics.currentScrollTop;
 	
 	[tileGrid alignViewportToPixel:&displayViewportLeft top:&displayViewportTop];
 	
@@ -301,11 +243,11 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 // Stop animating and release resources when they are no longer needed.
 - (void)dealloc
 {
-	if (touchBuffer != nil)
+	if (flickDynamics != nil)
 	{
-		[touchBuffer release];
-		touchBuffer = nil;
-	}	
+		[flickDynamics release];
+		flickDynamics = nil;
+	}
 	
 	[self stopAnimation];
 	
@@ -321,25 +263,12 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event 
-{
-	xMotion = 0.0;
-	yMotion = 0.0;
-	
-	if (touchBuffer != nil)
-	{
-		[touchBuffer release];
-		touchBuffer = nil;
-	}
-	
-	touchBuffer = [[NSBuffer bufferWithCapacity:25] retain];
-	
+{	
 	UITouch *touch = [touches anyObject];
-	CGPoint new = [touch locationInView:self];
-	
-	[touchBuffer addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-							[NSNumber numberWithDouble:new.x], @"locationX",
-							[NSNumber numberWithDouble:new.y], @"locationY",
-							[NSDate date], @"timeStamp", nil]];
+	CGPoint first = [touch locationInView:self];	
+	GLfloat glFirstX = LINEAR_MAP(first.x, 0.0f, 320.0f, 0.0f, 1.0f);
+	GLfloat glFirstY = LINEAR_MAP(first.y, 0.0f, 480.0f, 1.5f, 0.0f);
+	[flickDynamics startTouchAtX:glFirstX y:glFirstY];
 	
 	// THE CHAOS MAKER!
 	if ([touch tapCount] >= 3)
@@ -351,8 +280,8 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 		else
 		{
 			chaosAngle = 0.0;
-			chaosCenterX = LINEAR_MAP(new.x, 0.0f, 320.0f, currentViewportLeft, currentViewportLeft+1.0f);
-			chaosCenterY = LINEAR_MAP(new.y, 0.0f, 480.0f, currentViewportTop, currentViewportTop-1.5f);			
+			chaosCenterX = LINEAR_MAP(first.x, 0.0f, 320.0f, flickDynamics.currentScrollLeft, flickDynamics.currentScrollLeft+1.0f);
+			chaosCenterY = LINEAR_MAP(first.y, 0.0f, 480.0f, flickDynamics.currentScrollTop, flickDynamics.currentScrollTop-1.5f);			
 			chaos = YES;
 		}
 	}
@@ -362,151 +291,17 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 {
 	UITouch *touch = [touches anyObject];
 	CGPoint new = [touch locationInView:self];
-	CGPoint old = [touch previousLocationInView:self];
-	
-	[touchBuffer addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-							[NSNumber numberWithDouble:new.x], @"locationX",
-							[NSNumber numberWithDouble:new.y], @"locationY",
-							[NSDate date], @"timeStamp", nil]];	
-	
-	GLfloat glOldX = LINEAR_MAP(old.x, 0.0f, 320.0f, 0.0f, 1.0f);
-	GLfloat glOldY = LINEAR_MAP(old.y, 0.0f, 480.0f, 1.5f, 0.0f);
 	GLfloat glNewX = LINEAR_MAP(new.x, 0.0f, 320.0f, 0.0f, 1.0f);
-	GLfloat glNewY = LINEAR_MAP(new.y, 0.0f, 480.0f, 1.5f, 0.0f);
-	
-	currentViewportLeft += (glOldX - glNewX);
-	currentViewportTop += (glOldY - glNewY);
-	[self ensureViewportBoundaries];
+	GLfloat glNewY = LINEAR_MAP(new.y, 0.0f, 480.0f, 1.5f, 0.0f);	
+	[flickDynamics moveTouchAtX:glNewX y:glNewY];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	NSDate *endTime = [NSDate date];
-	
 	UITouch *touch = [touches anyObject];
-	CGPoint new = [touch locationInView:self];
-	CGPoint old = [touch previousLocationInView:self];
-
-	[touchBuffer addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-							[NSNumber numberWithDouble:new.x], @"locationX",
-							[NSNumber numberWithDouble:new.y], @"locationY",
-							endTime, @"timeStamp", nil]];	
-	
-	// NSLog(@"end touches...");
-	
-	// do standard motion first
-	GLfloat glOldX = LINEAR_MAP(old.x, 0.0f, 320.0f, 0.0f, 1.0f);
-	GLfloat glOldY = LINEAR_MAP(old.y, 0.0f, 480.0f, 1.5f, 0.0f);
-	GLfloat glNewX = LINEAR_MAP(new.x, 0.0f, 320.0f, 0.0f, 1.0f);
-	GLfloat glNewY = LINEAR_MAP(new.y, 0.0f, 480.0f, 1.5f, 0.0f);
-	
-	currentViewportLeft += (glOldX - glNewX);
-	currentViewportTop += (glOldY - glNewY);
-	[self ensureViewportBoundaries];
-	
-	// find the first buffered location that is less than FLICK_TIME_BACK seconds behind our endTime
-	NSUInteger lessThanIndex = 999;
-	
-	for (NSUInteger testIndex = 0; testIndex < touchBuffer.length; testIndex++)
-	{
-		NSDictionary *dict = [touchBuffer objectAtIndex:testIndex];
-		NSTimeInterval delta = [endTime timeIntervalSinceDate:[dict objectForKey:@"timeStamp"]];
-		if (delta < FLICK_TIME_BACK)
-		{
-			lessThanIndex = testIndex;
-			break;
-		}
-	}
-	
-	if (lessThanIndex == 999)
-	{
-		// NSLog(@"XXXXXXX Couldn't find a reasonable lessThanIndex. Oops.");
-		[touchBuffer release];
-		touchBuffer = nil;
-		return;
-	}
-	
-	if (lessThanIndex == 0)
-	{
-		// NSLog(@"XXXXXXX Defaulting the lessThanIndex (must be a short gesture.)");
-		lessThanIndex = 1;
-	}
-	
-	// use linear interpolation to "decide" where the touch was exactly FLICK_TIME_BACK seconds ago	
-	// NSLog(@"   >>> lessThanIndex is %i", lessThanIndex); 
-	
-	NSDictionary *lessThanDict = [touchBuffer objectAtIndex:lessThanIndex];
-	NSDictionary *greaterThanDict = [touchBuffer objectAtIndex:(lessThanIndex - 1)];
-	
-	double lessThanX = [[lessThanDict objectForKey:@"locationX"] doubleValue];
-	double lessThanY = [[lessThanDict objectForKey:@"locationY"] doubleValue];
-	NSDate *lessThanTime = [lessThanDict objectForKey:@"timeStamp"];
-	double greaterThanX = [[greaterThanDict objectForKey:@"locationX"] doubleValue];
-	double greaterThanY = [[greaterThanDict objectForKey:@"locationY"] doubleValue];
-	NSDate *greaterThanTime = [greaterThanDict objectForKey:@"timeStamp"];
-
-	NSTimeInterval lessThanBack = [endTime timeIntervalSinceDate:lessThanTime];
-	NSTimeInterval greaterThanBack = [endTime timeIntervalSinceDate:greaterThanTime];
-		
-	double between = LINEAR_MAP(FLICK_TIME_BACK,lessThanBack,greaterThanBack,0.0f,1.0f);
-	//NSAssert((between >= 0.0f) && (between <= 1.0f), @"Should never happen!");
-	
-	// NSLog(@"   >>> between is %f", between); 
-	
-	double flickX = (greaterThanX * between) + (lessThanX * (1.0f-between));
-	double flickY = (greaterThanY * between) + (lessThanY * (1.0f-between));
-	
-	// NSLog(@"   >>> flick: (%f, %f) and new: (%f, %f)", flickX, flickY, new.x, new.y); 
-	
-	// now: fully dampen the motion if it is within the "they aren't flicking" variance
-	if (abs(new.x - flickX) < MIN_PIXELS_FOR_FLICK) 
-	{
-		flickX = new.x;
-	}
-	
-	if (abs(new.y - flickY) < MIN_PIXELS_FOR_FLICK)
-	{
-		flickY = new.y;
-	}	
-	
-	if (new.x == flickX && new.y == flickY)
-	{
-		[touchBuffer release];
-		touchBuffer = nil;
-		return;
-	}
-
-	// Convert to GL coordinates and compute the final motion
-	GLfloat glFlickX = LINEAR_MAP(flickX, 0.0f, 320.0f, 0.0f, 1.0f);
-	GLfloat glFlickY = LINEAR_MAP(flickY, 0.0f, 480.0f, 1.5f, 0.0f);
-
-	xMotion = (glFlickX - glNewX) * MOTION_MULTIPLIER;
-	yMotion = (glFlickY - glNewY) * MOTION_MULTIPLIER;
-
-	// Clamp the motion to prevent insanity for very short gestures.
-	// To keep the direction "correct", make sure this clamping preserves
-	// the aspect ratio. In other words, find the "largest" offender and
-	// clamp that down to MOTION_MAX
-	GLfloat absX = fabs(xMotion);
-	GLfloat absY = fabs(yMotion);
-	if (absX >= MOTION_MAX && absX >= absY)
-	{
-	//	NSLog(@"   >>> Scaling along X");
-		GLfloat scaleFactor = MOTION_MAX / absX;
-		xMotion *= scaleFactor;
-		yMotion *= scaleFactor;
-	}
-	else if (absY >= MOTION_MAX)
-	{
-	//	NSLog(@"   >>> Clamping along Y");
-		GLfloat scaleFactor = MOTION_MAX / absY;
-		xMotion *= scaleFactor;
-		yMotion *= scaleFactor;
-	}
-		
-	//NSLog(@"   >>> motion: (%f, %f)", xMotion, yMotion);
-	
-	[touchBuffer release];
-	touchBuffer = nil;
+	CGPoint last = [touch locationInView:self];
+	GLfloat glLastX = LINEAR_MAP(last.x, 0.0f, 320.0f, 0.0f, 1.0f);
+	GLfloat glLastY = LINEAR_MAP(last.y, 0.0f, 480.0f, 1.5f, 0.0f);	
+	[flickDynamics endTouchAtX:glLastX y:glLastY];	
 }
 @end
