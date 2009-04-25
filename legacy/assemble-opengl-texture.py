@@ -31,7 +31,7 @@ FILE_INFO = [
     ("red-zonk.bmp", 0, 4),
     ("blue-zonk.bmp", 0, 4),
     ("plasmoid.bmp", 0, 9),
-    ("robot.bmp", 1, 16),
+    ("robot.bmp", 1, 22), # really 16, but extend to include oliver.bmp in nice location
     ("oliver.bmp", 1, 90) ]
     
 def fill_rect(target_pixels, rect, color):
