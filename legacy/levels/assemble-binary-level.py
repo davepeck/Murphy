@@ -1,3 +1,5 @@
+#!/usr/bin/env python2.5
+
 # Convert a .lvl file into a binary representation (.mbl)
 
 # LVL textfile Format:
@@ -80,7 +82,7 @@ print "Reading %s" % lvl_file_name
 lvl_name = lvl[0]
 lvl_hint = lvl[1]
 lvl_infotrons = int(lvl[2])
-lvl_graphics_set = lvl[3]
+lvl_graphics_set = lvl[3].strip().lower()
 lvl_hours = int(lvl[4])
 lvl_minutes = int(lvl[5])
 lvl_seconds = int(lvl[6])
@@ -113,7 +115,7 @@ print "Writing %s" % mbl_file_name
 mbl_file = open(mbl_file_name, 'wb')
 
 # Write the header
-mbl_file.write(struct.pack(">%dsHHH" % (len(lvl_name) + 1), lvl_name, lvl_infotrons, lvl_width, lvl_height))
+mbl_file.write(struct.pack(">%ds%dsHHH" % (len(lvl_name) + 1, len(lvl_graphics_set) +1), lvl_name, lvl_graphics_set, lvl_infotrons, lvl_width, lvl_height))
 for y in range(lvl_height):
     for x in range(lvl_width):
         cell = board[y][x]

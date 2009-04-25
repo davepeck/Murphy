@@ -28,6 +28,7 @@
 		OrangeDataScanner *scanner = [OrangeDataScanner orangeDataScannerWithData:data littleEndian:NO defaultEncoding:NSASCIIStringEncoding];
 		
 		name = [[scanner readNullTerminatedString] retain];
+		graphicsSet = [[scanner readNullTerminatedString] retain];
 		infotrons = [scanner readWord];
 		width = [scanner readWord];
 		height = [scanner readWord];
@@ -76,6 +77,7 @@
 @implementation MurphyLevel
 
 @synthesize name;
+@synthesize graphicsSet;
 @synthesize infotrons;
 @synthesize width;
 @synthesize height;

@@ -22,6 +22,32 @@
 		55588C9A0FA291240008336F /* aquatron.png in Resources */ = {isa = PBXBuildFile; fileRef = 55588C970FA291240008336F /* aquatron.png */; };
 		55588C9B0FA291240008336F /* infotron.png in Resources */ = {isa = PBXBuildFile; fileRef = 55588C980FA291240008336F /* infotron.png */; };
 		55588C9C0FA291240008336F /* savanatron.png in Resources */ = {isa = PBXBuildFile; fileRef = 55588C990FA291240008336F /* savanatron.png */; };
+		55588C9E0FA292EA0008336F /* Going Up.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588C9D0FA292EA0008336F /* Going Up.mbl */; };
+		55588D3E0FA29A850008336F /* Gold Rush.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D3C0FA29A850008336F /* Gold Rush.mbl */; };
+		55588D3F0FA29A850008336F /* Stress.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D3D0FA29A850008336F /* Stress.mbl */; };
+		55588D830FA29FAC0008336F /* Achtung!.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D6C0FA29FAC0008336F /* Achtung!.mbl */; };
+		55588D840FA29FAC0008336F /* And So It Begins.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D6D0FA29FAC0008336F /* And So It Begins.mbl */; };
+		55588D850FA29FAC0008336F /* Bolder.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D6E0FA29FAC0008336F /* Bolder.mbl */; };
+		55588D860FA29FAC0008336F /* Catacombs-Aquatron.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D6F0FA29FAC0008336F /* Catacombs-Aquatron.mbl */; };
+		55588D870FA29FAC0008336F /* Combinations.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D700FA29FAC0008336F /* Combinations.mbl */; };
+		55588D880FA29FAC0008336F /* Crystalline.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D710FA29FAC0008336F /* Crystalline.mbl */; };
+		55588D890FA29FAC0008336F /* Dash Dash.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D720FA29FAC0008336F /* Dash Dash.mbl */; };
+		55588D8A0FA29FAC0008336F /* Daylight.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D730FA29FAC0008336F /* Daylight.mbl */; };
+		55588D8B0FA29FAC0008336F /* Dot Dot.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D740FA29FAC0008336F /* Dot Dot.mbl */; };
+		55588D8C0FA29FAC0008336F /* Excavation.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D750FA29FAC0008336F /* Excavation.mbl */; };
+		55588D8D0FA29FAC0008336F /* Falling.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D760FA29FAC0008336F /* Falling.mbl */; };
+		55588D8E0FA29FAC0008336F /* Golden Rule.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D770FA29FAC0008336F /* Golden Rule.mbl */; };
+		55588D8F0FA29FAC0008336F /* Inflamatory.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D780FA29FAC0008336F /* Inflamatory.mbl */; };
+		55588D900FA29FAC0008336F /* It's Alive!!.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D790FA29FAC0008336F /* It's Alive!!.mbl */; };
+		55588D910FA29FAC0008336F /* Labyrinth.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D7A0FA29FAC0008336F /* Labyrinth.mbl */; };
+		55588D920FA29FAC0008336F /* Love Boat.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D7B0FA29FAC0008336F /* Love Boat.mbl */; };
+		55588D930FA29FAC0008336F /* No More Secrets.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D7C0FA29FAC0008336F /* No More Secrets.mbl */; };
+		55588D940FA29FAC0008336F /* Out In Out.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D7D0FA29FAC0008336F /* Out In Out.mbl */; };
+		55588D950FA29FAC0008336F /* Robots & Plasmoids.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D7E0FA29FAC0008336F /* Robots & Plasmoids.mbl */; };
+		55588D960FA29FAC0008336F /* Short Circuit.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D7F0FA29FAC0008336F /* Short Circuit.mbl */; };
+		55588D970FA29FAC0008336F /* Thriller.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D800FA29FAC0008336F /* Thriller.mbl */; };
+		55588D980FA29FAC0008336F /* Trapped Inside.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D810FA29FAC0008336F /* Trapped Inside.mbl */; };
+		55588D990FA29FAC0008336F /* Wizard.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D820FA29FAC0008336F /* Wizard.mbl */; };
 		55B24BB20FA1066800741644 /* FlickDynamics.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B24BB10FA1066800741644 /* FlickDynamics.m */; };
 		55CB59E30F932D7800071361 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 55CB59E10F932D7800071361 /* Default.png */; };
 		55CB59E40F932D7800071361 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 55CB59E20F932D7800071361 /* icon.png */; };
@@ -57,6 +83,33 @@
 		55588C970FA291240008336F /* aquatron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aquatron.png; sourceTree = "<group>"; };
 		55588C980FA291240008336F /* infotron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infotron.png; sourceTree = "<group>"; };
 		55588C990FA291240008336F /* savanatron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = savanatron.png; sourceTree = "<group>"; };
+		55588C9D0FA292EA0008336F /* Going Up.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Going Up.mbl"; sourceTree = "<group>"; };
+		55588CBE0FA293DC0008336F /* MurphyConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MurphyConstants.h; sourceTree = "<group>"; };
+		55588D3C0FA29A850008336F /* Gold Rush.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gold Rush.mbl"; sourceTree = "<group>"; };
+		55588D3D0FA29A850008336F /* Stress.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Stress.mbl; sourceTree = "<group>"; };
+		55588D6C0FA29FAC0008336F /* Achtung!.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Achtung!.mbl"; sourceTree = "<group>"; };
+		55588D6D0FA29FAC0008336F /* And So It Begins.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "And So It Begins.mbl"; sourceTree = "<group>"; };
+		55588D6E0FA29FAC0008336F /* Bolder.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bolder.mbl; sourceTree = "<group>"; };
+		55588D6F0FA29FAC0008336F /* Catacombs-Aquatron.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Catacombs-Aquatron.mbl"; sourceTree = "<group>"; };
+		55588D700FA29FAC0008336F /* Combinations.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Combinations.mbl; sourceTree = "<group>"; };
+		55588D710FA29FAC0008336F /* Crystalline.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Crystalline.mbl; sourceTree = "<group>"; };
+		55588D720FA29FAC0008336F /* Dash Dash.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dash Dash.mbl"; sourceTree = "<group>"; };
+		55588D730FA29FAC0008336F /* Daylight.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Daylight.mbl; sourceTree = "<group>"; };
+		55588D740FA29FAC0008336F /* Dot Dot.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dot Dot.mbl"; sourceTree = "<group>"; };
+		55588D750FA29FAC0008336F /* Excavation.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Excavation.mbl; sourceTree = "<group>"; };
+		55588D760FA29FAC0008336F /* Falling.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Falling.mbl; sourceTree = "<group>"; };
+		55588D770FA29FAC0008336F /* Golden Rule.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Golden Rule.mbl"; sourceTree = "<group>"; };
+		55588D780FA29FAC0008336F /* Inflamatory.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inflamatory.mbl; sourceTree = "<group>"; };
+		55588D790FA29FAC0008336F /* It's Alive!!.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "It's Alive!!.mbl"; sourceTree = "<group>"; };
+		55588D7A0FA29FAC0008336F /* Labyrinth.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Labyrinth.mbl; sourceTree = "<group>"; };
+		55588D7B0FA29FAC0008336F /* Love Boat.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Love Boat.mbl"; sourceTree = "<group>"; };
+		55588D7C0FA29FAC0008336F /* No More Secrets.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "No More Secrets.mbl"; sourceTree = "<group>"; };
+		55588D7D0FA29FAC0008336F /* Out In Out.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Out In Out.mbl"; sourceTree = "<group>"; };
+		55588D7E0FA29FAC0008336F /* Robots & Plasmoids.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Robots & Plasmoids.mbl"; sourceTree = "<group>"; };
+		55588D7F0FA29FAC0008336F /* Short Circuit.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Short Circuit.mbl"; sourceTree = "<group>"; };
+		55588D800FA29FAC0008336F /* Thriller.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thriller.mbl; sourceTree = "<group>"; };
+		55588D810FA29FAC0008336F /* Trapped Inside.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Trapped Inside.mbl"; sourceTree = "<group>"; };
+		55588D820FA29FAC0008336F /* Wizard.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Wizard.mbl; sourceTree = "<group>"; };
 		55B24BB00FA1066800741644 /* FlickDynamics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickDynamics.h; sourceTree = "<group>"; };
 		55B24BB10FA1066800741644 /* FlickDynamics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickDynamics.m; sourceTree = "<group>"; };
 		55CB59E10F932D7800071361 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -107,6 +160,7 @@
 				1D3623250D0F684500981E51 /* iMurphyAppDelegate.m */,
 				5554F4A70F9EF7870066BB3E /* NSBuffer.h */,
 				5554F4A80F9EF7870066BB3E /* NSBuffer.m */,
+				55588CBE0FA293DC0008336F /* MurphyConstants.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -145,6 +199,32 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				55588D6C0FA29FAC0008336F /* Achtung!.mbl */,
+				55588D6D0FA29FAC0008336F /* And So It Begins.mbl */,
+				55588D6E0FA29FAC0008336F /* Bolder.mbl */,
+				55588D6F0FA29FAC0008336F /* Catacombs-Aquatron.mbl */,
+				55588D700FA29FAC0008336F /* Combinations.mbl */,
+				55588D710FA29FAC0008336F /* Crystalline.mbl */,
+				55588D720FA29FAC0008336F /* Dash Dash.mbl */,
+				55588D730FA29FAC0008336F /* Daylight.mbl */,
+				55588D740FA29FAC0008336F /* Dot Dot.mbl */,
+				55588D750FA29FAC0008336F /* Excavation.mbl */,
+				55588D760FA29FAC0008336F /* Falling.mbl */,
+				55588D770FA29FAC0008336F /* Golden Rule.mbl */,
+				55588D780FA29FAC0008336F /* Inflamatory.mbl */,
+				55588D790FA29FAC0008336F /* It's Alive!!.mbl */,
+				55588D7A0FA29FAC0008336F /* Labyrinth.mbl */,
+				55588D7B0FA29FAC0008336F /* Love Boat.mbl */,
+				55588D7C0FA29FAC0008336F /* No More Secrets.mbl */,
+				55588D7D0FA29FAC0008336F /* Out In Out.mbl */,
+				55588D7E0FA29FAC0008336F /* Robots & Plasmoids.mbl */,
+				55588D7F0FA29FAC0008336F /* Short Circuit.mbl */,
+				55588D800FA29FAC0008336F /* Thriller.mbl */,
+				55588D810FA29FAC0008336F /* Trapped Inside.mbl */,
+				55588D820FA29FAC0008336F /* Wizard.mbl */,
+				55588D3C0FA29A850008336F /* Gold Rush.mbl */,
+				55588D3D0FA29A850008336F /* Stress.mbl */,
+				55588C9D0FA292EA0008336F /* Going Up.mbl */,
 				55588C970FA291240008336F /* aquatron.png */,
 				55588C980FA291240008336F /* infotron.png */,
 				55588C990FA291240008336F /* savanatron.png */,
@@ -240,6 +320,32 @@
 				55588C9A0FA291240008336F /* aquatron.png in Resources */,
 				55588C9B0FA291240008336F /* infotron.png in Resources */,
 				55588C9C0FA291240008336F /* savanatron.png in Resources */,
+				55588C9E0FA292EA0008336F /* Going Up.mbl in Resources */,
+				55588D3E0FA29A850008336F /* Gold Rush.mbl in Resources */,
+				55588D3F0FA29A850008336F /* Stress.mbl in Resources */,
+				55588D830FA29FAC0008336F /* Achtung!.mbl in Resources */,
+				55588D840FA29FAC0008336F /* And So It Begins.mbl in Resources */,
+				55588D850FA29FAC0008336F /* Bolder.mbl in Resources */,
+				55588D860FA29FAC0008336F /* Catacombs-Aquatron.mbl in Resources */,
+				55588D870FA29FAC0008336F /* Combinations.mbl in Resources */,
+				55588D880FA29FAC0008336F /* Crystalline.mbl in Resources */,
+				55588D890FA29FAC0008336F /* Dash Dash.mbl in Resources */,
+				55588D8A0FA29FAC0008336F /* Daylight.mbl in Resources */,
+				55588D8B0FA29FAC0008336F /* Dot Dot.mbl in Resources */,
+				55588D8C0FA29FAC0008336F /* Excavation.mbl in Resources */,
+				55588D8D0FA29FAC0008336F /* Falling.mbl in Resources */,
+				55588D8E0FA29FAC0008336F /* Golden Rule.mbl in Resources */,
+				55588D8F0FA29FAC0008336F /* Inflamatory.mbl in Resources */,
+				55588D900FA29FAC0008336F /* It's Alive!!.mbl in Resources */,
+				55588D910FA29FAC0008336F /* Labyrinth.mbl in Resources */,
+				55588D920FA29FAC0008336F /* Love Boat.mbl in Resources */,
+				55588D930FA29FAC0008336F /* No More Secrets.mbl in Resources */,
+				55588D940FA29FAC0008336F /* Out In Out.mbl in Resources */,
+				55588D950FA29FAC0008336F /* Robots & Plasmoids.mbl in Resources */,
+				55588D960FA29FAC0008336F /* Short Circuit.mbl in Resources */,
+				55588D970FA29FAC0008336F /* Thriller.mbl in Resources */,
+				55588D980FA29FAC0008336F /* Trapped Inside.mbl in Resources */,
+				55588D990FA29FAC0008336F /* Wizard.mbl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

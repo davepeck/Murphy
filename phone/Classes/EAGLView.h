@@ -41,13 +41,11 @@ Note that setting the view non-opaque will only work if the EAGL surface has an 
 	NSTimer *animationTimer;
 	NSTimeInterval animationInterval;	
 	
+	NSUInteger currentLevel;
+	NSArray *levelNames;
 	TileGrid *tileGrid;
-	FlickDynamics *flickDynamics;
 	
-	BOOL chaos;
-	GLfloat chaosAngle;
-	GLfloat chaosCenterX;
-	GLfloat chaosCenterY;
+	FlickDynamics *flickDynamics;
 }
 
 - (void)startAnimation;

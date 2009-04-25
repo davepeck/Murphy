@@ -76,10 +76,16 @@ typedef struct TouchInfo {
 @property (readwrite) double currentScrollLeft;
 @property (readwrite) double currentScrollTop;
 
+
 -(void)startTouchAtX:(double)x y:(double)y;
 -(void)moveTouchAtX:(double)x y:(double)y;
 -(void)endTouchAtX:(double)x y:(double)y;
+
 -(void)animate; /* call this with whatever periodicity you specified on initialization */
+
 -(void)stopMotion;
+
+-(void)ensureValidScrollPosition;
+-(void)setScrollBoundsLeft:(double)scrollBoundsLeft scrollBoundsTop:(double)scrollBoundsTop scrollBoundsRight:(double)scrollBoundsRight scrollBoundsBottom:(double)scrollBoundsBottom;
 
 @end

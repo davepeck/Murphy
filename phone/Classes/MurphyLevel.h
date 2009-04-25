@@ -11,6 +11,7 @@
 
 @interface MurphyLevel : NSObject {
 	NSString *name;
+	NSString *graphicsSet;
 	uint16_t infotrons;
 	uint16_t width;
 	uint16_t height;
@@ -19,6 +20,7 @@
 }
 
 @property (readonly, copy) NSString *name;
+@property (readonly, copy) NSString *graphicsSet;
 @property (readonly) uint16_t infotrons;
 @property (readonly) uint16_t width;
 @property (readonly) uint16_t height;

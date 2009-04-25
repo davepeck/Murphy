@@ -60,7 +60,6 @@ const NSUInteger DEFAULT_CAPACITY = 20;
 -(TouchInfo)getHistoryAtIndex:(NSUInteger)index;
 -(TouchInfo)getRecentHistory;
 
--(void)ensureValidScrollPosition;
 
 -(double)linearMap:(double)value valueMin:(double)valueMin valueMax:(double)valueMax targetMin:(double)targetMin targetMax:(double)targetMax;
 -(double)linearInterpolate:(double)from to:(double)to percent:(double)percent;
@@ -170,46 +169,6 @@ const NSUInteger DEFAULT_CAPACITY = 20;
 -(TouchInfo)getRecentHistory
 {
 	return [self getHistoryAtIndex:(historyCount-1)];
-}
-
--(void)ensureValidScrollPosition
-{
-	if (currentScrollLeft + viewportWidth > scrollBoundsRight)
-	{
-		currentScrollLeft = scrollBoundsRight - viewportWidth;
-	}
-	
-	if (currentScrollLeft < scrollBoundsLeft)
-	{
-		currentScrollLeft = scrollBoundsLeft;
-	}	
-	
-	if (scrollBoundsBottom < scrollBoundsTop)
-	{
-		// inverted (gl-style) viewport
-		if (currentScrollTop - viewportHeight < scrollBoundsBottom)
-		{
-			currentScrollTop = scrollBoundsBottom + viewportHeight;
-		}		
-		
-		if (currentScrollTop > scrollBoundsTop)
-		{
-			currentScrollTop = scrollBoundsTop;
-		}
-	}
-	else
-	{
-		// regular (Y increases downward) viewport
-		if (currentScrollTop + viewportHeight > scrollBoundsBottom)
-		{
-			currentScrollTop = scrollBoundsBottom - viewportHeight;
-		}
-		
-		if (currentScrollTop < scrollBoundsTop)
-		{
-			currentScrollTop = scrollBoundsTop;
-		}
-	}		
 }
 
 -(double)linearMap:(double)value valueMin:(double)valueMin valueMax:(double)valueMax targetMin:(double)targetMin targetMax:(double)targetMax
@@ -390,6 +349,56 @@ const NSUInteger DEFAULT_CAPACITY = 20;
 {
 	motionX = 0.0;
 	motionY = 0.0;
+}
+
+-(void)ensureValidScrollPosition
+{
+	if (currentScrollLeft + viewportWidth > scrollBoundsRight)
+	{
+		currentScrollLeft = scrollBoundsRight - viewportWidth;
+	}
+	
+	if (currentScrollLeft < scrollBoundsLeft)
+	{
+		currentScrollLeft = scrollBoundsLeft;
+	}	
+	
+	if (scrollBoundsBottom < scrollBoundsTop)
+	{
+		// inverted (gl-style) viewport
+		if (currentScrollTop - viewportHeight < scrollBoundsBottom)
+		{
+			currentScrollTop = scrollBoundsBottom + viewportHeight;
+		}		
+		
+		if (currentScrollTop > scrollBoundsTop)
+		{
+			currentScrollTop = scrollBoundsTop;
+		}
+	}
+	else
+	{
+		// regular (Y increases downward) viewport
+		if (currentScrollTop + viewportHeight > scrollBoundsBottom)
+		{
+			currentScrollTop = scrollBoundsBottom - viewportHeight;
+		}
+		
+		if (currentScrollTop < scrollBoundsTop)
+		{
+			currentScrollTop = scrollBoundsTop;
+		}
+	}		
+}
+
+-(void)setScrollBoundsLeft:(double)myScrollBoundsLeft scrollBoundsTop:(double)myScrollBoundsTop scrollBoundsRight:(double)myScrollBoundsRight scrollBoundsBottom:(double)myScrollBoundsBottom
+{
+	scrollBoundsLeft = myScrollBoundsLeft;
+	scrollBoundsTop = myScrollBoundsTop;
+	scrollBoundsRight = myScrollBoundsRight;
+	scrollBoundsBottom = myScrollBoundsBottom;
+	
+	[self ensureValidScrollPosition];
 }
 
 @end

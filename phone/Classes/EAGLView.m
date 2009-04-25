@@ -18,21 +18,9 @@
 #import "TileMap.h"
 #import "TileGrid.h"
 #import "SpriteMath.h"
+#import "MurphyConstants.h"
 
-const uint16_t TILE_WATER_FIRST = 238;
-const uint16_t TILE_WATER_LAST = 241; 
-const uint16_t TILE_WHIRLPOOL_FIRST = 256;
-const uint16_t TILE_WHIRLPOOL_LAST = 259;
-const uint16_t TILE_RADAR_FIRST = 270;
-const uint16_t TILE_RADAR_LAST = 273;
-const uint16_t TILE_LIFE_FIRST = 288;
-const uint16_t TILE_LIFE_LAST = 293;
-const uint16_t TILE_LEVEL1_FIRST = 1;
-const uint16_t TILE_LEVEL1_LAST = 8;
-const uint16_t TILE_LEVEL2_FIRST = 19;
-const uint16_t TILE_LEVEL2_LAST = 26;
-const uint16_t TILE_LEVEL3_FIRST = 37;
-const uint16_t TILE_LEVEL3_LAST = 44;
+
 
 @interface EAGLView (EAGLViewPrivate)
 
@@ -42,6 +30,8 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)loadCurrentLevel;
+- (void)switchLevels;
 
 @end
 
@@ -75,10 +65,9 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 			return nil;
 		}
 		
+		levelNames = [[NSArray arrayWithObjects:@"Achtung!", @"And So It Begins", @"Bolder", @"Catacombs-Aquatron", @"Combinations", @"Crystalline", @"Dash Dash", @"Daylight", @"Dot Dot", @"Excavation", @"Falling", @"Going Up", @"Gold Rush", @"Golden Rule", @"Inflamatory", @"It's Alive!!", @"Labyrinth", @"Love Boat", @"No More Secrets", @"Out In Out", @"Robots & Plasmoids", @"Short Circuit", @"Stress", @"Thriller", @"Trapped Inside", @"Wizard", @"World", nil] retain];
+		currentLevel = 0;
 		animationInterval = 1.0 / 60.0;
-		
-		chaos = NO;
-		chaosAngle = 0.0;
 		
 		[self setupView];
 		[self drawView];
@@ -153,6 +142,111 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 	}
 }
 
+-(void)loadCurrentLevel
+{
+	if (tileGrid != nil)
+	{
+		[tileGrid release];
+		tileGrid = nil;		
+	}
+	
+	// Load our level's textures
+	MurphyLevel *levelFile = [MurphyLevel murphyLevelWithNamedResource:[levelNames objectAtIndex:currentLevel]];
+	TileAtlas *worldAtlas = [TileAtlas tileAtlasWithResourcePNG:levelFile.graphicsSet tilePixelWidth:32 tilePixelHeight:32 tilesAcross:10 tilesDown:31];
+	TileMap *worldMap = [TileMap tileMapWithAtlas:worldAtlas startTileId:0];	
+	
+	// find our boundaries
+	uint16_t actual_width = 0;
+	uint16_t actual_height = 0;
+	
+	for (uint16_t y = 0; y < levelFile.height && actual_width == 0; y++)
+	{
+		for (uint16_t x = 0; x < levelFile.width && actual_height == 0; x++)
+		{
+			uint8_t iconS;
+			uint8_t iconT;
+			[levelFile getIconForX:x y:y s:&iconS t:&iconT];
+			uint16_t iconTileId = (iconT * 10) + iconS;
+			
+			if (iconTileId == kBottomRightBorderTile)
+			{
+				actual_height = y + 1;
+				actual_width = x + 1;
+			}
+		}
+	}
+	
+	tileGrid = [[TileGrid tileGridWithMap:worldMap width:actual_width height:actual_height] retain];	
+	
+	// Fill the tileGrid
+	double murphy_x = 0;
+	double murphy_y = 0;
+	for (uint16_t y = 0; y < actual_height; y++)
+	{
+		for (uint16_t x = 0; x < actual_width; x++)
+		{
+			uint8_t iconS;
+			uint8_t iconT;
+			[levelFile getIconForX:x y:y s:&iconS t:&iconT];
+			uint16_t iconTileId = (iconT * 10) + iconS;
+			
+			if (iconTileId == kInfotronTile)
+			{
+				iconTileId = kFirstInfotronTile;
+			}
+			else if (iconTileId == kQuarkTile)
+			{
+				iconTileId = kFirstQuarkTile;
+			}
+			else if (iconTileId == kTerminalTile)
+			{
+				iconTileId = kFirstTerminalTile;
+			}
+			else if (iconTileId == kOliverTile)
+			{
+				iconTileId = kBubFrame;
+				murphy_x = x;
+				murphy_y = y;
+			}
+			else if (iconTileId >= kUpScissorTile && iconTileId <= kLeftScissorTile)
+			{
+				iconTileId = kFirstUpScissorTile; /* kUpLeftScissorTile is last */
+			}
+			
+			[tileGrid setTileIdAtX:x y:y tileId:iconTileId];
+		}
+	}
+	
+	[tileGrid setPixelWidth:320.0 height:480.0];
+	[tileGrid setGridLeft:0.0f top:1.5f];
+
+	flickDynamics.currentScrollLeft = 0.0f + ((1.0 / (320.0 / 32.0)) * (murphy_x + 0.5 - (320.0 / 64.0)));
+	flickDynamics.currentScrollTop = 1.5f - ((1.0 / (320.0 / 32.0)) * (murphy_y + 0.5 - (480.0 / 64.0)));
+	[flickDynamics setScrollBoundsLeft:tileGrid.gridLeft scrollBoundsTop:tileGrid.gridTop scrollBoundsRight:tileGrid.gridRight scrollBoundsBottom:tileGrid.gridBottom];
+	[flickDynamics ensureValidScrollPosition];
+	
+	[tileGrid.map animateTileId:kFirstInfotronTile toTileId:kLastInfotronTile timeInterval:0.075f allInRange:NO];
+	[tileGrid.map animateTileId:kFirstQuarkTile toTileId:kLastQuarkTile timeInterval:0.175f allInRange:NO];
+	[tileGrid.map animateTileId:kFirstTerminalTile toTileId:kLastTerminalTile timeInterval:0.175f allInRange:NO];
+	[tileGrid.map animateTileId:kFirstUpScissorTile toTileId:kUpLeftScissorTile timeInterval:0.175f allInRange:NO];
+	[tileGrid.map animateTileId:kBubFrame toTileId:kDBubFrame2 timeInterval:0.175f allInRange:NO];
+}
+
+-(void)switchLevels
+{
+	currentLevel += 1;
+	if (currentLevel == [levelNames count])
+	{
+		currentLevel = 0;
+	}
+	
+	[flickDynamics stopMotion];
+	flickDynamics.currentScrollTop = 1.5f;
+	flickDynamics.currentScrollLeft = 0.0f;
+	
+	[self loadCurrentLevel];
+}
+
 - (void)setupView
 {
 	// Sets up matrices and transforms for OpenGL ES
@@ -162,39 +256,12 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 	glOrthof(0.0f, 1.0f, 0.0f, 1.5f, -1.0f, 1.0f);	
 	glMatrixMode(GL_MODELVIEW);
 	
-	// Load our world textures
-	MurphyLevel *levelFile = [MurphyLevel murphyLevelWithNamedResource:@"World"];		
-	TileAtlas *worldAtlas = [TileAtlas tileAtlasWithResourcePNG:@"example-world-tiles-24-512" tilePixelWidth:24 tilePixelHeight:24 tilesAcross:18 tilesDown:20];
-	TileMap *worldMap = [TileMap tileMapWithAtlas:worldAtlas startTileId:0];
-	tileGrid = [[TileGrid tileGridWithMap:worldMap width:levelFile.width height:levelFile.height] retain];
-
-	// Fill the tileGrid
-	for (uint16_t y = 0; y < levelFile.height; y++)
-	{
-		for (uint16_t x = 0; x < levelFile.width; x++)
-		{
-			uint8_t iconS;
-			uint8_t iconT;
-			[levelFile getIconForX:x y:y s:&iconS t:&iconT];
-			uint16_t iconTileId = (iconT * 18) + iconS; // 18 = tilesAcross. Not pretty, I know.
-			[tileGrid setTileIdAtX:x y:y tileId:iconTileId];
-		}
-	}
+	flickDynamics = [[FlickDynamics flickDynamicsWithViewportWidth:1.0f viewportHeight:1.5f scrollBoundsLeft:0.0f scrollBoundsTop:1.5f scrollBoundsRight:1.0f scrollBoundsBottom:0.0f] retain];
+	flickDynamics.currentScrollLeft = 0.0f;
+	flickDynamics.currentScrollTop = 1.5f;
 	
-	[tileGrid setPixelWidth:320.0 height:480.0];
-	[tileGrid setGridLeft:0.0f top:1.5f];
-	
-	[tileGrid.map animateTileId:TILE_WATER_FIRST toTileId:TILE_WATER_LAST timeInterval:0.5f allInRange:YES];
-	[tileGrid.map animateTileId:TILE_WHIRLPOOL_FIRST toTileId:TILE_WHIRLPOOL_LAST timeInterval:0.4f allInRange:NO];
-	[tileGrid.map animateTileId:TILE_RADAR_FIRST toTileId:TILE_RADAR_LAST timeInterval:0.6f allInRange:NO];
-	[tileGrid.map animateTileId:TILE_LIFE_FIRST toTileId:TILE_LIFE_LAST timeInterval:0.73f allInRange:YES];
-	[tileGrid.map animateTileId:TILE_LEVEL1_FIRST toTileId:TILE_LEVEL1_LAST timeInterval:0.2f allInRange:NO];
-	[tileGrid.map animateTileId:TILE_LEVEL2_FIRST toTileId:TILE_LEVEL2_LAST timeInterval:0.3f allInRange:NO];
-	[tileGrid.map animateTileId:TILE_LEVEL3_FIRST toTileId:TILE_LEVEL3_LAST timeInterval:0.7f allInRange:NO];
-	
-	flickDynamics = [[FlickDynamics flickDynamicsWithViewportWidth:1.0f viewportHeight:1.5f scrollBoundsLeft:tileGrid.gridLeft scrollBoundsTop:tileGrid.gridTop scrollBoundsRight:tileGrid.gridRight scrollBoundsBottom:tileGrid.gridBottom] retain];
-	flickDynamics.currentScrollLeft = 3.875006f;
-	flickDynamics.currentScrollTop = -1.824998f;
+	currentLevel = 0;
+	[self loadCurrentLevel];
 	
 	// Clears the view with black
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);	
@@ -219,18 +286,6 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 	glLoadIdentity();
 	glOrthof(displayViewportLeft, displayViewportLeft + 1.0f, displayViewportTop - 1.5f, displayViewportTop, -1.0f, 1.0f);	
 	
-	if (chaos)
-	{
-		glTranslatef(chaosCenterX, chaosCenterY, 0.0);
-		glRotatef(chaosAngle, 0.2, 0.5, 1.0);
-		glTranslatef(-chaosCenterX, -chaosCenterY, 0.0);
-		
-		chaosAngle += 2.0;
-		if (chaosAngle > 360.0)
-		{
-			chaosAngle = chaosAngle - 360.0;
-		}
-	}
 	glMatrixMode(GL_MODELVIEW);
 	
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -270,20 +325,10 @@ const uint16_t TILE_LEVEL3_LAST = 44;
 	GLfloat glFirstY = LINEAR_MAP(first.y, 0.0f, 480.0f, 1.5f, 0.0f);
 	[flickDynamics startTouchAtX:glFirstX y:glFirstY];
 	
-	// THE CHAOS MAKER!
-	if ([touch tapCount] >= 3)
+	// THE LEVEL SWITCHER!
+	if ([touch tapCount] == 3)
 	{
-		if (chaos)
-		{
-			chaos = NO;
-		}
-		else
-		{
-			chaosAngle = 0.0;
-			chaosCenterX = LINEAR_MAP(first.x, 0.0f, 320.0f, flickDynamics.currentScrollLeft, flickDynamics.currentScrollLeft+1.0f);
-			chaosCenterY = LINEAR_MAP(first.y, 0.0f, 480.0f, flickDynamics.currentScrollTop, flickDynamics.currentScrollTop-1.5f);			
-			chaos = YES;
-		}
+		[self switchLevels];
 	}
 }
 
