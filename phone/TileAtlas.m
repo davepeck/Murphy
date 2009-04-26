@@ -69,8 +69,8 @@
 {
 	// fill "coordinates" with eight floats indicating the (B,L) > (B,R) > (T,L) > (T,R) traversal of this texture
 	// PERFORMANCE: could actually precompute these and just make it a lookup.
-	GLfloat sf = (float) s;
-	GLfloat tf = (float) t;
+	GLfloat sf = (GLfloat) s;
+	GLfloat tf = (GLfloat) t;
 	
 	GLfloat s_left = sf * tileWidthInTextureSpace;
 	GLfloat s_right = (sf + 1.0) * tileWidthInTextureSpace;
@@ -79,10 +79,12 @@
 	
 	// inset by half a texel in order to ensure smoothness even when doing subpixel/subtexel rendering
 	// (for example, when rotating/shearing/scaling the 2D world.)
+	/*
 	s_left += texture.halfTexelWide;
 	s_right -= texture.halfTexelWide;
 	t_top += texture.halfTexelHigh;
 	t_bottom -= texture.halfTexelHigh;
+	*/
 	
 	coordinates[0] = s_left;
 	coordinates[1] = t_bottom;	

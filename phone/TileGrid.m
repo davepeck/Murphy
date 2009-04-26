@@ -259,12 +259,12 @@
 	for (uint16_t y = visibleTop; y < visibleBottom; y++)
 	{
 		vertexTop = snappedTop - ((y - visibleTop) * glTileHeight);
-		vertexBottom = snappedTop - (((y + 1) - visibleTop) * glTileHeight);
+		vertexBottom = vertexTop - glTileHeight; // snappedTop - (((y + 1) - visibleTop) * glTileHeight);
 		
 		for (uint16_t x = visibleLeft; x < visibleRight; x++)
 		{
 			vertexLeft = snappedLeft + ((x - visibleLeft) * glTileWidth);
-			vertexRight = snappedLeft + (((x + 1) - visibleLeft) * glTileWidth);
+			vertexRight = vertexLeft + glTileWidth; // snappedLeft + (((x + 1) - visibleLeft) * glTileWidth);
 			
 			tileCoordinates[coord_index]   = vertexLeft;
 			tileCoordinates[coord_index+1] = vertexBottom;
