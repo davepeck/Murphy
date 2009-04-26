@@ -58,13 +58,6 @@
 
 -(void)dealloc
 {	
-	for (id key in animations) 
-	{
-		NSTimer *animationTimer = [animations objectForKey:key];
-		[animationTimer invalidate];
-		[animations removeObjectForKey:key];
-	}	
-	
 	[animations release];
 	animations = nil;
 	
@@ -204,6 +197,17 @@
 	NSTimer *animationTimer = [animations objectForKey:key];
 	[animationTimer invalidate];
 	[animations removeObjectForKey:key];
+}
+
+-(void)stopAllAnimations
+{
+	for (id key in animations) 
+	{
+		NSTimer *animationTimer = [animations objectForKey:key];
+		[animationTimer invalidate];
+	}	
+	
+	[animations removeAllObjects];
 }
 
 @end

@@ -68,8 +68,12 @@
 	free(grid);
 	grid = nil;
 	
-	[map release];
-	map = nil;
+	if (map != nil)
+	{
+		[map stopAllAnimations];
+		[map release];
+		map = nil;
+	}
 	
 	[super dealloc];
 }

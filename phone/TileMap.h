@@ -40,5 +40,6 @@
 -(void)setMapForTileId:(uint16_t)tileId withTileId:(uint16_t)newTileId;
 -(void)animateTileId:(uint16_t)tileIdFrom toTileId:(uint16_t)tileIdTo timeInterval:(NSTimeInterval)animationInterval allInRange:(BOOL)allInRange;
 -(void)stopAnimatingTileId:(uint16_t)tileIdFrom;
+-(void)stopAllAnimations;
 
 @end
