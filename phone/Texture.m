@@ -88,7 +88,7 @@ static Texture *currently_engaged = NULL;
 		halfTexelHigh = 1.0 / (2.0f * ((GLfloat) height));
 		
 		// Finish engaging this texture		
-		currently_engaged = self;
+		currently_engaged = [self retain];
 		engaged = YES;		
 	}
 	
@@ -130,7 +130,7 @@ static Texture *currently_engaged = NULL;
 		[currently_engaged disengage];
 	}
 	
-	currently_engaged = self;
+	currently_engaged = [self retain];
 	engaged = YES;
 	glBindTexture(GL_TEXTURE_2D, name);	
 	glEnable(GL_TEXTURE_2D);
@@ -141,6 +141,7 @@ static Texture *currently_engaged = NULL;
 	if (engaged)
 	{
 		NSAssert(currently_engaged == self, @"Texture engagement got out of wack.");
+		[currently_engaged release];
 		currently_engaged = NULL;
 		engaged = NO;
 	}

@@ -62,6 +62,7 @@
 	{
 		NSTimer *animationTimer = [animations objectForKey:key];
 		[animationTimer invalidate];
+		[animations removeObjectForKey:key];
 	}	
 	
 	[animations release];
@@ -86,6 +87,11 @@
 
 -(void)animationTick:(NSTimer*)animationTimer
 {
+	if (animationTimer == nil || !animationTimer.isValid)
+	{
+		return;
+	}
+	
 	NSMutableDictionary *userInfo = [animationTimer userInfo];
 	NSNumber *tileIdFromNumber = [userInfo objectForKey:@"tileIdFrom"];
 	NSNumber *tileIdToNumber = [userInfo objectForKey:@"tileIdTo"];
@@ -133,7 +139,7 @@
 
 +(id)tileMapWithAtlas:(TileAtlas *)atlas startTileId:(uint16_t)startId
 {
-	return [[TileMap alloc] initWithAtlas:atlas startTileId:startId];
+	return [[[TileMap alloc] initWithAtlas:atlas startTileId:startId] autorelease];
 }
 
 @synthesize atlas;
@@ -182,7 +188,7 @@
 
 -(void)animateTileId:(uint16_t)tileIdFrom toTileId:(uint16_t)tileIdTo timeInterval:(NSTimeInterval)animationInterval allInRange:(BOOL)allInRange
 {
-	NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithCapacity:3];	
+	NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithCapacity:4];	
 	[userInfo setObject:[NSNumber numberWithUnsignedShort:tileIdFrom] forKey:@"tileIdFrom"];
 	[userInfo setObject:[NSNumber numberWithUnsignedShort:tileIdTo] forKey:@"tileIdTo"];
 	[userInfo setObject:[NSNumber numberWithUnsignedShort:tileIdFrom] forKey:@"tileIdCurrent"];

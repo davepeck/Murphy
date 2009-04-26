@@ -62,6 +62,9 @@
 	[name release];
 	name = nil;
 	
+	[graphicsSet release];
+	graphicsSet = nil;
+	
 	free(iconS);
 	iconS = nil;
 	

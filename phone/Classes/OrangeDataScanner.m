@@ -69,7 +69,7 @@
 
 +(id)orangeDataScannerWithData:(NSData*)data littleEndian:(BOOL)littleEndian defaultEncoding:(NSStringEncoding)defaultEncoding
 {
-	return [[OrangeDataScanner alloc] initWithData:data littleEndian:littleEndian defaultEncoding:defaultEncoding];
+	return [[[OrangeDataScanner alloc] initWithData:data littleEndian:littleEndian defaultEncoding:defaultEncoding] autorelease];
 }
 
 -(NSUInteger) remainingBytes

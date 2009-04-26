@@ -65,7 +65,7 @@
 			return nil;
 		}
 		
-		levelNames = [[NSArray arrayWithObjects:@"Achtung!", @"And So It Begins", @"Bolder", @"Catacombs-Aquatron", @"Combinations", @"Crystalline", @"Dash Dash", @"Daylight", @"Dot Dot", @"Excavation", @"Falling", @"Going Up", @"Gold Rush", @"Golden Rule", @"Inflamatory", @"It's Alive!!", @"Labyrinth", @"Love Boat", @"No More Secrets", @"Out In Out", @"Robots & Plasmoids", @"Short Circuit", @"Stress", @"Thriller", @"Trapped Inside", @"Wizard", @"World", nil] retain];
+		levelNames = [[NSArray arrayWithObjects:@"Achtung!", @"And So It Begins", @"Bolder", @"Catacombs-Aquatron", @"Combinations", @"Crystalline", @"Dash Dash", @"Daylight", @"Dot Dot", @"Excavation", @"Falling", @"Going Up", @"Gold Rush", @"Golden Rule", @"Inflamatory", @"It's Alive!!", @"Labyrinth", @"Love Boat", @"No More Secrets", @"Out In Out", @"Robots & Plasmoids", @"Short Circuit", @"Stress", @"Thriller", @"Trapped Inside", @"Wizard", nil] retain];
 		currentLevel = 0;
 		animationInterval = 1.0 / 60.0;
 		
@@ -170,8 +170,8 @@
 			
 			if (iconTileId == kBottomRightBorderTile)
 			{
-				actual_height = y + 1;
 				actual_width = x + 1;
+				actual_height = y + 1;
 			}
 		}
 	}
