@@ -6,17 +6,17 @@
 //  Copyright 2009 Code Orange. All rights reserved.
 //
 
-#import "TileAtlas.h"
-#import "Texture.h"
+#import "TMTileAtlas.h"
+#import "TMTexture.h"
 
-@interface TileAtlas (Private)
+@interface TMTileAtlas (Private)
 
 -(id)initWithFile:(NSString*)path tilePixelWidth:(uint16_t)width tilePixelHeight:(uint16_t)height tilesAcross:(uint16_t)across tilesDown:(uint16_t)down;
 -(void)dealloc;
 
 @end
 
-@implementation TileAtlas (Private)
+@implementation TMTileAtlas (Private)
 
 -(id)initWithFile:(NSString*)path tilePixelWidth:(uint16_t)width tilePixelHeight:(uint16_t)height tilesAcross:(uint16_t)across tilesDown:(uint16_t)down;
 {
@@ -24,7 +24,7 @@
 	
 	if (self != nil)
 	{
-		texture = [[Texture textureWithFile:path] retain];
+		texture = [[TMTexture textureWithFile:path] retain];
 		tilePixelWidth = width;
 		tilePixelHeight = height;
 		tilesAcross = across;
@@ -47,16 +47,16 @@
 @end
 
 
-@implementation TileAtlas
+@implementation TMTileAtlas
 
 +(id)tileAtlasWithFile:(NSString*)path tilePixelWidth:(uint16_t)width tilePixelHeight:(uint16_t)height tilesAcross:(uint16_t)across tilesDown:(uint16_t)down
 {
-	return [[[TileAtlas alloc] initWithFile:path tilePixelWidth:width tilePixelHeight:height tilesAcross:across tilesDown:down] autorelease];
+	return [[[TMTileAtlas alloc] initWithFile:path tilePixelWidth:width tilePixelHeight:height tilesAcross:across tilesDown:down] autorelease];
 }
 
 +(id)tileAtlasWithResourcePNG:(NSString*)resourceName tilePixelWidth:(uint16_t)width tilePixelHeight:(uint16_t)height tilesAcross:(uint16_t)across tilesDown:(uint16_t)down
 {	
-	return [TileAtlas tileAtlasWithFile:[[NSBundle mainBundle] pathForResource:resourceName ofType:@"png"]  tilePixelWidth:width tilePixelHeight:height tilesAcross:across tilesDown:down];
+	return [TMTileAtlas tileAtlasWithFile:[[NSBundle mainBundle] pathForResource:resourceName ofType:@"png"]  tilePixelWidth:width tilePixelHeight:height tilesAcross:across tilesDown:down];
 }
 
 @synthesize texture;

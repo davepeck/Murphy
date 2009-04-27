@@ -16,7 +16,7 @@
 #import <OpenGLES/ES1/glext.h>
 
 
-@interface Texture : NSObject 
+@interface TMTexture : NSObject 
 {
 	GLuint name;
 	

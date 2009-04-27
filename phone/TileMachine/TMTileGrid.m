@@ -6,19 +6,19 @@
 //  Copyright 2009 Code Orange. All rights reserved.
 //
 
-#import "TileGrid.h"
+#import "TMTileGrid.h"
 
-@interface TileGrid (Private)
+@interface TMTileGrid (Private)
 
--(id)initWithMap:(TileMap *)map width:(uint16_t)tilesWide height:(uint16_t)tilesHigh;
+-(id)initWithMap:(TMTileMap *)map width:(uint16_t)tilesWide height:(uint16_t)tilesHigh;
 -(void)dealloc;
 
 @end
 
 
-@implementation TileGrid (Private)
+@implementation TMTileGrid (Private)
 
--(id)initWithMap:(TileMap *)myMap width:(uint16_t)tilesWide height:(uint16_t)tilesHigh
+-(id)initWithMap:(TMTileMap *)myMap width:(uint16_t)tilesWide height:(uint16_t)tilesHigh
 {
 	self = [super init];
 	
@@ -81,11 +81,11 @@
 @end
 
 
-@implementation TileGrid
+@implementation TMTileGrid
 
-+(id)tileGridWithMap:(TileMap *)myMap width:(uint16_t)tilesWide height:(uint16_t)tilesHigh
++(id)tileGridWithMap:(TMTileMap *)myMap width:(uint16_t)tilesWide height:(uint16_t)tilesHigh
 {
-	return [[[TileGrid alloc] initWithMap:myMap width:tilesWide height:tilesHigh] autorelease];
+	return [[[TMTileGrid alloc] initWithMap:myMap width:tilesWide height:tilesHigh] autorelease];
 }
 
 @synthesize map;

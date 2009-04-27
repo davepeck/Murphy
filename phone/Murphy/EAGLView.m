@@ -13,11 +13,11 @@
 
 #import "EAGLView.h"
 #import "MurphyLevel.h"
-#import "Texture.h"
-#import "TileAtlas.h"
-#import "TileMap.h"
-#import "TileGrid.h"
-#import "TileMath.h"
+#import "TMTexture.h"
+#import "TMTileAtlas.h"
+#import "TMTileMap.h"
+#import "TMTileGrid.h"
+#import "TMMath.h"
 #import "MurphyConstants.h"
 
 
@@ -153,8 +153,8 @@
 	
 	// Load our level's textures
 	MurphyLevel *levelFile = [MurphyLevel murphyLevelWithNamedResource:[levelNames objectAtIndex:currentLevel]];
-	TileAtlas *worldAtlas = [TileAtlas tileAtlasWithResourcePNG:levelFile.graphicsSet tilePixelWidth:32 tilePixelHeight:32 tilesAcross:10 tilesDown:31];
-	TileMap *worldMap = [TileMap tileMapWithAtlas:worldAtlas startTileId:0];	
+	TMTileAtlas *worldAtlas = [TMTileAtlas tileAtlasWithResourcePNG:levelFile.graphicsSet tilePixelWidth:32 tilePixelHeight:32 tilesAcross:10 tilesDown:31];
+	TMTileMap *worldMap = [TMTileMap tileMapWithAtlas:worldAtlas startTileId:0];	
 	
 	// find our boundaries
 	uint16_t actual_width = 0;
@@ -177,7 +177,7 @@
 		}
 	}
 	
-	tileGrid = [[TileGrid tileGridWithMap:worldMap width:actual_width height:actual_height] retain];	
+	tileGrid = [[TMTileGrid tileGridWithMap:worldMap width:actual_width height:actual_height] retain];	
 	
 	// Fill the tileGrid
 	double murphy_x = 0;

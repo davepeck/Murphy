@@ -12,10 +12,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TileMap.h"
+#import "TMTileMap.h"
 
-@interface TileGrid : NSObject {
-	TileMap *map;		
+@interface TMTileGrid : NSObject {
+	TMTileMap *map;		
 	uint16_t width;
 	uint16_t height;	
 	uint16_t *grid;
@@ -34,9 +34,9 @@
 	GLushort numIndexes;	
 }
 
-+(id)tileGridWithMap:(TileMap *)map width:(uint16_t)width height:(uint16_t)height;
++(id)tileGridWithMap:(TMTileMap *)map width:(uint16_t)width height:(uint16_t)height;
 
-@property (readonly) TileMap *map;
+@property (readonly) TMTileMap *map;
 @property (readonly) uint16_t width;
 @property (readonly) uint16_t height;
 @property (readonly) GLfloat gridLeft;

@@ -6,12 +6,12 @@
 //  Copyright 2009 Code Orange. All rights reserved.
 //
 
-#import "Texture.h"
+#import "TMTexture.h"
 
 // statics
-static Texture *currently_engaged = NULL;
+static TMTexture *currently_engaged = NULL;
 
-@interface Texture (Private)
+@interface TMTexture (Private)
 
 -(id)initWithFile:(NSString*)path;
 -(void)dealloc;
@@ -19,7 +19,7 @@ static Texture *currently_engaged = NULL;
 @end
 
 
-@implementation Texture (private)
+@implementation TMTexture (private)
 
 -(id)initWithFile:(NSString*)path
 {
@@ -103,16 +103,16 @@ static Texture *currently_engaged = NULL;
 
 @end
 
-@implementation Texture
+@implementation TMTexture
 
 +(id)textureWithFile:(NSString*)path
 {
-	return [[[Texture alloc] initWithFile:path] autorelease];
+	return [[[TMTexture alloc] initWithFile:path] autorelease];
 }
 
 +(id)textureWithResourcePNG:(NSString*)resourceName
 {	
-	return [Texture textureWithFile:[[NSBundle mainBundle] pathForResource:resourceName ofType:@"png"]];
+	return [TMTexture textureWithFile:[[NSBundle mainBundle] pathForResource:resourceName ofType:@"png"]];
 }
 
 @synthesize engaged;

@@ -11,7 +11,7 @@
 #import <OpenGLES/EAGL.h>
 #import <OpenGLES/ES1/gl.h>
 #import <OpenGLES/ES1/glext.h>
-#import "TileGrid.h"
+#import "TMTileGrid.h"
 #import "FlickDynamics.h"
 
 /*
@@ -43,7 +43,7 @@ Note that setting the view non-opaque will only work if the EAGL surface has an 
 	
 	NSUInteger currentLevel;
 	NSArray *levelNames;
-	TileGrid *tileGrid;
+	TMTileGrid *tileGrid;
 	
 	FlickDynamics *flickDynamics;
 }

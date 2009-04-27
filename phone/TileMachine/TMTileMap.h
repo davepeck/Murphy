@@ -13,10 +13,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TileAtlas.h"
+#import "TMTileAtlas.h"
 
-@interface TileMap : NSObject {
-	TileAtlas *atlas;	
+@interface TMTileMap : NSObject {
+	TMTileAtlas *atlas;	
 	uint16_t startTileId;
 	uint16_t stopTileId;
 	uint8_t *tileIdToS;
@@ -24,9 +24,9 @@
 	NSMutableDictionary *animations;
 }
 
-+(id)tileMapWithAtlas:(TileAtlas *)atlas startTileId:(uint16_t)startTileId;
++(id)tileMapWithAtlas:(TMTileAtlas *)atlas startTileId:(uint16_t)startTileId;
 
-@property (readonly) TileAtlas *atlas;
+@property (readonly) TMTileAtlas *atlas;
 @property (readonly) uint16_t startTileId;
 @property (readonly) uint16_t stopTileId;
 

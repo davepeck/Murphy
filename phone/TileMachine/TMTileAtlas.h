@@ -11,11 +11,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Texture.h"
+#import "TMTexture.h"
 
-@interface TileAtlas : NSObject 
+@interface TMTileAtlas : NSObject 
 {	
-	Texture *texture;	
+	TMTexture *texture;	
 	uint16_t tilePixelWidth;
 	uint16_t tilePixelHeight;	
 	uint8_t tilesAcross;
@@ -28,7 +28,7 @@
 +(id)tileAtlasWithFile:(NSString*)path tilePixelWidth:(uint16_t)tilePixelWidth tilePixelHeight:(uint16_t)tilePixelHeight tilesAcross:(uint16_t)tilesAcross tilesDown:(uint16_t)tilesDown;
 +(id)tileAtlasWithResourcePNG:(NSString*)resourceName tilePixelWidth:(uint16_t)tilePixelWidth tilePixelHeight:(uint16_t)tilePixelHeight tilesAcross:(uint16_t)tilesAcross tilesDown:(uint16_t)tilesDown;
 
-@property (readonly) Texture *texture;
+@property (readonly) TMTexture *texture;
 @property (readonly) uint8_t tilesAcross;
 @property (readonly) uint8_t tilesDown;
 @property (readonly) uint16_t tilePixelWidth;

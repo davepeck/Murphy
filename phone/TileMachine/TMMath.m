@@ -1,12 +1,12 @@
 //
-//  SpriteMath.m
+//  TMMath.m
 //  iMurphy
 //
 //  Created by Dave Peck on 4/21/09.
 //  Copyright 2009 Code Orange. All rights reserved.
 //
 
-#import "TileMath.h"
+#import "TMMath.h"
 
 
 double LINEAR_MAP(double value, double value_min, double value_max, double target_min, double target_max)
@@ -19,8 +19,3 @@ double LINEAR_MAP(double value, double value_min, double value_max, double targe
 	return target_value;
 }
 
-/*
-@implementation SpriteMath
-
-@end
-*/

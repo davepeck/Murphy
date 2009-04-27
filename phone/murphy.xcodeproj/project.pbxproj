@@ -13,13 +13,13 @@
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
 		551D52370F930198005F2714 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551D52360F930198005F2714 /* CoreGraphics.framework */; };
 		55A661780FA56BD60030849A /* FlickDynamics.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A661690FA56BD60030849A /* FlickDynamics.m */; };
-		55A661790FA56BD60030849A /* Sprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A6616B0FA56BD60030849A /* Sprite.m */; };
-		55A6617A0FA56BD60030849A /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A6616D0FA56BD60030849A /* Texture.m */; };
-		55A6617B0FA56BD60030849A /* TileAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A6616F0FA56BD60030849A /* TileAtlas.m */; };
-		55A6617C0FA56BD60030849A /* TileGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A661710FA56BD60030849A /* TileGrid.m */; };
-		55A6617D0FA56BD60030849A /* TileMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A661730FA56BD60030849A /* TileMachine.m */; };
-		55A6617E0FA56BD60030849A /* TileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A661750FA56BD60030849A /* TileMap.m */; };
-		55A6617F0FA56BD60030849A /* TileMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A661770FA56BD60030849A /* TileMath.m */; };
+		55A661790FA56BD60030849A /* TMSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A6616B0FA56BD60030849A /* TMSprite.m */; };
+		55A6617A0FA56BD60030849A /* TMTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A6616D0FA56BD60030849A /* TMTexture.m */; };
+		55A6617B0FA56BD60030849A /* TMTileAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A6616F0FA56BD60030849A /* TMTileAtlas.m */; };
+		55A6617C0FA56BD60030849A /* TMTileGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A661710FA56BD60030849A /* TMTileGrid.m */; };
+		55A6617D0FA56BD60030849A /* TMEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A661730FA56BD60030849A /* TMEngine.m */; };
+		55A6617E0FA56BD60030849A /* TMTileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A661750FA56BD60030849A /* TMTileMap.m */; };
+		55A6617F0FA56BD60030849A /* TMMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A661770FA56BD60030849A /* TMMath.m */; };
 		55A661950FA56BF30030849A /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A6618C0FA56BF30030849A /* EAGLView.m */; };
 		55A661960FA56BF30030849A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A6618D0FA56BF30030849A /* main.m */; };
 		55A661970FA56BF30030849A /* MurphyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A6618F0FA56BF30030849A /* MurphyAppDelegate.m */; };
@@ -53,7 +53,6 @@
 		55A661D00FA56C3D0030849A /* Wizard.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55A661B50FA56C3D0030849A /* Wizard.mbl */; };
 		55A661D10FA56C3D0030849A /* World.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55A661B60FA56C3D0030849A /* World.mbl */; };
 		55A661D40FA570130030849A /* dist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55A661D20FA570130030849A /* dist.plist */; };
-		55A661D50FA570130030849A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55A661D30FA570130030849A /* Info.plist */; };
 		55A661D70FA5701F0030849A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55A661D60FA5701F0030849A /* MainWindow.xib */; };
 		55A661DF0FA570470030849A /* aquatron.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A661D90FA570470030849A /* aquatron.png */; };
 		55A661E00FA570470030849A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A661DA0FA570470030849A /* Default.png */; };
@@ -72,20 +71,20 @@
 		551D52360F930198005F2714 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		55A661680FA56BD60030849A /* FlickDynamics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlickDynamics.h; path = TileMachine/FlickDynamics.h; sourceTree = "<group>"; };
 		55A661690FA56BD60030849A /* FlickDynamics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlickDynamics.m; path = TileMachine/FlickDynamics.m; sourceTree = "<group>"; };
-		55A6616A0FA56BD60030849A /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sprite.h; path = TileMachine/Sprite.h; sourceTree = "<group>"; };
-		55A6616B0FA56BD60030849A /* Sprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sprite.m; path = TileMachine/Sprite.m; sourceTree = "<group>"; };
-		55A6616C0FA56BD60030849A /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = TileMachine/Texture.h; sourceTree = "<group>"; };
-		55A6616D0FA56BD60030849A /* Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Texture.m; path = TileMachine/Texture.m; sourceTree = "<group>"; };
-		55A6616E0FA56BD60030849A /* TileAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TileAtlas.h; path = TileMachine/TileAtlas.h; sourceTree = "<group>"; };
-		55A6616F0FA56BD60030849A /* TileAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TileAtlas.m; path = TileMachine/TileAtlas.m; sourceTree = "<group>"; };
-		55A661700FA56BD60030849A /* TileGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TileGrid.h; path = TileMachine/TileGrid.h; sourceTree = "<group>"; };
-		55A661710FA56BD60030849A /* TileGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TileGrid.m; path = TileMachine/TileGrid.m; sourceTree = "<group>"; };
-		55A661720FA56BD60030849A /* TileMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TileMachine.h; path = TileMachine/TileMachine.h; sourceTree = "<group>"; };
-		55A661730FA56BD60030849A /* TileMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TileMachine.m; path = TileMachine/TileMachine.m; sourceTree = "<group>"; };
-		55A661740FA56BD60030849A /* TileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TileMap.h; path = TileMachine/TileMap.h; sourceTree = "<group>"; };
-		55A661750FA56BD60030849A /* TileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TileMap.m; path = TileMachine/TileMap.m; sourceTree = "<group>"; };
-		55A661760FA56BD60030849A /* TileMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TileMath.h; path = TileMachine/TileMath.h; sourceTree = "<group>"; };
-		55A661770FA56BD60030849A /* TileMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TileMath.m; path = TileMachine/TileMath.m; sourceTree = "<group>"; };
+		55A6616A0FA56BD60030849A /* TMSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMSprite.h; path = TileMachine/TMSprite.h; sourceTree = "<group>"; };
+		55A6616B0FA56BD60030849A /* TMSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMSprite.m; path = TileMachine/TMSprite.m; sourceTree = "<group>"; };
+		55A6616C0FA56BD60030849A /* TMTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTexture.h; path = TileMachine/TMTexture.h; sourceTree = "<group>"; };
+		55A6616D0FA56BD60030849A /* TMTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTexture.m; path = TileMachine/TMTexture.m; sourceTree = "<group>"; };
+		55A6616E0FA56BD60030849A /* TMTileAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTileAtlas.h; path = TileMachine/TMTileAtlas.h; sourceTree = "<group>"; };
+		55A6616F0FA56BD60030849A /* TMTileAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTileAtlas.m; path = TileMachine/TMTileAtlas.m; sourceTree = "<group>"; };
+		55A661700FA56BD60030849A /* TMTileGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTileGrid.h; path = TileMachine/TMTileGrid.h; sourceTree = "<group>"; };
+		55A661710FA56BD60030849A /* TMTileGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTileGrid.m; path = TileMachine/TMTileGrid.m; sourceTree = "<group>"; };
+		55A661720FA56BD60030849A /* TMEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMEngine.h; path = TileMachine/TMEngine.h; sourceTree = "<group>"; };
+		55A661730FA56BD60030849A /* TMEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMEngine.m; path = TileMachine/TMEngine.m; sourceTree = "<group>"; };
+		55A661740FA56BD60030849A /* TMTileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTileMap.h; path = TileMachine/TMTileMap.h; sourceTree = "<group>"; };
+		55A661750FA56BD60030849A /* TMTileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTileMap.m; path = TileMachine/TMTileMap.m; sourceTree = "<group>"; };
+		55A661760FA56BD60030849A /* TMMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMMath.h; path = TileMachine/TMMath.h; sourceTree = "<group>"; };
+		55A661770FA56BD60030849A /* TMMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMMath.m; path = TileMachine/TMMath.m; sourceTree = "<group>"; };
 		55A6618B0FA56BF30030849A /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EAGLView.h; path = Murphy/EAGLView.h; sourceTree = "<group>"; };
 		55A6618C0FA56BF30030849A /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EAGLView.m; path = Murphy/EAGLView.m; sourceTree = "<group>"; };
 		55A6618D0FA56BF30030849A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Murphy/main.m; sourceTree = "<group>"; };
@@ -209,20 +208,20 @@
 			children = (
 				55A661680FA56BD60030849A /* FlickDynamics.h */,
 				55A661690FA56BD60030849A /* FlickDynamics.m */,
-				55A6616A0FA56BD60030849A /* Sprite.h */,
-				55A6616B0FA56BD60030849A /* Sprite.m */,
-				55A6616C0FA56BD60030849A /* Texture.h */,
-				55A6616D0FA56BD60030849A /* Texture.m */,
-				55A6616E0FA56BD60030849A /* TileAtlas.h */,
-				55A6616F0FA56BD60030849A /* TileAtlas.m */,
-				55A661700FA56BD60030849A /* TileGrid.h */,
-				55A661710FA56BD60030849A /* TileGrid.m */,
-				55A661720FA56BD60030849A /* TileMachine.h */,
-				55A661730FA56BD60030849A /* TileMachine.m */,
-				55A661740FA56BD60030849A /* TileMap.h */,
-				55A661750FA56BD60030849A /* TileMap.m */,
-				55A661760FA56BD60030849A /* TileMath.h */,
-				55A661770FA56BD60030849A /* TileMath.m */,
+				55A6616A0FA56BD60030849A /* TMSprite.h */,
+				55A6616B0FA56BD60030849A /* TMSprite.m */,
+				55A6616C0FA56BD60030849A /* TMTexture.h */,
+				55A6616D0FA56BD60030849A /* TMTexture.m */,
+				55A6616E0FA56BD60030849A /* TMTileAtlas.h */,
+				55A6616F0FA56BD60030849A /* TMTileAtlas.m */,
+				55A661700FA56BD60030849A /* TMTileGrid.h */,
+				55A661710FA56BD60030849A /* TMTileGrid.m */,
+				55A661720FA56BD60030849A /* TMEngine.h */,
+				55A661730FA56BD60030849A /* TMEngine.m */,
+				55A661740FA56BD60030849A /* TMTileMap.h */,
+				55A661750FA56BD60030849A /* TMTileMap.m */,
+				55A661760FA56BD60030849A /* TMMath.h */,
+				55A661770FA56BD60030849A /* TMMath.m */,
 			);
 			name = TileMachine;
 			sourceTree = "<group>";
@@ -361,7 +360,6 @@
 				55A661D00FA56C3D0030849A /* Wizard.mbl in Resources */,
 				55A661D10FA56C3D0030849A /* World.mbl in Resources */,
 				55A661D40FA570130030849A /* dist.plist in Resources */,
-				55A661D50FA570130030849A /* Info.plist in Resources */,
 				55A661D70FA5701F0030849A /* MainWindow.xib in Resources */,
 				55A661DF0FA570470030849A /* aquatron.png in Resources */,
 				55A661E00FA570470030849A /* Default.png in Resources */,
@@ -380,13 +378,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				55A661780FA56BD60030849A /* FlickDynamics.m in Sources */,
-				55A661790FA56BD60030849A /* Sprite.m in Sources */,
-				55A6617A0FA56BD60030849A /* Texture.m in Sources */,
-				55A6617B0FA56BD60030849A /* TileAtlas.m in Sources */,
-				55A6617C0FA56BD60030849A /* TileGrid.m in Sources */,
-				55A6617D0FA56BD60030849A /* TileMachine.m in Sources */,
-				55A6617E0FA56BD60030849A /* TileMap.m in Sources */,
-				55A6617F0FA56BD60030849A /* TileMath.m in Sources */,
+				55A661790FA56BD60030849A /* TMSprite.m in Sources */,
+				55A6617A0FA56BD60030849A /* TMTexture.m in Sources */,
+				55A6617B0FA56BD60030849A /* TMTileAtlas.m in Sources */,
+				55A6617C0FA56BD60030849A /* TMTileGrid.m in Sources */,
+				55A6617D0FA56BD60030849A /* TMEngine.m in Sources */,
+				55A6617E0FA56BD60030849A /* TMTileMap.m in Sources */,
+				55A6617F0FA56BD60030849A /* TMMath.m in Sources */,
 				55A661950FA56BF30030849A /* EAGLView.m in Sources */,
 				55A661960FA56BF30030849A /* main.m in Sources */,
 				55A661970FA56BF30030849A /* MurphyAppDelegate.m in Sources */,

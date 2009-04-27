@@ -6,20 +6,20 @@
 //  Copyright 2009 Code Orange. All rights reserved.
 //
 
-#import "TileMap.h"
+#import "TMTileMap.h"
 
-@interface TileMap (Private)
+@interface TMTileMap (Private)
 
--(id)initWithAtlas:(TileAtlas *)atlas startTileId:(uint16_t)startId;
+-(id)initWithAtlas:(TMTileAtlas *)atlas startTileId:(uint16_t)startId;
 -(void)getDefaultMapForTileId:(uint16_t)tileId s:(uint8_t *)s t:(uint8_t *)t;
 -(void)animationTick:(NSTimer*)animationTimer;
 -(void)dealloc;
 
 @end
 
-@implementation TileMap (Private)
+@implementation TMTileMap (Private)
 
--(id)initWithAtlas:(TileAtlas *)myAtlas startTileId:(uint16_t)startId
+-(id)initWithAtlas:(TMTileAtlas *)myAtlas startTileId:(uint16_t)startId
 {
 	self = [super init];
 	
@@ -128,11 +128,11 @@
 
 @end
 
-@implementation TileMap
+@implementation TMTileMap
 
-+(id)tileMapWithAtlas:(TileAtlas *)atlas startTileId:(uint16_t)startId
++(id)tileMapWithAtlas:(TMTileAtlas *)atlas startTileId:(uint16_t)startId
 {
-	return [[[TileMap alloc] initWithAtlas:atlas startTileId:startId] autorelease];
+	return [[[TMTileMap alloc] initWithAtlas:atlas startTileId:startId] autorelease];
 }
 
 @synthesize atlas;
