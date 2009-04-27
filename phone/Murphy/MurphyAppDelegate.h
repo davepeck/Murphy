@@ -10,7 +10,7 @@
 
 @class EAGLView;
 
-@interface iMurphyAppDelegate : NSObject <UIApplicationDelegate> {
+@interface MurphyAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     EAGLView *glView;
 }

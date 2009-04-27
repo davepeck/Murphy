@@ -7,7 +7,7 @@
 //
 
 #import "MurphyLevel.h"
-#import "OrangeDataScanner.h"
+#import "BinaryDataScanner.h"
 
 @interface MurphyLevel (Private)
 
@@ -25,7 +25,7 @@
 	self = [super init];
 	if (self != nil)
 	{
-		OrangeDataScanner *scanner = [OrangeDataScanner orangeDataScannerWithData:data littleEndian:NO defaultEncoding:NSASCIIStringEncoding];
+		BinaryDataScanner *scanner = [BinaryDataScanner binaryDataScannerWithData:data littleEndian:NO defaultEncoding:NSASCIIStringEncoding];
 		
 		name = [[scanner readNullTerminatedString] retain];
 		graphicsSet = [[scanner readNullTerminatedString] retain];

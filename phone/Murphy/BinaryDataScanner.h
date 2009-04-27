@@ -1,14 +1,18 @@
 //
-//  OrangeDataScanner.h
-//  LoveWords
+//  BinaryDataScanner.m
 //
-//  Created by Dave Peck on 7/2/08.
-//  Copyright 2008 Code Orange. All rights reserved.
+//  Copyright 2009 Dave Peck <davepeck [at] davepeck [dot] org>. All rights reserved.
+//  http://davepeck.org/
+//
+//  This class makes it quite a bit easier to read sequential binary files in Objective-C.
+//
+//  This code is released under the BSD license. If you use it in your product, please
+//  let me know and, if possible, please put me in your credits.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface OrangeDataScanner : NSObject {
+@interface BinaryDataScanner : NSObject {
 	BOOL littleEndian;
 	NSStringEncoding encoding;
 	NSData *data;
@@ -16,7 +20,7 @@
 	NSUInteger scanRemain;
 }
 
-+(id)orangeDataScannerWithData:(NSData*)data littleEndian:(BOOL)littleEndian defaultEncoding:(NSStringEncoding)defaultEncoding;
++(id)binaryDataScannerWithData:(NSData*)data littleEndian:(BOOL)littleEndian defaultEncoding:(NSStringEncoding)defaultEncoding;
 
 -(NSUInteger) remainingBytes;
 -(const uint8_t *) currentPointer;

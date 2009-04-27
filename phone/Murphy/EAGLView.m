@@ -17,7 +17,7 @@
 #import "TileAtlas.h"
 #import "TileMap.h"
 #import "TileGrid.h"
-#import "SpriteMath.h"
+#import "TileMath.h"
 #import "MurphyConstants.h"
 
 

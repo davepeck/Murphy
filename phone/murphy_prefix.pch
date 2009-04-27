@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'iMurphy' target in the 'iMurphy' project
+// Prefix header for all source files of the 'iMurphy' target in the 'murphy' project
 //
 
 #ifdef __OBJC__

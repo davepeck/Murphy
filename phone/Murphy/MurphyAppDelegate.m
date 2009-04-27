@@ -1,15 +1,15 @@
 //
-//  iMurphyAppDelegate.m
+//  MurphyAppDelegate.m
 //  iMurphy
 //
 //  Created by Dave Peck on 4/3/09.
 //  Copyright Code Orange 2009. All rights reserved.
 //
 
-#import "iMurphyAppDelegate.h"
+#import "MurphyAppDelegate.h"
 #import "EAGLView.h"
 
-@implementation iMurphyAppDelegate
+@implementation MurphyAppDelegate
 
 @synthesize window;
 @synthesize glView;

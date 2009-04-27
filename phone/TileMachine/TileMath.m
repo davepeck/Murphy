@@ -6,7 +6,7 @@
 //  Copyright 2009 Code Orange. All rights reserved.
 //
 
-#import "SpriteMath.h"
+#import "TileMath.h"
 
 
 double LINEAR_MAP(double value, double value_min, double value_max, double target_min, double target_max)
