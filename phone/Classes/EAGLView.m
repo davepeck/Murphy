@@ -51,10 +51,9 @@
 	
 	if (self != nil) 
 	{
-		// Get the layer
 		CAEAGLLayer *eaglLayer = (CAEAGLLayer*) self.layer;
 		
-		eaglLayer.opaque = YES;
+		eaglLayer.opaque = YES;		
 		eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithBool:FALSE], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
 		
 		context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
@@ -78,10 +77,12 @@
 
 - (void)layoutSubviews
 {
+	/*
 	[EAGLContext setCurrentContext:context];
 	[self destroyFramebuffer];
 	[self createFramebuffer];
 	[self drawView];
+	 */
 }
 
 - (BOOL)createFramebuffer

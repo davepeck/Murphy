@@ -48,6 +48,8 @@
 		55588D970FA29FAC0008336F /* Thriller.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D800FA29FAC0008336F /* Thriller.mbl */; };
 		55588D980FA29FAC0008336F /* Trapped Inside.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D810FA29FAC0008336F /* Trapped Inside.mbl */; };
 		55588D990FA29FAC0008336F /* Wizard.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 55588D820FA29FAC0008336F /* Wizard.mbl */; };
+		556FB8340FA536F20031F890 /* SpriteWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = 556FB8330FA536F20031F890 /* SpriteWorld.m */; };
+		556FB8830FA547260031F890 /* Sprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 556FB8820FA547260031F890 /* Sprite.m */; };
 		55B24BB20FA1066800741644 /* FlickDynamics.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B24BB10FA1066800741644 /* FlickDynamics.m */; };
 		55CB59E30F932D7800071361 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 55CB59E10F932D7800071361 /* Default.png */; };
 		55CB59E40F932D7800071361 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 55CB59E20F932D7800071361 /* icon.png */; };
@@ -110,6 +112,10 @@
 		55588D800FA29FAC0008336F /* Thriller.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thriller.mbl; sourceTree = "<group>"; };
 		55588D810FA29FAC0008336F /* Trapped Inside.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Trapped Inside.mbl"; sourceTree = "<group>"; };
 		55588D820FA29FAC0008336F /* Wizard.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Wizard.mbl; sourceTree = "<group>"; };
+		556FB8320FA536F20031F890 /* SpriteWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteWorld.h; sourceTree = "<group>"; };
+		556FB8330FA536F20031F890 /* SpriteWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteWorld.m; sourceTree = "<group>"; };
+		556FB8810FA547260031F890 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
+		556FB8820FA547260031F890 /* Sprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sprite.m; sourceTree = "<group>"; };
 		55B24BB00FA1066800741644 /* FlickDynamics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickDynamics.h; sourceTree = "<group>"; };
 		55B24BB10FA1066800741644 /* FlickDynamics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickDynamics.m; sourceTree = "<group>"; };
 		55CB59E10F932D7800071361 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -176,7 +182,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				551D51650F929F1C005F2714 /* Sprite */,
+				551D51650F929F1C005F2714 /* TileMachine */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -250,7 +256,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		551D51650F929F1C005F2714 /* Sprite */ = {
+		551D51650F929F1C005F2714 /* TileMachine */ = {
 			isa = PBXGroup;
 			children = (
 				55E530550F98191B00CC9C2E /* Texture.h */,
@@ -265,8 +271,12 @@
 				5554F3D00F9ED4370066BB3E /* SpriteMath.m */,
 				55B24BB00FA1066800741644 /* FlickDynamics.h */,
 				55B24BB10FA1066800741644 /* FlickDynamics.m */,
+				556FB8320FA536F20031F890 /* SpriteWorld.h */,
+				556FB8330FA536F20031F890 /* SpriteWorld.m */,
+				556FB8810FA547260031F890 /* Sprite.h */,
+				556FB8820FA547260031F890 /* Sprite.m */,
 			);
-			name = Sprite;
+			name = TileMachine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,6 +378,8 @@
 				5554F3D10F9ED4370066BB3E /* SpriteMath.m in Sources */,
 				5554F4A90F9EF7870066BB3E /* NSBuffer.m in Sources */,
 				55B24BB20FA1066800741644 /* FlickDynamics.m in Sources */,
+				556FB8340FA536F20031F890 /* SpriteWorld.m in Sources */,
+				556FB8830FA547260031F890 /* Sprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
