@@ -281,10 +281,10 @@
 			isa = PBXGroup;
 			children = (
 				55A661D90FA570470030849A /* aquatron.png */,
+				55A661DD0FA570470030849A /* savanatron.png */,
+				55A661DC0FA570470030849A /* infotron.png */,
 				55A661DA0FA570470030849A /* Default.png */,
 				55A661DB0FA570470030849A /* icon.png */,
-				55A661DC0FA570470030849A /* infotron.png */,
-				55A661DD0FA570470030849A /* savanatron.png */,
 				55A661DE0FA570470030849A /* world.png */,
 			);
 			name = Images;
