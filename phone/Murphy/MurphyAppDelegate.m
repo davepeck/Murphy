@@ -7,7 +7,7 @@
 //
 
 #import "MurphyAppDelegate.h"
-#import "EAGLView.h"
+#import "MurphyView.h"
 
 @implementation MurphyAppDelegate
 

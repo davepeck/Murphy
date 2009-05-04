@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@class EAGLView;
+@class MurphyView;
 
 @interface MurphyAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
-    EAGLView *glView;
+    MurphyView *glView;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet EAGLView *glView;
+@property (nonatomic, retain) IBOutlet MurphyView *glView;
 
 @end
 

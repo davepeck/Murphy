@@ -1,5 +1,5 @@
 //
-//  EAGLView.m
+//  MurphyView.m
 //  iMurphy
 //
 //  Created by Dave Peck on 4/3/09.
@@ -11,7 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <OpenGLES/EAGLDrawable.h>
 
-#import "EAGLView.h"
+#import "MurphyView.h"
 #import "MurphyLevel.h"
 #import "TMTexture.h"
 #import "TMTileAtlas.h"
@@ -22,7 +22,7 @@
 
 
 
-@interface EAGLView (EAGLViewPrivate)
+@interface MurphyView (MurphyViewPrivate)
 
 - (BOOL)createFramebuffer;
 - (void)destroyFramebuffer;
@@ -35,7 +35,7 @@
 
 @end
 
-@implementation EAGLView
+@implementation MurphyView
 
 @synthesize animationInterval;
 
