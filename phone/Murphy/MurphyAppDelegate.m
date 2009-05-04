@@ -1,6 +1,6 @@
 //
 //  MurphyAppDelegate.m
-//  iMurphy
+//  Murphy
 //
 //  Created by Dave Peck on 4/3/09.
 //  Copyright Code Orange 2009. All rights reserved.

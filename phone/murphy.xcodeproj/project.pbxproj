@@ -12,6 +12,7 @@
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
 		551D52370F930198005F2714 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551D52360F930198005F2714 /* CoreGraphics.framework */; };
+		557B63870FAF68D900A660D1 /* MurphyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 557B63860FAF68D900A660D1 /* MurphyView.m */; };
 		55A661780FA56BD60030849A /* FlickDynamics.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A661690FA56BD60030849A /* FlickDynamics.m */; };
 		55A661790FA56BD60030849A /* TMSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A6616B0FA56BD60030849A /* TMSprite.m */; };
 		55A6617A0FA56BD60030849A /* TMTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A6616D0FA56BD60030849A /* TMTexture.m */; };
@@ -20,7 +21,6 @@
 		55A6617D0FA56BD60030849A /* TMEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A661730FA56BD60030849A /* TMEngine.m */; };
 		55A6617E0FA56BD60030849A /* TMTileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A661750FA56BD60030849A /* TMTileMap.m */; };
 		55A6617F0FA56BD60030849A /* TMMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A661770FA56BD60030849A /* TMMath.m */; };
-		55A661950FA56BF30030849A /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A6618C0FA56BF30030849A /* EAGLView.m */; };
 		55A661960FA56BF30030849A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A6618D0FA56BF30030849A /* main.m */; };
 		55A661970FA56BF30030849A /* MurphyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A6618F0FA56BF30030849A /* MurphyAppDelegate.m */; };
 		55A661980FA56BF30030849A /* BinaryDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A661920FA56BF30030849A /* BinaryDataScanner.m */; };
@@ -69,6 +69,8 @@
 		28FD14FF0DC6FC520079059D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		551D52360F930198005F2714 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		557B63850FAF68D900A660D1 /* MurphyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MurphyView.h; path = Murphy/MurphyView.h; sourceTree = "<group>"; };
+		557B63860FAF68D900A660D1 /* MurphyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MurphyView.m; path = Murphy/MurphyView.m; sourceTree = "<group>"; };
 		55A661680FA56BD60030849A /* FlickDynamics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlickDynamics.h; path = TileMachine/FlickDynamics.h; sourceTree = "<group>"; };
 		55A661690FA56BD60030849A /* FlickDynamics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlickDynamics.m; path = TileMachine/FlickDynamics.m; sourceTree = "<group>"; };
 		55A6616A0FA56BD60030849A /* TMSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMSprite.h; path = TileMachine/TMSprite.h; sourceTree = "<group>"; };
@@ -85,8 +87,6 @@
 		55A661750FA56BD60030849A /* TMTileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTileMap.m; path = TileMachine/TMTileMap.m; sourceTree = "<group>"; };
 		55A661760FA56BD60030849A /* TMMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMMath.h; path = TileMachine/TMMath.h; sourceTree = "<group>"; };
 		55A661770FA56BD60030849A /* TMMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMMath.m; path = TileMachine/TMMath.m; sourceTree = "<group>"; };
-		55A6618B0FA56BF30030849A /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EAGLView.h; path = Murphy/EAGLView.h; sourceTree = "<group>"; };
-		55A6618C0FA56BF30030849A /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EAGLView.m; path = Murphy/EAGLView.m; sourceTree = "<group>"; };
 		55A6618D0FA56BF30030849A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Murphy/main.m; sourceTree = "<group>"; };
 		55A6618E0FA56BF30030849A /* MurphyAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MurphyAppDelegate.h; path = Murphy/MurphyAppDelegate.h; sourceTree = "<group>"; };
 		55A6618F0FA56BF30030849A /* MurphyAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MurphyAppDelegate.m; path = Murphy/MurphyAppDelegate.m; sourceTree = "<group>"; };
@@ -229,16 +229,16 @@
 		55A6618A0FA56BE20030849A /* Murphy */ = {
 			isa = PBXGroup;
 			children = (
-				55A6618B0FA56BF30030849A /* EAGLView.h */,
-				55A6618C0FA56BF30030849A /* EAGLView.m */,
 				55A6618D0FA56BF30030849A /* main.m */,
 				55A6618E0FA56BF30030849A /* MurphyAppDelegate.h */,
 				55A6618F0FA56BF30030849A /* MurphyAppDelegate.m */,
 				55A661900FA56BF30030849A /* MurphyConstants.h */,
-				55A661910FA56BF30030849A /* BinaryDataScanner.h */,
-				55A661920FA56BF30030849A /* BinaryDataScanner.m */,
+				557B63850FAF68D900A660D1 /* MurphyView.h */,
+				557B63860FAF68D900A660D1 /* MurphyView.m */,
 				55A661930FA56BF30030849A /* MurphyLevel.h */,
 				55A661940FA56BF30030849A /* MurphyLevel.m */,
+				55A661910FA56BF30030849A /* BinaryDataScanner.h */,
+				55A661920FA56BF30030849A /* BinaryDataScanner.m */,
 			);
 			name = Murphy;
 			sourceTree = "<group>";
@@ -385,11 +385,11 @@
 				55A6617D0FA56BD60030849A /* TMEngine.m in Sources */,
 				55A6617E0FA56BD60030849A /* TMTileMap.m in Sources */,
 				55A6617F0FA56BD60030849A /* TMMath.m in Sources */,
-				55A661950FA56BF30030849A /* EAGLView.m in Sources */,
 				55A661960FA56BF30030849A /* main.m in Sources */,
 				55A661970FA56BF30030849A /* MurphyAppDelegate.m in Sources */,
 				55A661980FA56BF30030849A /* BinaryDataScanner.m in Sources */,
 				55A661990FA56BF30030849A /* MurphyLevel.m in Sources */,
+				557B63870FAF68D900A660D1 /* MurphyView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
