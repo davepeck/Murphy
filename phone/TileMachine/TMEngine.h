@@ -52,17 +52,22 @@ typedef struct
 
 @end
 
-
 @protocol TMDrawable
 
 -(void)drawElementsForViewport:(TMRect)glViewport;
 
 @end
 
-
-
-
 @interface TMEngine : NSObject {	
+	GLint backingWidth;
+	GLint backingHeight;	
+	CAEAGLLayer *drawLayer;
+	EAGLContext *context;	
+	GLuint viewRenderbufferName;
+	GLuint viewFramebufferName;	
+	GLuint depthRenderbufferName;	
+	NSTimer *animationTimer;
+	NSTimeInterval animationInterval;	
 }
 
 +(id)engineWithGlLayer:(CAEAGLLayer*)layer;
