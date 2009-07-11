@@ -16,19 +16,19 @@
 
 -(void) applicationDidFinishLaunching:(UIApplication *)application 
 {    
-	glView.animationInterval = 1.0 / 60.0;
+	[glView setAnimationRate:1.0 / 60.0];
 	[glView startAnimation];
 }
 
 -(void)applicationWillResignActive:(UIApplication *)application 
 {
-	glView.animationInterval = 1.0 / 1.0;
+	[glView setAnimationRate:1.0 / 1.0];
 }
 
 
 -(void)applicationDidBecomeActive:(UIApplication *)application 
 {
-	glView.animationInterval = 1.0 / 60.0;
+	[glView setAnimationRate:1.0 / 60.0];
 }
 
 -(void)dealloc 

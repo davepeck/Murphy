@@ -1,5 +1,5 @@
 //
-//  TileGrid.h
+//  TMTileGrid.h
 //  iMurphy
 //
 //  Represents a grid of tiles that form a level, world, etc.

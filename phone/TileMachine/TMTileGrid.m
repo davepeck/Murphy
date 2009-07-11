@@ -1,5 +1,5 @@
 //
-//  TileGrid.m
+//  TMTileGrid.m
 //  iMurphy
 //
 //  Created by Dave Peck on 4/16/09.

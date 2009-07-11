@@ -1,5 +1,5 @@
 //
-//  Texture.m
+//  TMTexture.m
 //  iMurphy
 //
 //  Created by Dave Peck on 4/16/09.
@@ -123,7 +123,10 @@ static TMTexture *currently_engaged = NULL;
 
 -(void)engage
 {
-	if (engaged) { return; }
+	if (engaged) 
+	{ 
+		return; 
+	}
 	
 	if (currently_engaged != NULL)
 	{

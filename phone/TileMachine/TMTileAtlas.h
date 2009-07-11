@@ -1,5 +1,5 @@
 //
-//  TileAtlas.h
+//  TMTileAtlas.h
 //  iMurphy
 //
 //  Represents a collection of tile images that are arranged in a grid

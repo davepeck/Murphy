@@ -10,35 +10,37 @@
 
 @interface TMEngine (TMEnginePrivate)
 
--(id)initWithGlLayer:(CAEAGLLayer*)layer;
--(BOOL)createFramebuffer;
--(void)destroyFramebuffer;
--(void)setupView;
+- (id)initWithGlLayer:(CAEAGLLayer *)layer;
+- (BOOL)createFramebuffer;
+- (void)destroyFramebuffer;
+- (void)setupView;
 
 @end
 
-
 @implementation TMEngine (TMEnginePrivate)
 
--(id)initWithGlLayer:(CAEAGLLayer*)layer
+- (id)initWithGlLayer:(CAEAGLLayer *)layer
 {
-	drawLayer = layer;
+	self = [super init];
 	
-	drawLayer.opaque = YES;		
-	drawLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithBool:FALSE], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
-	
-	context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
-	
-	if (!context || ![EAGLContext setCurrentContext:context] || ![self createFramebuffer]) 
+	if (self != nil)
 	{
-		[self release];
-		return nil;
+		drawLayer = [layer retain];
+		drawLayer.opaque = YES;		
+		drawLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithBool:FALSE], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];		
+		context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
+		
+		if (!context || ![EAGLContext setCurrentContext:context] || ![self createFramebuffer]) 
+		{
+			[self release];
+			return nil;
+		}	
 	}	
 	
 	return self;
 }
 
--(BOOL)createFramebuffer
+- (BOOL)createFramebuffer
 {
 	glGenFramebuffersOES(1, &viewFramebufferName);
 	glGenRenderbuffersOES(1, &viewRenderbufferName);
@@ -60,7 +62,7 @@
 	return YES;
 }
 
--(void)destroyFramebuffer
+- (void)destroyFramebuffer
 {
 	glDeleteFramebuffersOES(1, &viewFramebufferName);
 	viewFramebufferName = 0;
@@ -68,8 +70,7 @@
 	viewRenderbufferName = 0;	
 }
 
-
--(void)setupView
+- (void)setupView
 {
 	// Sets up matrices and transforms for OpenGL ES
 	glViewport(0, 0, backingWidth, backingHeight);
@@ -84,17 +85,50 @@
 
 @end
 
-
-
 @implementation TMEngine
 
-+(id)engineWithGlLayer:(CAEAGLLayer*)layer
+@synthesize delegate;
+@synthesize tileGrid;
+@synthesize displayViewportTop;
+@synthesize displayViewportLeft;
+
+- (void)animationTick:(NSTimer *)animationTimer
 {
-	// TODO
-	return nil;
+	if (delegate != nil)
+	{
+		[delegate beforeFrame];
+	}
+	
+	// Make sure that you are drawing to the current context
+	[EAGLContext setCurrentContext:context];	
+	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebufferName);
+	
+	[tileGrid alignViewportToPixel:&displayViewportLeft top:&displayViewportTop];
+	
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrthof(displayViewportLeft, displayViewportLeft + 1.0f, displayViewportTop - 1.5f, displayViewportTop, -1.0f, 1.0f);	
+	
+	glMatrixMode(GL_MODELVIEW);
+	
+	glClear(GL_COLOR_BUFFER_BIT);
+	[tileGrid drawInViewportLeft:displayViewportLeft top:displayViewportTop right:displayViewportLeft + 1.0f bottom:displayViewportTop - 1.5f];
+	
+	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbufferName);
+	[context presentRenderbuffer:GL_RENDERBUFFER_OES];	
+	
+	if (delegate != nil)
+	{
+		[delegate afterFrame];		
+	}
 }
 
--(void)setAnimationRate:(NSTimeInterval) animationRate
++ (id)engineWithGlLayer:(CAEAGLLayer *)layer
+{
+	return [[[TMEngine alloc] initWithGlLayer:layer] autorelease];
+}
+
+- (void)setAnimationRate:(NSTimeInterval)animationRate
 {
 	animationInterval = animationRate;
 	
@@ -107,7 +141,7 @@
 
 - (void)startAnimation
 {
-	animationTimer = [NSTimer scheduledTimerWithTimeInterval:animationInterval target:self selector:@selector(drawView) userInfo:nil repeats:YES];
+	animationTimer = [NSTimer scheduledTimerWithTimeInterval:animationInterval target:self selector:@selector(animationTick:) userInfo:nil repeats:YES];
 }
 
 - (void)stopAnimation
@@ -116,29 +150,10 @@
 	animationTimer = nil;
 }
 
--(TMSize)pixelViewportSize
+-(void)dealloc
 {
-	// TODO
-	TMSize todo;
-	return todo;
-}
-
--(TMRect)glScrollBounds
-{
-	// TODO
-	TMRect todo;
-	return todo;
-}
-
--(void)setOrientation:(TMOrientation) orientation
-{
-	// TODO
-}
-
--(TMOrientation)orientation
-{
-	// TODO
-	return TMOrientationPortrait;
+	[self stopAnimation];	
+	[super dealloc];
 }
 
 @end

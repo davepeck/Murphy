@@ -1,5 +1,5 @@
 //
-//  Texture.h
+//  TMTexture.h
 //  iMurphy
 //
 //  Represents a single OpenGL texture loaded from a graphics (probably PNG) file.

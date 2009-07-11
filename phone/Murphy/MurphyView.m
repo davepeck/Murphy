@@ -20,13 +20,8 @@
 #import "TMMath.h"
 #import "MurphyConstants.h"
 
-
-
 @interface MurphyView (MurphyViewPrivate)
 
-- (BOOL)createFramebuffer;
-- (void)destroyFramebuffer;
-- (void)setupView;
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
@@ -37,9 +32,7 @@
 
 @implementation MurphyView
 
-@synthesize animationInterval;
-
-+ (Class) layerClass
++ (Class)layerClass
 {
 	return [CAEAGLLayer class];
 }
@@ -51,15 +44,13 @@
 	
 	if (self != nil) 
 	{
-		CAEAGLLayer *eaglLayer = (CAEAGLLayer*) self.layer;
+		CAEAGLLayer *eaglLayer = (CAEAGLLayer*) self.layer;		
 		tileEngine = [[TMEngine engineWithGlLayer:eaglLayer] retain];
+		tileEngine.delegate = self;
 		[tileEngine setAnimationRate:1.0 / 60.0];		
 		
 		levelNames = [[NSArray arrayWithObjects:@"Achtung!", @"And So It Begins", @"Bolder", @"Catacombs-Aquatron", @"Combinations", @"Crystalline", @"Dash Dash", @"Daylight", @"Dot Dot", @"Excavation", @"Falling", @"Going Up", @"Gold Rush", @"Golden Rule", @"Inflamatory", @"It's Alive!!", @"Labyrinth", @"Love Boat", @"No More Secrets", @"Out In Out", @"Robots & Plasmoids", @"Short Circuit", @"Stress", @"Thriller", @"Trapped Inside", @"Wizard", nil] retain];
 		currentLevel = 0;
-		
-		[self setupView];
-		[self drawView];
 	}
 	
 	return self;
@@ -180,34 +171,6 @@
 	[self loadCurrentLevel];
 }
 
-// Updates the OpenGL view when the timer fires
-- (void)drawView
-{
-	// Make sure that you are drawing to the current context
-	[EAGLContext setCurrentContext:context];
-	
-	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebufferName);
-	
-	[flickDynamics animate];
-	
-	GLfloat displayViewportLeft = flickDynamics.currentScrollLeft;
-	GLfloat displayViewportTop = flickDynamics.currentScrollTop;
-	
-	[tileGrid alignViewportToPixel:&displayViewportLeft top:&displayViewportTop];
-	
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrthof(displayViewportLeft, displayViewportLeft + 1.0f, displayViewportTop - 1.5f, displayViewportTop, -1.0f, 1.0f);	
-	
-	glMatrixMode(GL_MODELVIEW);
-	
-	glClear(GL_COLOR_BUFFER_BIT);
-	[tileGrid drawInViewportLeft:displayViewportLeft top:displayViewportTop right:displayViewportLeft + 1.0f bottom:displayViewportTop - 1.5f];
-		
-	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
-	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
-}
-
 // Stop animating and release resources when they are no longer needed.
 - (void)dealloc
 {
@@ -217,17 +180,18 @@
 		flickDynamics = nil;
 	}
 	
-	[self stopAnimation];
-	
-	if ([EAGLContext currentContext] == context) 
-	{
-		[EAGLContext setCurrentContext:nil];
-	}
-	
-	[context release];
-	context = nil;
-	
 	[super dealloc];
+}
+
+- (void)beforeFrame
+{
+	[flickDynamics animate];
+	tileEngine.displayViewportTop = flickDynamics.currentScrollTop;
+	tileEngine.displayViewportLeft = flickDynamics.currentScrollLeft;
+}
+
+- (void)afterFrame
+{
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event 
@@ -262,4 +226,15 @@
 	GLfloat glLastY = LINEAR_MAP(last.y, 0.0f, 480.0f, 1.5f, 0.0f);	
 	[flickDynamics endTouchAtX:glLastX y:glLastY];	
 }
+
+- (void)setAnimationRate:(NSTimeInterval)theRate
+{
+	[tileEngine setAnimationRate:theRate];
+}
+
+- (void)startAnimation
+{
+	[tileEngine startAnimation];
+}
+
 @end

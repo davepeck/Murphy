@@ -14,72 +14,58 @@
 #import <QuartzCore/QuartzCore.h>
 #import <OpenGLES/EAGLDrawable.h>
 
-typedef enum 
-{
-	TMOrientationPortrait,
-	TMOrientationPortraitUpsideDown,
-	TMOrientationLandscapeLeft,
-	TMOrientationLandscapeRight
-} TMOrientation;
+#import "TMMath.h"
+#import "TMTileGrid.h"
+#import "TMSprite.h"
 
-typedef struct
-{
-	GLfloat width;
-	GLfloat height;
-} TMSize;
+@protocol TMEngineDelegate;
 
-typedef struct
-{
-	GLfloat left;
-	GLfloat top;
-	GLfloat right;
-	GLfloat bottom;
-} TMRect;
-
-typedef struct
-{
-	TMSize pixelViewportSize;
-	TMRect glScrollBounds;
-	TMOrientation orientation;
-} TMRenderMetrics;
-
-@class TMEngine;
-
-@protocol TMLayer
-
--(void)attachEngine:(TMEngine *)engine;
--(void)detatchEngine;
-
-@end
-
-@protocol TMDrawable
-
--(void)drawElementsForViewport:(TMRect)glViewport;
-
-@end
-
-@interface TMEngine : NSObject {	
+@interface TMEngine : NSObject 
+{	
+	// drawing context 
 	GLint backingWidth;
-	GLint backingHeight;	
+	GLint backingHeight;		
 	CAEAGLLayer *drawLayer;
 	EAGLContext *context;	
+	
+	// GL rendering contexts
 	GLuint viewRenderbufferName;
 	GLuint viewFramebufferName;	
 	GLuint depthRenderbufferName;	
+	
+	// animation management
 	NSTimer *animationTimer;
 	NSTimeInterval animationInterval;	
+	
+	// drawable children (TODO will ultimately be a scene graph like thing?)
+	TMTileGrid *tileGrid;
+
+	// viewport management
+	GLfloat displayViewportTop;
+	GLfloat displayViewportLeft;
+	
+	// delegate
+	id<TMEngineDelegate> delegate;
 }
 
-+(id)engineWithGlLayer:(CAEAGLLayer*)layer;
+@property (nonatomic, assign) id<TMEngineDelegate> delegate;
+@property (nonatomic, retain) TMTileGrid *tileGrid;
+@property GLfloat displayViewportTop;
+@property GLfloat displayViewportLeft;
 
--(void)setAnimationRate:(NSTimeInterval) animationRate;
--(void)startAnimation;
--(void)stopAnimation;
++ (id)engineWithGlLayer:(CAEAGLLayer *)layer;
 
--(TMSize)pixelViewportSize;
--(TMRect)glScrollBounds;
-
--(void)setOrientation:(TMOrientation) orientation;
--(TMOrientation)orientation;
+- (void)setAnimationRate:(NSTimeInterval)animationRate;
+- (void)startAnimation;
+- (void)stopAnimation;
 
 @end
+
+
+@protocol TMEngineDelegate<NSObject>
+
+- (void)beforeFrame;
+- (void)afterFrame;
+
+@end
+
