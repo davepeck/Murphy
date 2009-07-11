@@ -8,15 +8,7 @@
 
 #import "TMTileGrid.h"
 
-@interface TMTileGrid (Private)
-
--(id)initWithMap:(TMTileMap *)map width:(uint16_t)tilesWide height:(uint16_t)tilesHigh;
--(void)dealloc;
-
-@end
-
-
-@implementation TMTileGrid (Private)
+@implementation TMTileGrid
 
 -(id)initWithMap:(TMTileMap *)myMap width:(uint16_t)tilesWide height:(uint16_t)tilesHigh
 {
@@ -77,11 +69,6 @@
 	
 	[super dealloc];
 }
-
-@end
-
-
-@implementation TMTileGrid
 
 +(id)tileGridWithMap:(TMTileMap *)myMap width:(uint16_t)tilesWide height:(uint16_t)tilesHigh
 {

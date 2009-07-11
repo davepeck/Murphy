@@ -9,16 +9,7 @@
 #import "MurphyLevel.h"
 #import "BinaryDataScanner.h"
 
-@interface MurphyLevel (Private)
-
--(id)initWithData:(NSData*)data;
--(uint32_t)iconIndexForX:(uint16_t)x Y:(uint16_t)y;
--(void)dealloc;
-
-@end
-
-
-@implementation MurphyLevel (Private)
+@implementation MurphyLevel
 
 -(id)initWithData:(NSData*)data
 {
@@ -73,11 +64,6 @@
 	
 	[super dealloc];
 }
-
-@end
-
-
-@implementation MurphyLevel
 
 @synthesize name;
 @synthesize graphicsSet;

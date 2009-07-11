@@ -8,16 +8,7 @@
 
 #import "TMTileMap.h"
 
-@interface TMTileMap (Private)
-
--(id)initWithAtlas:(TMTileAtlas *)atlas startTileId:(uint16_t)startId;
--(void)getDefaultMapForTileId:(uint16_t)tileId s:(uint8_t *)s t:(uint8_t *)t;
--(void)animationTick:(NSTimer*)animationTimer;
--(void)dealloc;
-
-@end
-
-@implementation TMTileMap (Private)
+@implementation TMTileMap
 
 -(id)initWithAtlas:(TMTileAtlas *)myAtlas startTileId:(uint16_t)startId
 {
@@ -124,11 +115,6 @@
 		[self setMapForTileId:tileIdFrom withTileId:tileIdCurrent];
 	}
 }
-
-
-@end
-
-@implementation TMTileMap
 
 +(id)tileMapWithAtlas:(TMTileAtlas *)atlas startTileId:(uint16_t)startId
 {

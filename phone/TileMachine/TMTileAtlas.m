@@ -9,14 +9,7 @@
 #import "TMTileAtlas.h"
 #import "TMTexture.h"
 
-@interface TMTileAtlas (Private)
-
--(id)initWithFile:(NSString*)path tilePixelWidth:(uint16_t)width tilePixelHeight:(uint16_t)height tilesAcross:(uint16_t)across tilesDown:(uint16_t)down;
--(void)dealloc;
-
-@end
-
-@implementation TMTileAtlas (Private)
+@implementation TMTileAtlas
 
 -(id)initWithFile:(NSString*)path tilePixelWidth:(uint16_t)width tilePixelHeight:(uint16_t)height tilesAcross:(uint16_t)across tilesDown:(uint16_t)down;
 {
@@ -43,11 +36,6 @@
 	texture = nil;	
 	[super dealloc];
 }
-
-@end
-
-
-@implementation TMTileAtlas
 
 +(id)tileAtlasWithFile:(NSString*)path tilePixelWidth:(uint16_t)width tilePixelHeight:(uint16_t)height tilesAcross:(uint16_t)across tilesDown:(uint16_t)down
 {

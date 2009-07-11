@@ -154,6 +154,9 @@
 
 -(void)dealloc
 {
+	self.delegate = nil;
+	self.tileGrid = nil;
+	
 	[self stopAnimation];	
 	[super dealloc];
 }

@@ -18,17 +18,7 @@
 #import <CoreFoundation/CFByteOrder.h>
 
 
-@interface BinaryDataScanner (Private)
-
--(id)initWithData:(NSData*)data littleEndian:(BOOL)littleEndian defaultEncoding:(NSStringEncoding)defaultEncoding;
--(void)dealloc;
--(NSException *)buildScanException;
--(void)moveBy:(NSUInteger)count;
-
-@end
-
-
-@implementation BinaryDataScanner (Private)
+@implementation BinaryDataScanner
 
 -(id)initWithData:(NSData*)initData littleEndian:(BOOL)isLittleEndian defaultEncoding:(NSStringEncoding)theDefaultEncoding
 {
@@ -51,6 +41,11 @@
 	[super dealloc];
 }
 
+-(NSException *)buildScanException
+{
+	return [NSException exceptionWithName:@"OrangeDataScanException" reason:@"Failure scanning desired information from the bytes." userInfo:nil];	
+}
+
 -(void)moveBy:(NSUInteger)count
 {
 	if (scanRemain < count)
@@ -61,16 +56,6 @@
 	scanRemain -= count;
 	current += count;
 }
-
--(NSException *)buildScanException
-{
-	return [NSException exceptionWithName:@"OrangeDataScanException" reason:@"Failure scanning desired information from the bytes." userInfo:nil];	
-}
-
-@end
-
-
-@implementation BinaryDataScanner
 
 +(id)binaryDataScannerWithData:(NSData*)data littleEndian:(BOOL)littleEndian defaultEncoding:(NSStringEncoding)defaultEncoding
 {
