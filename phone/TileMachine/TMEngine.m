@@ -35,6 +35,8 @@
 			[self release];
 			return nil;
 		}	
+		
+		[self setupView];
 	}	
 	
 	return self;

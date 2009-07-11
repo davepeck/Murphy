@@ -37,6 +37,16 @@
 	return [CAEAGLLayer class];
 }
 
+- (void)prepareToPlay
+{
+	flickDynamics = [[FlickDynamics flickDynamicsWithViewportWidth:1.0f viewportHeight:1.5f scrollBoundsLeft:0.0f scrollBoundsTop:1.5f scrollBoundsRight:1.0f scrollBoundsBottom:0.0f] retain];
+	flickDynamics.currentScrollLeft = 0.0f;
+	flickDynamics.currentScrollTop = 1.5f;
+	
+	currentLevel = 0;
+	[self loadCurrentLevel];
+}
+
 //The GL view is stored in the nib file. When it's unarchived it's sent -initWithCoder:
 - (id)initWithCoder:(NSCoder*)coder
 {
@@ -51,6 +61,7 @@
 		
 		levelNames = [[NSArray arrayWithObjects:@"Achtung!", @"And So It Begins", @"Bolder", @"Catacombs-Aquatron", @"Combinations", @"Crystalline", @"Dash Dash", @"Daylight", @"Dot Dot", @"Excavation", @"Falling", @"Going Up", @"Gold Rush", @"Golden Rule", @"Inflamatory", @"It's Alive!!", @"Labyrinth", @"Love Boat", @"No More Secrets", @"Out In Out", @"Robots & Plasmoids", @"Short Circuit", @"Stress", @"Thriller", @"Trapped Inside", @"Wizard", nil] retain];
 		currentLevel = 0;
+		[self prepareToPlay];
 	}
 	
 	return self;
@@ -70,8 +81,9 @@
 {
 	if (tileGrid != nil)
 	{
+		tileEngine.tileGrid = nil;
 		[tileGrid release];
-		tileGrid = nil;		
+		tileGrid = nil;
 	}
 	
 	// Load our level's textures
@@ -154,6 +166,8 @@
 	[tileGrid.map animateTileId:kFirstTerminalTile toTileId:kLastTerminalTile timeInterval:0.175f allInRange:NO];
 	[tileGrid.map animateTileId:kFirstUpScissorTile toTileId:kUpLeftScissorTile timeInterval:0.175f allInRange:NO];
 	[tileGrid.map animateTileId:kBubFrame toTileId:kDBubFrame2 timeInterval:0.175f allInRange:NO];
+	
+	tileEngine.tileGrid = tileGrid;
 }
 
 -(void)switchLevels
