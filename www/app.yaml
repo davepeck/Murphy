@@ -1,9 +1,22 @@
 application: murphys-revenge
-version: 1
+version: 0-1-0
 runtime: python
 api_version: 1
 
 handlers:
-- url: /.*
-  script: murphy.py
+    - url: /images
+      static_dir: static/images
+
+    - url: /js
+      static_dir: static/js
+
+    - url: /css
+      static_dir: static/css
+
+    - url: /favicon.ico
+      static_files: static/favicon.ico
+      upload: static/favicon.ico
+
+    - url: /(.*)
+      script: bootstrap.py
 
