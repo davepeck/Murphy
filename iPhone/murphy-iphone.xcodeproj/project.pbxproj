@@ -1,0 +1,483 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
+		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
+		556CD9401257E4DF00AA93B5 /* Achtung!.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD9251257E4DF00AA93B5 /* Achtung!.mbl */; };
+		556CD9411257E4DF00AA93B5 /* And So It Begins.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD9261257E4DF00AA93B5 /* And So It Begins.mbl */; };
+		556CD9421257E4DF00AA93B5 /* Bolder.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD9271257E4DF00AA93B5 /* Bolder.mbl */; };
+		556CD9431257E4DF00AA93B5 /* Catacombs-Aquatron.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD9281257E4DF00AA93B5 /* Catacombs-Aquatron.mbl */; };
+		556CD9441257E4DF00AA93B5 /* Combinations.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD9291257E4DF00AA93B5 /* Combinations.mbl */; };
+		556CD9451257E4DF00AA93B5 /* Crystalline.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD92A1257E4DF00AA93B5 /* Crystalline.mbl */; };
+		556CD9461257E4DF00AA93B5 /* Dash Dash.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD92B1257E4DF00AA93B5 /* Dash Dash.mbl */; };
+		556CD9471257E4DF00AA93B5 /* Daylight.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD92C1257E4DF00AA93B5 /* Daylight.mbl */; };
+		556CD9481257E4DF00AA93B5 /* Dot Dot.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD92D1257E4DF00AA93B5 /* Dot Dot.mbl */; };
+		556CD9491257E4DF00AA93B5 /* Excavation.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD92E1257E4DF00AA93B5 /* Excavation.mbl */; };
+		556CD94A1257E4DF00AA93B5 /* Falling.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD92F1257E4DF00AA93B5 /* Falling.mbl */; };
+		556CD94B1257E4DF00AA93B5 /* Going Up.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD9301257E4DF00AA93B5 /* Going Up.mbl */; };
+		556CD94C1257E4DF00AA93B5 /* Gold Rush.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD9311257E4DF00AA93B5 /* Gold Rush.mbl */; };
+		556CD94D1257E4DF00AA93B5 /* Golden Rule.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD9321257E4DF00AA93B5 /* Golden Rule.mbl */; };
+		556CD94E1257E4DF00AA93B5 /* Inflamatory.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD9331257E4DF00AA93B5 /* Inflamatory.mbl */; };
+		556CD94F1257E4DF00AA93B5 /* It's Alive!!.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD9341257E4DF00AA93B5 /* It's Alive!!.mbl */; };
+		556CD9501257E4DF00AA93B5 /* Labyrinth.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD9351257E4DF00AA93B5 /* Labyrinth.mbl */; };
+		556CD9511257E4DF00AA93B5 /* Love Boat.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD9361257E4DF00AA93B5 /* Love Boat.mbl */; };
+		556CD9521257E4DF00AA93B5 /* No More Secrets.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD9371257E4DF00AA93B5 /* No More Secrets.mbl */; };
+		556CD9531257E4DF00AA93B5 /* Out In Out.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD9381257E4DF00AA93B5 /* Out In Out.mbl */; };
+		556CD9541257E4DF00AA93B5 /* Robots & Plasmoids.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD9391257E4DF00AA93B5 /* Robots & Plasmoids.mbl */; };
+		556CD9551257E4DF00AA93B5 /* Short Circuit.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD93A1257E4DF00AA93B5 /* Short Circuit.mbl */; };
+		556CD9561257E4DF00AA93B5 /* Stress.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD93B1257E4DF00AA93B5 /* Stress.mbl */; };
+		556CD9571257E4DF00AA93B5 /* Thriller.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD93C1257E4DF00AA93B5 /* Thriller.mbl */; };
+		556CD9581257E4DF00AA93B5 /* Trapped Inside.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD93D1257E4DF00AA93B5 /* Trapped Inside.mbl */; };
+		556CD9591257E4DF00AA93B5 /* Wizard.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD93E1257E4DF00AA93B5 /* Wizard.mbl */; };
+		556CD95A1257E4DF00AA93B5 /* World.mbl in Resources */ = {isa = PBXBuildFile; fileRef = 556CD93F1257E4DF00AA93B5 /* World.mbl */; };
+		556CD96E1257E4E600AA93B5 /* FlickDynamics.m in Sources */ = {isa = PBXBuildFile; fileRef = 556CD95F1257E4E600AA93B5 /* FlickDynamics.m */; };
+		556CD96F1257E4E600AA93B5 /* TMSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 556CD9611257E4E600AA93B5 /* TMSprite.m */; };
+		556CD9701257E4E600AA93B5 /* TMTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 556CD9631257E4E600AA93B5 /* TMTexture.m */; };
+		556CD9711257E4E600AA93B5 /* TMTileAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = 556CD9651257E4E600AA93B5 /* TMTileAtlas.m */; };
+		556CD9721257E4E600AA93B5 /* TMTileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 556CD9671257E4E600AA93B5 /* TMTileMap.m */; };
+		556CD9731257E4E600AA93B5 /* TMTileGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 556CD9691257E4E600AA93B5 /* TMTileGrid.m */; };
+		556CD9741257E4E600AA93B5 /* TMEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 556CD96B1257E4E600AA93B5 /* TMEngine.m */; };
+		556CD9751257E4E600AA93B5 /* TMMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 556CD96D1257E4E600AA93B5 /* TMMath.m */; };
+		556CD9811257E52000AA93B5 /* MurphyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 556CD9791257E52000AA93B5 /* MurphyAppDelegate.m */; };
+		556CD9821257E52000AA93B5 /* MurphyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 556CD97C1257E52000AA93B5 /* MurphyView.m */; };
+		556CD9831257E52000AA93B5 /* MurphyLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 556CD97E1257E52000AA93B5 /* MurphyLevel.m */; };
+		556CD9841257E52000AA93B5 /* BinaryDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 556CD9801257E52000AA93B5 /* BinaryDataScanner.m */; };
+		556CD9861257E54C00AA93B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 556CD9851257E54C00AA93B5 /* main.m */; };
+		556CD9891257E56E00AA93B5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 556CD9881257E56E00AA93B5 /* CoreGraphics.framework */; };
+		556CD9931257E5AC00AA93B5 /* aquatron.png in Resources */ = {isa = PBXBuildFile; fileRef = 556CD98D1257E5AC00AA93B5 /* aquatron.png */; };
+		556CD9941257E5AC00AA93B5 /* savanatron.png in Resources */ = {isa = PBXBuildFile; fileRef = 556CD98E1257E5AC00AA93B5 /* savanatron.png */; };
+		556CD9951257E5AC00AA93B5 /* infotron.png in Resources */ = {isa = PBXBuildFile; fileRef = 556CD98F1257E5AC00AA93B5 /* infotron.png */; };
+		556CD9961257E5AC00AA93B5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 556CD9901257E5AC00AA93B5 /* Default.png */; };
+		556CD9971257E5AC00AA93B5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 556CD9911257E5AC00AA93B5 /* icon.png */; };
+		556CD9981257E5AC00AA93B5 /* world.png in Resources */ = {isa = PBXBuildFile; fileRef = 556CD9921257E5AC00AA93B5 /* world.png */; };
+		556CD99B1257E5D800AA93B5 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 556CD99A1257E5D800AA93B5 /* MainWindow.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D6058910D05DD3D006BFB54 /* murphy-iphone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "murphy-iphone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		28FD14FF0DC6FC520079059D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		32CA4F630368D1EE00C91783 /* murphy_iphone_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = murphy_iphone_Prefix.pch; sourceTree = "<group>"; };
+		556CD9251257E4DF00AA93B5 /* Achtung!.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Achtung!.mbl"; sourceTree = "<group>"; };
+		556CD9261257E4DF00AA93B5 /* And So It Begins.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "And So It Begins.mbl"; sourceTree = "<group>"; };
+		556CD9271257E4DF00AA93B5 /* Bolder.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bolder.mbl; sourceTree = "<group>"; };
+		556CD9281257E4DF00AA93B5 /* Catacombs-Aquatron.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Catacombs-Aquatron.mbl"; sourceTree = "<group>"; };
+		556CD9291257E4DF00AA93B5 /* Combinations.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Combinations.mbl; sourceTree = "<group>"; };
+		556CD92A1257E4DF00AA93B5 /* Crystalline.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Crystalline.mbl; sourceTree = "<group>"; };
+		556CD92B1257E4DF00AA93B5 /* Dash Dash.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dash Dash.mbl"; sourceTree = "<group>"; };
+		556CD92C1257E4DF00AA93B5 /* Daylight.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Daylight.mbl; sourceTree = "<group>"; };
+		556CD92D1257E4DF00AA93B5 /* Dot Dot.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dot Dot.mbl"; sourceTree = "<group>"; };
+		556CD92E1257E4DF00AA93B5 /* Excavation.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Excavation.mbl; sourceTree = "<group>"; };
+		556CD92F1257E4DF00AA93B5 /* Falling.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Falling.mbl; sourceTree = "<group>"; };
+		556CD9301257E4DF00AA93B5 /* Going Up.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Going Up.mbl"; sourceTree = "<group>"; };
+		556CD9311257E4DF00AA93B5 /* Gold Rush.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gold Rush.mbl"; sourceTree = "<group>"; };
+		556CD9321257E4DF00AA93B5 /* Golden Rule.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Golden Rule.mbl"; sourceTree = "<group>"; };
+		556CD9331257E4DF00AA93B5 /* Inflamatory.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inflamatory.mbl; sourceTree = "<group>"; };
+		556CD9341257E4DF00AA93B5 /* It's Alive!!.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "It's Alive!!.mbl"; sourceTree = "<group>"; };
+		556CD9351257E4DF00AA93B5 /* Labyrinth.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Labyrinth.mbl; sourceTree = "<group>"; };
+		556CD9361257E4DF00AA93B5 /* Love Boat.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Love Boat.mbl"; sourceTree = "<group>"; };
+		556CD9371257E4DF00AA93B5 /* No More Secrets.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "No More Secrets.mbl"; sourceTree = "<group>"; };
+		556CD9381257E4DF00AA93B5 /* Out In Out.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Out In Out.mbl"; sourceTree = "<group>"; };
+		556CD9391257E4DF00AA93B5 /* Robots & Plasmoids.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Robots & Plasmoids.mbl"; sourceTree = "<group>"; };
+		556CD93A1257E4DF00AA93B5 /* Short Circuit.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Short Circuit.mbl"; sourceTree = "<group>"; };
+		556CD93B1257E4DF00AA93B5 /* Stress.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Stress.mbl; sourceTree = "<group>"; };
+		556CD93C1257E4DF00AA93B5 /* Thriller.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thriller.mbl; sourceTree = "<group>"; };
+		556CD93D1257E4DF00AA93B5 /* Trapped Inside.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Trapped Inside.mbl"; sourceTree = "<group>"; };
+		556CD93E1257E4DF00AA93B5 /* Wizard.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Wizard.mbl; sourceTree = "<group>"; };
+		556CD93F1257E4DF00AA93B5 /* World.mbl */ = {isa = PBXFileReference; lastKnownFileType = file; path = World.mbl; sourceTree = "<group>"; };
+		556CD95E1257E4E600AA93B5 /* FlickDynamics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickDynamics.h; sourceTree = "<group>"; };
+		556CD95F1257E4E600AA93B5 /* FlickDynamics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickDynamics.m; sourceTree = "<group>"; };
+		556CD9601257E4E600AA93B5 /* TMSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMSprite.h; sourceTree = "<group>"; };
+		556CD9611257E4E600AA93B5 /* TMSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMSprite.m; sourceTree = "<group>"; };
+		556CD9621257E4E600AA93B5 /* TMTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTexture.h; sourceTree = "<group>"; };
+		556CD9631257E4E600AA93B5 /* TMTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTexture.m; sourceTree = "<group>"; };
+		556CD9641257E4E600AA93B5 /* TMTileAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTileAtlas.h; sourceTree = "<group>"; };
+		556CD9651257E4E600AA93B5 /* TMTileAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTileAtlas.m; sourceTree = "<group>"; };
+		556CD9661257E4E600AA93B5 /* TMTileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTileMap.h; sourceTree = "<group>"; };
+		556CD9671257E4E600AA93B5 /* TMTileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTileMap.m; sourceTree = "<group>"; };
+		556CD9681257E4E600AA93B5 /* TMTileGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTileGrid.h; sourceTree = "<group>"; };
+		556CD9691257E4E600AA93B5 /* TMTileGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTileGrid.m; sourceTree = "<group>"; };
+		556CD96A1257E4E600AA93B5 /* TMEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMEngine.h; sourceTree = "<group>"; };
+		556CD96B1257E4E600AA93B5 /* TMEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMEngine.m; sourceTree = "<group>"; };
+		556CD96C1257E4E600AA93B5 /* TMMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMMath.h; sourceTree = "<group>"; };
+		556CD96D1257E4E600AA93B5 /* TMMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMMath.m; sourceTree = "<group>"; };
+		556CD9781257E52000AA93B5 /* MurphyAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MurphyAppDelegate.h; sourceTree = "<group>"; };
+		556CD9791257E52000AA93B5 /* MurphyAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MurphyAppDelegate.m; sourceTree = "<group>"; };
+		556CD97A1257E52000AA93B5 /* MurphyConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MurphyConstants.h; sourceTree = "<group>"; };
+		556CD97B1257E52000AA93B5 /* MurphyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MurphyView.h; sourceTree = "<group>"; };
+		556CD97C1257E52000AA93B5 /* MurphyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MurphyView.m; sourceTree = "<group>"; };
+		556CD97D1257E52000AA93B5 /* MurphyLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MurphyLevel.h; sourceTree = "<group>"; };
+		556CD97E1257E52000AA93B5 /* MurphyLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MurphyLevel.m; sourceTree = "<group>"; };
+		556CD97F1257E52000AA93B5 /* BinaryDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinaryDataScanner.h; sourceTree = "<group>"; };
+		556CD9801257E52000AA93B5 /* BinaryDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BinaryDataScanner.m; sourceTree = "<group>"; };
+		556CD9851257E54C00AA93B5 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		556CD9881257E56E00AA93B5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		556CD98D1257E5AC00AA93B5 /* aquatron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aquatron.png; sourceTree = "<group>"; };
+		556CD98E1257E5AC00AA93B5 /* savanatron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = savanatron.png; sourceTree = "<group>"; };
+		556CD98F1257E5AC00AA93B5 /* infotron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infotron.png; sourceTree = "<group>"; };
+		556CD9901257E5AC00AA93B5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		556CD9911257E5AC00AA93B5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		556CD9921257E5AC00AA93B5 /* world.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = world.png; sourceTree = "<group>"; };
+		556CD99A1257E5D800AA93B5 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* murphy_iphone-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "murphy_iphone-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */,
+				28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */,
+				556CD9891257E56E00AA93B5 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* murphy-iphone.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				556CD9771257E50300AA93B5 /* Murphy */,
+				556CD95D1257E4E600AA93B5 /* TileMachine */,
+				556CD9241257E4DF00AA93B5 /* Levels */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				556CD98C1257E5AC00AA93B5 /* Images */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* murphy_iphone_Prefix.pch */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				556CD99A1257E5D800AA93B5 /* MainWindow.xib */,
+				8D1107310486CEB800E47090 /* murphy_iphone-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				28FD15070DC6FC5B0079059D /* QuartzCore.framework */,
+				28FD14FF0DC6FC520079059D /* OpenGLES.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				556CD9881257E56E00AA93B5 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		556CD9241257E4DF00AA93B5 /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				556CD9251257E4DF00AA93B5 /* Achtung!.mbl */,
+				556CD9261257E4DF00AA93B5 /* And So It Begins.mbl */,
+				556CD9271257E4DF00AA93B5 /* Bolder.mbl */,
+				556CD9281257E4DF00AA93B5 /* Catacombs-Aquatron.mbl */,
+				556CD9291257E4DF00AA93B5 /* Combinations.mbl */,
+				556CD92A1257E4DF00AA93B5 /* Crystalline.mbl */,
+				556CD92B1257E4DF00AA93B5 /* Dash Dash.mbl */,
+				556CD92C1257E4DF00AA93B5 /* Daylight.mbl */,
+				556CD92D1257E4DF00AA93B5 /* Dot Dot.mbl */,
+				556CD92E1257E4DF00AA93B5 /* Excavation.mbl */,
+				556CD92F1257E4DF00AA93B5 /* Falling.mbl */,
+				556CD9301257E4DF00AA93B5 /* Going Up.mbl */,
+				556CD9311257E4DF00AA93B5 /* Gold Rush.mbl */,
+				556CD9321257E4DF00AA93B5 /* Golden Rule.mbl */,
+				556CD9331257E4DF00AA93B5 /* Inflamatory.mbl */,
+				556CD9341257E4DF00AA93B5 /* It's Alive!!.mbl */,
+				556CD9351257E4DF00AA93B5 /* Labyrinth.mbl */,
+				556CD9361257E4DF00AA93B5 /* Love Boat.mbl */,
+				556CD9371257E4DF00AA93B5 /* No More Secrets.mbl */,
+				556CD9381257E4DF00AA93B5 /* Out In Out.mbl */,
+				556CD9391257E4DF00AA93B5 /* Robots & Plasmoids.mbl */,
+				556CD93A1257E4DF00AA93B5 /* Short Circuit.mbl */,
+				556CD93B1257E4DF00AA93B5 /* Stress.mbl */,
+				556CD93C1257E4DF00AA93B5 /* Thriller.mbl */,
+				556CD93D1257E4DF00AA93B5 /* Trapped Inside.mbl */,
+				556CD93E1257E4DF00AA93B5 /* Wizard.mbl */,
+				556CD93F1257E4DF00AA93B5 /* World.mbl */,
+			);
+			name = Levels;
+			sourceTree = "<group>";
+		};
+		556CD95D1257E4E600AA93B5 /* TileMachine */ = {
+			isa = PBXGroup;
+			children = (
+				556CD95E1257E4E600AA93B5 /* FlickDynamics.h */,
+				556CD95F1257E4E600AA93B5 /* FlickDynamics.m */,
+				556CD9601257E4E600AA93B5 /* TMSprite.h */,
+				556CD9611257E4E600AA93B5 /* TMSprite.m */,
+				556CD9621257E4E600AA93B5 /* TMTexture.h */,
+				556CD9631257E4E600AA93B5 /* TMTexture.m */,
+				556CD9641257E4E600AA93B5 /* TMTileAtlas.h */,
+				556CD9651257E4E600AA93B5 /* TMTileAtlas.m */,
+				556CD9661257E4E600AA93B5 /* TMTileMap.h */,
+				556CD9671257E4E600AA93B5 /* TMTileMap.m */,
+				556CD9681257E4E600AA93B5 /* TMTileGrid.h */,
+				556CD9691257E4E600AA93B5 /* TMTileGrid.m */,
+				556CD96A1257E4E600AA93B5 /* TMEngine.h */,
+				556CD96B1257E4E600AA93B5 /* TMEngine.m */,
+				556CD96C1257E4E600AA93B5 /* TMMath.h */,
+				556CD96D1257E4E600AA93B5 /* TMMath.m */,
+			);
+			name = TileMachine;
+			sourceTree = "<group>";
+		};
+		556CD9771257E50300AA93B5 /* Murphy */ = {
+			isa = PBXGroup;
+			children = (
+				556CD9851257E54C00AA93B5 /* main.m */,
+				556CD9781257E52000AA93B5 /* MurphyAppDelegate.h */,
+				556CD9791257E52000AA93B5 /* MurphyAppDelegate.m */,
+				556CD97A1257E52000AA93B5 /* MurphyConstants.h */,
+				556CD97B1257E52000AA93B5 /* MurphyView.h */,
+				556CD97C1257E52000AA93B5 /* MurphyView.m */,
+				556CD97D1257E52000AA93B5 /* MurphyLevel.h */,
+				556CD97E1257E52000AA93B5 /* MurphyLevel.m */,
+				556CD97F1257E52000AA93B5 /* BinaryDataScanner.h */,
+				556CD9801257E52000AA93B5 /* BinaryDataScanner.m */,
+			);
+			name = Murphy;
+			sourceTree = "<group>";
+		};
+		556CD98C1257E5AC00AA93B5 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				556CD98D1257E5AC00AA93B5 /* aquatron.png */,
+				556CD98E1257E5AC00AA93B5 /* savanatron.png */,
+				556CD98F1257E5AC00AA93B5 /* infotron.png */,
+				556CD9901257E5AC00AA93B5 /* Default.png */,
+				556CD9911257E5AC00AA93B5 /* icon.png */,
+				556CD9921257E5AC00AA93B5 /* world.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* murphy-iphone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "murphy-iphone" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "murphy-iphone";
+			productName = "murphy-iphone";
+			productReference = 1D6058910D05DD3D006BFB54 /* murphy-iphone.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "murphy-iphone" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* murphy-iphone */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				556CD9401257E4DF00AA93B5 /* Achtung!.mbl in Resources */,
+				556CD9411257E4DF00AA93B5 /* And So It Begins.mbl in Resources */,
+				556CD9421257E4DF00AA93B5 /* Bolder.mbl in Resources */,
+				556CD9431257E4DF00AA93B5 /* Catacombs-Aquatron.mbl in Resources */,
+				556CD9441257E4DF00AA93B5 /* Combinations.mbl in Resources */,
+				556CD9451257E4DF00AA93B5 /* Crystalline.mbl in Resources */,
+				556CD9461257E4DF00AA93B5 /* Dash Dash.mbl in Resources */,
+				556CD9471257E4DF00AA93B5 /* Daylight.mbl in Resources */,
+				556CD9481257E4DF00AA93B5 /* Dot Dot.mbl in Resources */,
+				556CD9491257E4DF00AA93B5 /* Excavation.mbl in Resources */,
+				556CD94A1257E4DF00AA93B5 /* Falling.mbl in Resources */,
+				556CD94B1257E4DF00AA93B5 /* Going Up.mbl in Resources */,
+				556CD94C1257E4DF00AA93B5 /* Gold Rush.mbl in Resources */,
+				556CD94D1257E4DF00AA93B5 /* Golden Rule.mbl in Resources */,
+				556CD94E1257E4DF00AA93B5 /* Inflamatory.mbl in Resources */,
+				556CD94F1257E4DF00AA93B5 /* It's Alive!!.mbl in Resources */,
+				556CD9501257E4DF00AA93B5 /* Labyrinth.mbl in Resources */,
+				556CD9511257E4DF00AA93B5 /* Love Boat.mbl in Resources */,
+				556CD9521257E4DF00AA93B5 /* No More Secrets.mbl in Resources */,
+				556CD9531257E4DF00AA93B5 /* Out In Out.mbl in Resources */,
+				556CD9541257E4DF00AA93B5 /* Robots & Plasmoids.mbl in Resources */,
+				556CD9551257E4DF00AA93B5 /* Short Circuit.mbl in Resources */,
+				556CD9561257E4DF00AA93B5 /* Stress.mbl in Resources */,
+				556CD9571257E4DF00AA93B5 /* Thriller.mbl in Resources */,
+				556CD9581257E4DF00AA93B5 /* Trapped Inside.mbl in Resources */,
+				556CD9591257E4DF00AA93B5 /* Wizard.mbl in Resources */,
+				556CD95A1257E4DF00AA93B5 /* World.mbl in Resources */,
+				556CD9931257E5AC00AA93B5 /* aquatron.png in Resources */,
+				556CD9941257E5AC00AA93B5 /* savanatron.png in Resources */,
+				556CD9951257E5AC00AA93B5 /* infotron.png in Resources */,
+				556CD9961257E5AC00AA93B5 /* Default.png in Resources */,
+				556CD9971257E5AC00AA93B5 /* icon.png in Resources */,
+				556CD9981257E5AC00AA93B5 /* world.png in Resources */,
+				556CD99B1257E5D800AA93B5 /* MainWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				556CD96E1257E4E600AA93B5 /* FlickDynamics.m in Sources */,
+				556CD96F1257E4E600AA93B5 /* TMSprite.m in Sources */,
+				556CD9701257E4E600AA93B5 /* TMTexture.m in Sources */,
+				556CD9711257E4E600AA93B5 /* TMTileAtlas.m in Sources */,
+				556CD9721257E4E600AA93B5 /* TMTileMap.m in Sources */,
+				556CD9731257E4E600AA93B5 /* TMTileGrid.m in Sources */,
+				556CD9741257E4E600AA93B5 /* TMEngine.m in Sources */,
+				556CD9751257E4E600AA93B5 /* TMMath.m in Sources */,
+				556CD9811257E52000AA93B5 /* MurphyAppDelegate.m in Sources */,
+				556CD9821257E52000AA93B5 /* MurphyView.m in Sources */,
+				556CD9831257E52000AA93B5 /* MurphyLevel.m in Sources */,
+				556CD9841257E52000AA93B5 /* BinaryDataScanner.m in Sources */,
+				556CD9861257E54C00AA93B5 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = murphy_iphone_Prefix.pch;
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				INFOPLIST_FILE = "murphy_iphone-Info.plist";
+				PRODUCT_NAME = "murphy-iphone";
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = murphy_iphone_Prefix.pch;
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				INFOPLIST_FILE = "murphy_iphone-Info.plist";
+				PRODUCT_NAME = "murphy-iphone";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "murphy-iphone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "murphy-iphone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
