@@ -1,0 +1,1 @@
+unit GridPieceIntf;			{This unit has declarations for ALL the types of Grid Pieces}								{But not really.}interface	uses		TCL, InfoIntf;		{for CObject}implementationend.

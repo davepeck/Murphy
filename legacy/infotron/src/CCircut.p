@@ -1,0 +1,1 @@
+unit CCircut;interface	uses		TCL, GridPieceIntf;implementation	procedure CCircut.initPiece;	begin		inherited initPiece;		destructable := true;	end;end.

@@ -1,0 +1,1 @@
+unit CBlank;interface{INYOURFACE}	uses		TCL, GridPieceIntf;implementation	procedure CBlank.InitPiece;	begin		inherited initPiece;		destructable := true;	end;end.

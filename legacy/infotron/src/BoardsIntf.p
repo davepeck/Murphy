@@ -1,0 +1,1 @@
+unit BoardsIntf;interface	uses		InfoIntf;	const		kBaseNum = 128;implementationend.

@@ -1,0 +1,1 @@
+unit CFalls;interface	uses		TCL, GridPieceIntf;implementation	procedure CFalls.Fall (x, y: integer);		var			myChore: CFallChore;	begin		new(myChore);		myChore.IFallChore(x, y);		CInfoApp(gApplication).FudADD(myChore);	end;	procedure CFalls.InitPiece;	begin		inherited InitPiece;		Falls := true;	end;end.

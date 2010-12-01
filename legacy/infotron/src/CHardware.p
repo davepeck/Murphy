@@ -1,0 +1,1 @@
+unit CHardware;interface	uses		TCL, GridPieceIntf;implementation	function CHardware.WalkOnto (x, y: integer): boolean;	begin		WalkOnto := FALSE;	end;end.
