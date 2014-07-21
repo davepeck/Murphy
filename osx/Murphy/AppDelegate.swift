@@ -40,8 +40,9 @@ let LevelNames = [
 
 
 class AppDelegate: NSObject, NSApplicationDelegate, MurphyLevelSceneDelegate {
-    @IBOutlet var window: NSWindow
-    @IBOutlet var skView: SKView
+    @IBOutlet var window: NSWindow?
+    @IBOutlet var skView: SKView?
+    
     var currentLevelIndex: Int = 0
     var currentScene: MurphyLevelScene?
 
