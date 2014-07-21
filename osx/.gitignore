@@ -1,0 +1,132 @@
+#--------------------------------
+# Code Comrade special build outs
+#--------------------------------
+
+__cc_injection.js
+
+
+#
+# For Dave
+#
+
+.emacs-project
+
+
+#--------------------------------
+# Web Site Config Excludes
+#--------------------------------
+
+config.php
+.htaccess
+
+
+#--------------------------------
+# Key File Excludes
+#--------------------------------
+
+FacebookKeysActual.plist
+local_settings.py
+
+
+#--------------------------------
+# Python Noise
+#--------------------------------
+
+*.pyc
+
+
+#--------------------------------
+# Object files
+#--------------------------------
+
+*.o
+*.lo
+*.la
+
+
+#--------------------------------
+# GNU
+#--------------------------------
+
+.deps
+.libs
+
+
+#--------------------------------
+# Other Source Control Noise
+#--------------------------------
+
+*.LCK
+.svn
+
+
+#--------------------------------
+# OSX Noise
+#--------------------------------
+
+.DS_Store
+profile
+
+
+#--------------------------------
+# XCode Noise
+#--------------------------------
+
+build
+build/
+build/*
+*.pbxuser
+*.mode1v3
+*.perspectivev3
+xcuserdata
+*.xcworkspace
+
+
+#------------------
+# Palm Pre Ignores
+#------------------
+
+*.ipk
+
+
+#--------------------------------
+# quilt
+#--------------------------------
+
+.pc/
+/patches/
+
+
+#--------------------------------
+# Project-specific ignores
+#--------------------------------
+
+tools/jquery/jQuery/
+
+
+#---------------------------------
+# Ruby, rails, rspec gunk
+#---------------------------------
+
+webrat.log
+.ruby-version
+.ruby-gemset
+
+
+#---------------------------------
+# GAE Bulkloader tempfile junk
+#---------------------------------
+
+bulkloader-*
+
+.sublime-settings
+
+
+#---------------------------------
+# Cocoapods
+#---------------------------------
+
+# See http://docs.cocoapods.org/guides/working_with_teams.html
+
+Pods/
+Pods/*
