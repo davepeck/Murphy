@@ -230,7 +230,7 @@ let LevelTileTextureNames = [
 ]
 
 
-enum LevelTile : Int, RawRepresentable {
+enum LevelTile : Int {
     case CircuitTile = 0
     case BlankTile
     case ExitTile
@@ -447,7 +447,7 @@ enum LevelTile : Int, RawRepresentable {
     case UpLeftScissorTile
     
     func textureName() -> String {
-        return LevelTileTextureNames[self.toRaw()]  // XXX I suspect toRaw() is slow
+        return LevelTileTextureNames[self.toRaw()]
     }
     
     static func infotrons() -> SequenceOf<LevelTile> {
@@ -557,7 +557,7 @@ let OliverTileTextureNames = [
 ]
 
 
-enum OliverTile : Int, RawRepresentable {
+enum OliverTile : Int {
     case BubFrame = 220
     case ABubFrame1
     case ABubFrame2
