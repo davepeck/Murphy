@@ -230,7 +230,7 @@ let LevelTileTextureNames = [
 ]
 
 
-enum LevelTile : Int, IntRawRepresentable {
+enum LevelTile : Int, RawRepresentable {
     case CircuitTile = 0
     case BlankTile
     case ExitTile
@@ -557,7 +557,7 @@ let OliverTileTextureNames = [
 ]
 
 
-enum OliverTile : Int, IntRawRepresentable {
+enum OliverTile : Int, RawRepresentable {
     case BubFrame = 220
     case ABubFrame1
     case ABubFrame2

@@ -8,46 +8,38 @@
 
 import Foundation
 
-/* 
-    just toying with some swift goodies --
-    this is nuclear-level overkill for anything real
-*/
+// Just toying with Swift types; this is nuclear-level nonsense for anything "real"
+// Finally, with Swift b6, I can use Swift's RawRepresentable directly!
 
-// XXX Swift has a built-in RawRepresentable but the TypeAlias
-// caused me all sorts of compiler pain in b3. Am I missing somthing?
-// is it busted?
-
-protocol IntRawRepresentable {
-    class func fromRaw(raw: Int) -> Self?
-    func toRaw() -> Int
-}
-
-class IntRawRepresentableRangeGenerator<T: IntRawRepresentable>: GeneratorType {
+class RawRepresentableRangeGeneratorType<T: RawRepresentable where T.Raw : Comparable, T.Raw : ForwardIndexType>: GeneratorType {
     typealias Element = T
+    typealias ElementRaw = T.Raw
     
-    var current: Int
-    let last: Int
+    var current: ElementRaw
+    let last: ElementRaw
     
-    init(first: Int, last: Int) {
+    init(first: ElementRaw, last: ElementRaw) {
         self.current = first
         self.last = last
     }
     
     func next() -> T? {
-        var v:T?
-        if current <= last {
+        var v:Element?
+        if (current <= last) {
             v = T.fromRaw(current)
-            current += 1
+            current++;
         }
         return v
     }
 }
 
-func enumerate<T: IntRawRepresentable>(first: T, last: T) -> SequenceOf<T> {
-    return SequenceOf<T>({ IntRawRepresentableRangeGenerator(first: first.toRaw(), last: last.toRaw()) })
+
+func enumerate<T: RawRepresentable where T.Raw : Comparable, T.Raw : ForwardIndexType>(first: T, last: T) -> SequenceOf<T> {
+    return SequenceOf<T>({ RawRepresentableRangeGeneratorType(first: first.toRaw(), last: last.toRaw()) })
 }
 
-class MappedRangeGenerator<T, U> : GeneratorType {
+
+class MappedRangeGeneratorType<T, U> : GeneratorType {
     typealias Element = U
     
     var generator: GeneratorOf<T>
@@ -68,11 +60,13 @@ class MappedRangeGenerator<T, U> : GeneratorType {
     }
 }
 
+
 extension SequenceOf {
     func map<U>(transform: (T) -> U) -> SequenceOf<U> {
-        return SequenceOf<U>({ MappedRangeGenerator(generator: self.generate(), transform: transform) })
+        return SequenceOf<U>({ MappedRangeGeneratorType(generator: self.generate(), transform: transform) })
     }
 }
+
 
 extension SequenceOf {
     func toArray() -> [T] {
