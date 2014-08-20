@@ -23,23 +23,24 @@ protocol MurphyLevelSceneDelegate {
 }
 
 class MurphyLevelScene: SKScene {
-    let atlas: SKTextureAtlas
-    let font: SKTexture
-    let level: MurphyLevel
-    let levelSize: CGSize
+    var atlas: SKTextureAtlas!
+    var font: SKTexture!
+    var level: MurphyLevel!
+    var levelSize: CGSize!
     var board: SKNode!
     var status: SKSpriteNode!
     
     var levelDelegate: MurphyLevelSceneDelegate?
     
-    init(level: MurphyLevel) {
-        self.level = level
-        self.levelSize = CGSize(width: CGFloat(level.width) * TILE_SIZE, height: CGFloat(level.height) * TILE_SIZE)
-        self.atlas = SKTextureAtlas(named: level.graphicsSetName)
-        self.font = SKTexture(imageNamed: "font-small")
-        super.init(size: CGSize(width: SCENE_WIDTH, height: SCENE_HEIGHT))
+    class func sceneWithLevel(level: MurphyLevel) -> MurphyLevelScene {
+        var scene = MurphyLevelScene.sceneWithSize(CGSize(width: SCENE_WIDTH, height: SCENE_HEIGHT))
+        scene.level = level
+        scene.levelSize = CGSize(width: CGFloat(level.width) * TILE_SIZE, height: CGFloat(level.height) * TILE_SIZE)
+        scene.atlas = SKTextureAtlas(named: level.graphicsSetName)
+        scene.font = SKTexture(imageNamed: "font-small")
+        return scene
     }
-    
+
     override func didMoveToView(view: SKView) {
         buildAnimations()
         buildBoard()
@@ -151,7 +152,7 @@ class MurphyLevelScene: SKScene {
     
     func handleKeyEvent(event: NSEvent, pressed: Bool) {
         // XXX where oh where are the key constants I seek?
-        if event.modifierFlags & .NumericPadKeyMask {
+        if (event.modifierFlags & NSEventModifierFlags.NumericPadKeyMask) != NSEventModifierFlags.allZeros {
             for keyChar in event.charactersIgnoringModifiers.unicodeScalars {
                 switch UInt32(keyChar) {
                 case 0xF700: // up

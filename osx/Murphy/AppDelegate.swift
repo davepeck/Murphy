@@ -49,8 +49,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, MurphyLevelSceneDelegate {
     func buildCurrentScene() {
         let level = MurphyLevel.fromResourceNamed(LevelNames[currentLevelIndex])
         
-        if level {
-            currentScene = MurphyLevelScene(level: level!)
+        if level != nil {
+            currentScene = MurphyLevelScene.sceneWithLevel(level!)
             currentScene!.levelDelegate = self
             currentScene!.scaleMode = .AspectFit
         } else {
@@ -59,7 +59,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MurphyLevelSceneDelegate {
     }
     
     func presentCurrentScene() {
-        if currentScene {
+        if currentScene != nil {
             self.skView!.presentScene(currentScene!)
             self.skView!.ignoresSiblingOrder = true
             self.skView!.showsFPS = true

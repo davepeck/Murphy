@@ -52,13 +52,16 @@ struct MurphyLevel {
     
     static func fromResourceNamed(name: String) -> MurphyLevel? {
         let path = NSBundle.mainBundle().pathForResource(name, ofType: "mlv")
-        return MurphyLevel.fromFileNamed(path)
+        if path != nil {
+            return MurphyLevel.fromFileNamed(path!)
+        }
+        return nil
     }
     
     static func fromFileNamed(path: String) -> MurphyLevel? {
         var error:NSError? = nil
         let data:NSData = NSData.dataWithContentsOfFile(path, options: nil, error: &error)
-        if error {
+        if error != nil {
             return nil
         } else {
             return MurphyLevel.fromData(data)
@@ -76,7 +79,7 @@ struct MurphyLevel {
 
         var level:MurphyLevel? = nil
         
-        if name && graphicsSetName && infotrons && width && height {
+        if (name != nil) && (graphicsSetName != nil) && (infotrons != nil) && (width != nil) && (height != nil) {
             let expectedRemaining = Int(width!) * Int(height!) * 2
             
             if scanner.remaining == expectedRemaining {
@@ -89,7 +92,7 @@ struct MurphyLevel {
                         let tileMapY = Int(scanner.readByte()!)
                         let tileMapRaw = (tileMapY * TILESET_WIDTH) + tileMapX
                         let tile = LevelTile.fromRaw(tileMapRaw)  // XXX I suspect fromRaw() is slow
-                        if tile {
+                        if tile != nil {
                             grid.append(tile!)
                         } else {
                             // XXX maybe labeled break? I hate this kind of control flow

@@ -22,7 +22,7 @@ protocol IntRawRepresentable {
     func toRaw() -> Int
 }
 
-class IntRawRepresentableRangeGenerator<T: IntRawRepresentable>: Generator {
+class IntRawRepresentableRangeGenerator<T: IntRawRepresentable>: GeneratorType {
     typealias Element = T
     
     var current: Int
@@ -47,7 +47,7 @@ func enumerate<T: IntRawRepresentable>(first: T, last: T) -> SequenceOf<T> {
     return SequenceOf<T>({ IntRawRepresentableRangeGenerator(first: first.toRaw(), last: last.toRaw()) })
 }
 
-class MappedRangeGenerator<T, U> : Generator {
+class MappedRangeGenerator<T, U> : GeneratorType {
     typealias Element = U
     
     var generator: GeneratorOf<T>
@@ -61,7 +61,7 @@ class MappedRangeGenerator<T, U> : Generator {
     func next() -> U? {
         var v:T? = generator.next()
         var u:U? = nil
-        if v {
+        if v != nil {
             u = transform(v!)
         }
         return u

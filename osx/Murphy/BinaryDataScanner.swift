@@ -41,7 +41,7 @@ class BinaryDataScanner {
     let littleEndian: Bool
     let encoding: NSStringEncoding
 
-    var current: ConstUnsafePointer<()>
+    var current: UnsafePointer<Void>
     var remaining: Int
     
     init(data: NSData, littleEndian: Bool, encoding: NSStringEncoding) {
@@ -58,9 +58,9 @@ class BinaryDataScanner {
             return nil
         }
         
-        let tCurrent = ConstUnsafePointer<T>(current)
+        let tCurrent = UnsafePointer<T>(current)
         let v = tCurrent.memory
-        current = ConstUnsafePointer<()>(tCurrent.successor())
+        current = UnsafePointer<Void>(tCurrent.successor())
         remaining -= sizeof(T)
         return littleEndian ? v.littleEndian : v.bigEndian
     }
@@ -85,7 +85,7 @@ class BinaryDataScanner {
     
     func readNullTerminatedString() -> String? {
         var string:String? = nil
-        var tCurrent = ConstUnsafePointer<UInt8>(current)
+        var tCurrent = UnsafePointer<UInt8>(current)
         var count: Int = 0
         
         // scan
@@ -98,7 +98,7 @@ class BinaryDataScanner {
         // create string if available
         if (remaining > 0 && tCurrent.memory == 0) {
             string = NSString(bytes: current, length: count, encoding: encoding) as String
-            current = ConstUnsafePointer<()>(tCurrent.successor())
+            current = UnsafePointer<()>(tCurrent.successor())
             remaining -= 1
         }
         
