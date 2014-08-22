@@ -65,24 +65,6 @@ class BinaryDataScanner {
         return littleEndian ? v.littleEndian : v.bigEndian
     }
     
-    /* convenience read funcs */
-    
-    func readByte() -> UInt8? {
-        return read()
-    }
-    
-    func read16() -> UInt16? {
-        return read()
-    }
-    
-    func read32() -> UInt32? {
-        return read()
-    }
-    
-    func read64() -> UInt64? {
-        return read()
-    }
-    
     func readNullTerminatedString() -> String? {
         var string:String? = nil
         var tCurrent = UnsafePointer<UInt8>(current)

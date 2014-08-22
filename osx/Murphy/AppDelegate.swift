@@ -40,8 +40,8 @@ let LevelNames = [
 
 
 class AppDelegate: NSObject, NSApplicationDelegate, MurphyLevelSceneDelegate {
-    @IBOutlet var window: NSWindow?
-    @IBOutlet var skView: SKView?
+    @IBOutlet var window: NSWindow!
+    @IBOutlet var skView: SKView!
     
     var currentLevelIndex: Int = 0
     var currentScene: MurphyLevelScene?
@@ -49,8 +49,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, MurphyLevelSceneDelegate {
     func buildCurrentScene() {
         let level = MurphyLevel.fromResourceNamed(LevelNames[currentLevelIndex])
         
-        if level != nil {
-            currentScene = MurphyLevelScene.sceneWithLevel(level!)
+        if let level = level {
+            currentScene = MurphyLevelScene.sceneWithLevel(level)
             currentScene!.levelDelegate = self
             currentScene!.scaleMode = .AspectFit
         } else {
@@ -59,19 +59,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, MurphyLevelSceneDelegate {
     }
     
     func presentCurrentScene() {
-        if currentScene != nil {
-            self.skView!.presentScene(currentScene!)
-            self.skView!.ignoresSiblingOrder = true
-            self.skView!.showsFPS = true
-            self.skView!.showsNodeCount = true
+        if let currentScene = currentScene {
+            self.skView.presentScene(currentScene)
+            self.skView.ignoresSiblingOrder = true
+            self.skView.showsFPS = true
+            self.skView.showsNodeCount = true
         }
     }
     
     func levelSceneDidEnd(levelScene: MurphyLevelScene) {
-        currentScene!.levelDelegate = nil
-        currentLevelIndex = (currentLevelIndex + 1) % LevelNames.count
-        buildCurrentScene()
-        presentCurrentScene()
+        if let currentScene = currentScene {
+            currentScene.levelDelegate = nil
+            currentLevelIndex = (currentLevelIndex + 1) % LevelNames.count
+            buildCurrentScene()
+            presentCurrentScene()
+        }
     }
     
     func applicationDidFinishLaunching(aNotification: NSNotification?) {

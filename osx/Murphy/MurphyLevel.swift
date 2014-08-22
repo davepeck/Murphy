@@ -51,21 +51,22 @@ struct MurphyLevel {
     }
     
     static func fromResourceNamed(name: String) -> MurphyLevel? {
+        var result:MurphyLevel? = nil
         let path = NSBundle.mainBundle().pathForResource(name, ofType: "mlv")
-        if path != nil {
-            return MurphyLevel.fromFileNamed(path!)
+        if let path = path {
+            result = MurphyLevel.fromFileNamed(path)
         }
-        return nil
+        return result
     }
     
     static func fromFileNamed(path: String) -> MurphyLevel? {
+        var result:MurphyLevel? = nil
         var error:NSError? = nil
         let data:NSData = NSData.dataWithContentsOfFile(path, options: nil, error: &error)
-        if error != nil {
-            return nil
-        } else {
-            return MurphyLevel.fromData(data)
+        if error == nil {
+            result = MurphyLevel.fromData(data)
         }
+        return result
     }
     
     static func fromData(data: NSData) -> MurphyLevel? {
@@ -73,9 +74,9 @@ struct MurphyLevel {
         
         let name = scanner.readNullTerminatedString()
         let graphicsSetName = scanner.readNullTerminatedString()
-        let infotrons = scanner.read16()
-        let width = scanner.read16()
-        let height = scanner.read16()
+        let infotrons:UInt16? = scanner.read()
+        let width:UInt16? = scanner.read()
+        let height:UInt16? = scanner.read()
 
         var level:MurphyLevel? = nil
         
@@ -88,14 +89,13 @@ struct MurphyLevel {
                 for y in 0..<Int(height!) {
                     for x in 0..<Int(width!) {
                         // smooth over stupid thing in old .mbl files
-                        let tileMapX = Int(scanner.readByte()!)
-                        let tileMapY = Int(scanner.readByte()!)
-                        let tileMapRaw = (tileMapY * TILESET_WIDTH) + tileMapX
+                        let tileMapX:UInt8 = scanner.read()!
+                        let tileMapY:UInt8 = scanner.read()!
+                        let tileMapRaw = (Int(tileMapY) * TILESET_WIDTH) + Int(tileMapX)
                         let tile = LevelTile.fromRaw(tileMapRaw)  // XXX I suspect fromRaw() is slow
-                        if tile != nil {
-                            grid.append(tile!)
+                        if let tile = tile {
+                            grid.append(tile)
                         } else {
-                            // XXX maybe labeled break? I hate this kind of control flow
                             return nil
                         }
                     }

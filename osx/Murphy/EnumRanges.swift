@@ -53,8 +53,8 @@ class MappedRangeGeneratorType<T, U> : GeneratorType {
     func next() -> U? {
         var v:T? = generator.next()
         var u:U? = nil
-        if v != nil {
-            u = transform(v!)
+        if let v = v {
+            u = transform(v)
         }
         return u
     }
