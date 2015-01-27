@@ -34,7 +34,6 @@
 		5529740F197C996100345824 /* Trapped Inside.mlv in Resources */ = {isa = PBXBuildFile; fileRef = 552973F4197C996100345824 /* Trapped Inside.mlv */; };
 		55297410197C996100345824 /* Wizard.mlv in Resources */ = {isa = PBXBuildFile; fileRef = 552973F5197C996100345824 /* Wizard.mlv */; };
 		55297411197C996100345824 /* World.mlv in Resources */ = {isa = PBXBuildFile; fileRef = 552973F6197C996100345824 /* World.mlv */; };
-		55297415197CC49C00345824 /* EnumRanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55297414197CC49C00345824 /* EnumRanges.swift */; };
 		555D204F197891E200752DE5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D204E197891E200752DE5 /* main.swift */; };
 		555D2051197891E200752DE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D2050197891E200752DE5 /* AppDelegate.swift */; };
 		555D2057197891E200752DE5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 555D2056197891E200752DE5 /* Images.xcassets */; };
@@ -44,6 +43,7 @@
 		555D20731978A42D00752DE5 /* infotron.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 555D20701978A42D00752DE5 /* infotron.atlas */; };
 		555D20741978A42D00752DE5 /* savanatron.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 555D20711978A42D00752DE5 /* savanatron.atlas */; };
 		555D20761979DEB200752DE5 /* BinaryDataScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D20751979DEB200752DE5 /* BinaryDataScanner.swift */; };
+		55906DC71A7725C000ACC74C /* EnumRanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55906DC61A7725C000ACC74C /* EnumRanges.swift */; };
 		5590B9EC197C2A7C00024727 /* MurphyLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5590B9EB197C2A7C00024727 /* MurphyLevel.swift */; };
 		5590B9EE197C2B7200024727 /* MurphyTiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5590B9ED197C2B7200024727 /* MurphyTiles.swift */; };
 		5590B9F2197C711A00024727 /* MurphyLevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5590B9F1197C711A00024727 /* MurphyLevelScene.swift */; };
@@ -87,7 +87,6 @@
 		552973F4197C996100345824 /* Trapped Inside.mlv */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Trapped Inside.mlv"; sourceTree = "<group>"; };
 		552973F5197C996100345824 /* Wizard.mlv */ = {isa = PBXFileReference; lastKnownFileType = file; path = Wizard.mlv; sourceTree = "<group>"; };
 		552973F6197C996100345824 /* World.mlv */ = {isa = PBXFileReference; lastKnownFileType = file; path = World.mlv; sourceTree = "<group>"; };
-		55297414197CC49C00345824 /* EnumRanges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumRanges.swift; sourceTree = "<group>"; };
 		555D2049197891E200752DE5 /* Murphy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Murphy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		555D204D197891E200752DE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		555D204E197891E200752DE5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -101,6 +100,7 @@
 		555D20701978A42D00752DE5 /* infotron.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = infotron.atlas; sourceTree = "<group>"; };
 		555D20711978A42D00752DE5 /* savanatron.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = savanatron.atlas; sourceTree = "<group>"; };
 		555D20751979DEB200752DE5 /* BinaryDataScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryDataScanner.swift; sourceTree = "<group>"; };
+		55906DC61A7725C000ACC74C /* EnumRanges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumRanges.swift; sourceTree = "<group>"; };
 		5590B9EB197C2A7C00024727 /* MurphyLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MurphyLevel.swift; sourceTree = "<group>"; };
 		5590B9ED197C2B7200024727 /* MurphyTiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MurphyTiles.swift; sourceTree = "<group>"; };
 		5590B9F1197C711A00024727 /* MurphyLevelScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MurphyLevelScene.swift; sourceTree = "<group>"; };
@@ -162,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				555D204B197891E200752DE5 /* Murphy */,
-				555D2062197891E200752DE5 /* MurphyTests */,
 				555D204A197891E200752DE5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -189,9 +188,11 @@
 				555D204C197891E200752DE5 /* Supporting Files */,
 				555D20751979DEB200752DE5 /* BinaryDataScanner.swift */,
 				5590B9EB197C2A7C00024727 /* MurphyLevel.swift */,
+				55906DC61A7725C000ACC74C /* EnumRanges.swift */,
 				5590B9ED197C2B7200024727 /* MurphyTiles.swift */,
 				5590B9F1197C711A00024727 /* MurphyLevelScene.swift */,
-				55297414197CC49C00345824 /* EnumRanges.swift */,
+				555D2063197891E200752DE5 /* Supporting Files */,
+				555D2062197891E200752DE5 /* MurphyTests */,
 			);
 			path = Murphy;
 			sourceTree = "<group>";
@@ -209,10 +210,9 @@
 			isa = PBXGroup;
 			children = (
 				555D2065197891E200752DE5 /* MurphyTests.swift */,
-				555D2063197891E200752DE5 /* Supporting Files */,
 			);
 			path = MurphyTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		555D2063197891E200752DE5 /* Supporting Files */ = {
 			isa = PBXGroup;
@@ -220,7 +220,8 @@
 				555D2064197891E200752DE5 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
+			path = MurphyTests;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -355,7 +356,7 @@
 				5590B9EE197C2B7200024727 /* MurphyTiles.swift in Sources */,
 				5590B9F2197C711A00024727 /* MurphyLevelScene.swift in Sources */,
 				555D2051197891E200752DE5 /* AppDelegate.swift in Sources */,
-				55297415197CC49C00345824 /* EnumRanges.swift in Sources */,
+				55906DC71A7725C000ACC74C /* EnumRanges.swift in Sources */,
 				555D204F197891E200752DE5 /* main.swift in Sources */,
 				555D20761979DEB200752DE5 /* BinaryDataScanner.swift in Sources */,
 			);

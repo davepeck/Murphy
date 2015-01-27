@@ -79,7 +79,7 @@ class BinaryDataScanner {
         
         // create string if available
         if (remaining > 0 && tCurrent.memory == 0) {
-            string = NSString(bytes: current, length: count, encoding: encoding) as String
+            string = NSString(bytes: current, length: count, encoding: encoding) as String?
             current = UnsafePointer<()>(tCurrent.successor())
             remaining -= 1
         }

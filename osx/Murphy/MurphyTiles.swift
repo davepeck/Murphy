@@ -447,7 +447,7 @@ enum LevelTile : Int {
     case UpLeftScissorTile
     
     func textureName() -> String {
-        return LevelTileTextureNames[self.toRaw()]
+        return LevelTileTextureNames[self.rawValue]
     }
     
     static func infotrons() -> SequenceOf<LevelTile> {
@@ -645,7 +645,7 @@ enum OliverTile : Int {
     case ExLaxBubLastFrame
     
     func textureName() -> String {
-        return OliverTileTextureNames[self.toRaw() - 220]
+        return OliverTileTextureNames[self.rawValue - 220]
     }
     
     static func bubs() -> SequenceOf<OliverTile> {

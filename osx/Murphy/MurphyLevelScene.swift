@@ -33,7 +33,7 @@ class MurphyLevelScene: SKScene {
     var levelDelegate: MurphyLevelSceneDelegate?
     
     class func sceneWithLevel(level: MurphyLevel) -> MurphyLevelScene {
-        var scene = MurphyLevelScene.sceneWithSize(CGSize(width: SCENE_WIDTH, height: SCENE_HEIGHT))
+        var scene = MurphyLevelScene(size:CGSize(width: SCENE_WIDTH, height: SCENE_HEIGHT))
         scene.level = level
         scene.levelSize = CGSize(width: CGFloat(level.width) * TILE_SIZE, height: CGFloat(level.height) * TILE_SIZE)
         scene.atlas = SKTextureAtlas(named: level.graphicsSetName)
@@ -135,15 +135,15 @@ class MurphyLevelScene: SKScene {
         }
     }
     
-    override func keyDown(theEvent: NSEvent!) {
+    override func keyDown(theEvent: NSEvent) {
         handleKeyEvent(theEvent, pressed: true)
     }
     
-    override func keyUp(theEvent: NSEvent!) {
+    override func keyUp(theEvent: NSEvent) {
         handleKeyEvent(theEvent, pressed: false)
     }
 
-    override func mouseUp(theEvent: NSEvent!) {
+    override func mouseUp(theEvent: NSEvent) {
         levelDelegate?.levelSceneDidEnd(self)
     }
 
@@ -153,22 +153,24 @@ class MurphyLevelScene: SKScene {
     func handleKeyEvent(event: NSEvent, pressed: Bool) {
         // XXX where oh where are the key constants I seek?
         if (event.modifierFlags & NSEventModifierFlags.NumericPadKeyMask) != NSEventModifierFlags.allZeros {
-            for keyChar in event.charactersIgnoringModifiers.unicodeScalars {
-                switch UInt32(keyChar) {
-                case 0xF700: // up
-                    motionY = pressed ? -SPEED : 0
+            if let scalars = event.charactersIgnoringModifiers?.unicodeScalars {
+                for keyChar in scalars {
+                    switch UInt32(keyChar) {
+                    case 0xF700: // up
+                        motionY = pressed ? -SPEED : 0
                         
-                case 0xF701: // down
-                    motionY = pressed ? SPEED : 0
-                    
-                case 0xF702: // left
-                    motionX = pressed ? SPEED : 0
-                    
-                case 0xF703: // right
-                    motionX = pressed ? -SPEED : 0
-                
-                default:
-                    break
+                    case 0xF701: // down
+                        motionY = pressed ? SPEED : 0
+                        
+                    case 0xF702: // left
+                        motionX = pressed ? SPEED : 0
+                        
+                    case 0xF703: // right
+                        motionX = pressed ? -SPEED : 0
+                        
+                    default:
+                        break
+                    }
                 }
             }
         }

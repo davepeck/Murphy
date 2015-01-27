@@ -11,9 +11,9 @@ import Foundation
 // Just toying with Swift types; this is nuclear-level nonsense for anything "real"
 // Finally, with Swift b6, I can use Swift's RawRepresentable directly!
 
-class RawRepresentableRangeGeneratorType<T: RawRepresentable where T.Raw : Comparable, T.Raw : ForwardIndexType>: GeneratorType {
+class RawRepresentableRangeGeneratorType<T: RawRepresentable where T.RawValue : Comparable, T.RawValue : ForwardIndexType>: GeneratorType {
     typealias Element = T
-    typealias ElementRaw = T.Raw
+    typealias ElementRaw = T.RawValue
     
     var current: ElementRaw
     let last: ElementRaw
@@ -26,7 +26,7 @@ class RawRepresentableRangeGeneratorType<T: RawRepresentable where T.Raw : Compa
     func next() -> T? {
         var v:Element?
         if (current <= last) {
-            v = T.fromRaw(current)
+            v = T(rawValue:current)
             current++;
         }
         return v
@@ -34,8 +34,8 @@ class RawRepresentableRangeGeneratorType<T: RawRepresentable where T.Raw : Compa
 }
 
 
-func enumerate<T: RawRepresentable where T.Raw : Comparable, T.Raw : ForwardIndexType>(first: T, last: T) -> SequenceOf<T> {
-    return SequenceOf<T>({ RawRepresentableRangeGeneratorType(first: first.toRaw(), last: last.toRaw()) })
+func enumerate<T: RawRepresentable where T.RawValue : Comparable, T.RawValue : ForwardIndexType>(first: T, last: T) -> SequenceOf<T> {
+    return SequenceOf<T>({ RawRepresentableRangeGeneratorType(first: first.rawValue, last: last.rawValue) })
 }
 
 

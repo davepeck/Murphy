@@ -62,8 +62,7 @@ struct MurphyLevel {
     static func fromFileNamed(path: String) -> MurphyLevel? {
         var result:MurphyLevel? = nil
         var error:NSError? = nil
-        let data:NSData = NSData.dataWithContentsOfFile(path, options: nil, error: &error)
-        if error == nil {
+        if let data:NSData = NSData(contentsOfFile:path, options: nil, error: &error) {
             result = MurphyLevel.fromData(data)
         }
         return result
@@ -92,7 +91,7 @@ struct MurphyLevel {
                         let tileMapX:UInt8 = scanner.read()!
                         let tileMapY:UInt8 = scanner.read()!
                         let tileMapRaw = (Int(tileMapY) * TILESET_WIDTH) + Int(tileMapX)
-                        let tile = LevelTile.fromRaw(tileMapRaw)  // XXX I suspect fromRaw() is slow
+                        let tile = LevelTile(rawValue:tileMapRaw)  // XXX I suspect fromRaw() is slow
                         if let tile = tile {
                             grid.append(tile)
                         } else {
