@@ -76,7 +76,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MurphyLevelSceneDelegate {
         }
     }
     
-    func applicationDidFinishLaunching(aNotification: NSNotification?) {
+    func applicationDidFinishLaunching(aNotification: NSNotification) {
         buildCurrentScene()
         presentCurrentScene()
     }
