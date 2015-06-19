@@ -38,7 +38,6 @@
 		555D2051197891E200752DE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D2050197891E200752DE5 /* AppDelegate.swift */; };
 		555D2057197891E200752DE5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 555D2056197891E200752DE5 /* Images.xcassets */; };
 		555D205A197891E200752DE5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 555D2058197891E200752DE5 /* MainMenu.xib */; };
-		555D2066197891E200752DE5 /* MurphyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D2065197891E200752DE5 /* MurphyTests.swift */; };
 		555D20721978A42D00752DE5 /* aquatron.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 555D206F1978A42D00752DE5 /* aquatron.atlas */; };
 		555D20731978A42D00752DE5 /* infotron.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 555D20701978A42D00752DE5 /* infotron.atlas */; };
 		555D20741978A42D00752DE5 /* savanatron.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 555D20711978A42D00752DE5 /* savanatron.atlas */; };
@@ -48,16 +47,6 @@
 		5590B9EE197C2B7200024727 /* MurphyTiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5590B9ED197C2B7200024727 /* MurphyTiles.swift */; };
 		5590B9F2197C711A00024727 /* MurphyLevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5590B9F1197C711A00024727 /* MurphyLevelScene.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		555D2060197891E200752DE5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 555D2041197891E200752DE5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 555D2048197891E200752DE5;
-			remoteInfo = Murphy;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		552973DC197C996100345824 /* Achtung!.mlv */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Achtung!.mlv"; sourceTree = "<group>"; };
@@ -93,9 +82,7 @@
 		555D2050197891E200752DE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		555D2056197891E200752DE5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		555D2059197891E200752DE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		555D205F197891E200752DE5 /* MurphyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MurphyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		555D2064197891E200752DE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		555D2065197891E200752DE5 /* MurphyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MurphyTests.swift; sourceTree = "<group>"; };
 		555D206F1978A42D00752DE5 /* aquatron.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = aquatron.atlas; sourceTree = "<group>"; };
 		555D20701978A42D00752DE5 /* infotron.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = infotron.atlas; sourceTree = "<group>"; };
 		555D20711978A42D00752DE5 /* savanatron.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = savanatron.atlas; sourceTree = "<group>"; };
@@ -108,13 +95,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		555D2046197891E200752DE5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		555D205C197891E200752DE5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -170,7 +150,6 @@
 			isa = PBXGroup;
 			children = (
 				555D2049197891E200752DE5 /* Murphy.app */,
-				555D205F197891E200752DE5 /* MurphyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -192,7 +171,6 @@
 				5590B9ED197C2B7200024727 /* MurphyTiles.swift */,
 				5590B9F1197C711A00024727 /* MurphyLevelScene.swift */,
 				555D2063197891E200752DE5 /* Supporting Files */,
-				555D2062197891E200752DE5 /* MurphyTests */,
 			);
 			path = Murphy;
 			sourceTree = "<group>";
@@ -205,14 +183,6 @@
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
-		};
-		555D2062197891E200752DE5 /* MurphyTests */ = {
-			isa = PBXGroup;
-			children = (
-				555D2065197891E200752DE5 /* MurphyTests.swift */,
-			);
-			path = MurphyTests;
-			sourceTree = SOURCE_ROOT;
 		};
 		555D2063197891E200752DE5 /* Supporting Files */ = {
 			isa = PBXGroup;
@@ -243,39 +213,18 @@
 			productReference = 555D2049197891E200752DE5 /* Murphy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		555D205E197891E200752DE5 /* MurphyTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 555D206C197891E200752DE5 /* Build configuration list for PBXNativeTarget "MurphyTests" */;
-			buildPhases = (
-				555D205B197891E200752DE5 /* Sources */,
-				555D205C197891E200752DE5 /* Frameworks */,
-				555D205D197891E200752DE5 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				555D2061197891E200752DE5 /* PBXTargetDependency */,
-			);
-			name = MurphyTests;
-			productName = MurphyTests;
-			productReference = 555D205F197891E200752DE5 /* MurphyTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		555D2041197891E200752DE5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Dave Peck";
 				TargetAttributes = {
 					555D2048197891E200752DE5 = {
 						CreatedOnToolsVersion = 6.0;
-					};
-					555D205E197891E200752DE5 = {
-						CreatedOnToolsVersion = 6.0;
-						TestTargetID = 555D2048197891E200752DE5;
 					};
 				};
 			};
@@ -293,7 +242,6 @@
 			projectRoot = "";
 			targets = (
 				555D2048197891E200752DE5 /* Murphy */,
-				555D205E197891E200752DE5 /* MurphyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -338,13 +286,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		555D205D197891E200752DE5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -362,23 +303,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		555D205B197891E200752DE5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				555D2066197891E200752DE5 /* MurphyTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		555D2061197891E200752DE5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 555D2048197891E200752DE5 /* Murphy */;
-			targetProxy = 555D2060197891E200752DE5 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		555D2058197891E200752DE5 /* MainMenu.xib */ = {
@@ -412,6 +337,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -476,6 +402,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Murphy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.davepeck.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -487,43 +414,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Murphy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.davepeck.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		555D206D197891E200752DE5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Murphy.app/Contents/MacOS/Murphy";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = MurphyTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-			};
-			name = Debug;
-		};
-		555D206E197891E200752DE5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Murphy.app/Contents/MacOS/Murphy";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = MurphyTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;
 		};
@@ -544,15 +436,6 @@
 			buildConfigurations = (
 				555D206A197891E200752DE5 /* Debug */,
 				555D206B197891E200752DE5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		555D206C197891E200752DE5 /* Build configuration list for PBXNativeTarget "MurphyTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				555D206D197891E200752DE5 /* Debug */,
-				555D206E197891E200752DE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

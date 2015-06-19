@@ -450,20 +450,20 @@ enum LevelTile : Int {
         return LevelTileTextureNames[self.rawValue]
     }
     
-    static func infotrons() -> SequenceOf<LevelTile> {
-        return enumerate(.FirstInfotronTile, .LastInfotronTile)
+    static func infotrons() -> AnySequence<LevelTile> {
+        return (.FirstInfotronTile)...(.LastInfotronTile)
     }
     
-    static func quarks() -> SequenceOf<LevelTile> {
-        return enumerate(.FirstQuarkTile, .LastQuarkTile)
+    static func quarks() -> AnySequence<LevelTile> {
+        return (.FirstQuarkTile)...(.LastQuarkTile)
     }
     
-    static func terminals() -> SequenceOf<LevelTile> {
-        return enumerate(.FirstTerminalTile, .LastTerminalTile)
+    static func terminals() -> AnySequence<LevelTile> {
+        return (.FirstTerminalTile)...(.LastTerminalTile)
     }
     
-    static func scissors() -> SequenceOf<LevelTile> {
-        return enumerate(.FirstUpScissorTile, .UpLeftScissorTile)
+    static func scissors() -> AnySequence<LevelTile> {
+        return (.FirstUpScissorTile)...(.UpLeftScissorTile)
     }
 }
 
@@ -648,8 +648,8 @@ enum OliverTile : Int {
         return OliverTileTextureNames[self.rawValue - 220]
     }
     
-    static func bubs() -> SequenceOf<OliverTile> {
-        return enumerate(.BubFrame, .DBubFrame2)
+    static func bubs() -> AnySequence<OliverTile> {
+        return (.BubFrame)...(.DBubFrame2)
     }
 }
 

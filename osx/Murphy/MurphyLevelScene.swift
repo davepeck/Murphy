@@ -33,7 +33,7 @@ class MurphyLevelScene: SKScene {
     var levelDelegate: MurphyLevelSceneDelegate?
     
     class func sceneWithLevel(level: MurphyLevel) -> MurphyLevelScene {
-        var scene = MurphyLevelScene(size:CGSize(width: SCENE_WIDTH, height: SCENE_HEIGHT))
+        let scene = MurphyLevelScene(size:CGSize(width: SCENE_WIDTH, height: SCENE_HEIGHT))
         scene.level = level
         scene.levelSize = CGSize(width: CGFloat(level.width) * TILE_SIZE, height: CGFloat(level.height) * TILE_SIZE)
         scene.atlas = SKTextureAtlas(named: level.graphicsSetName)
@@ -55,26 +55,20 @@ class MurphyLevelScene: SKScene {
 
     func buildAnimations() {
         // XXX any real code would put this stuff somewhere else
-        // and the nuclear hammer of EnumRanges.swift? notsomuch
-        let infotronTiles = LevelTile.infotrons()
-        let infotronTextures = infotronTiles.map { self.atlas.textureNamed($0.textureName()) }
-        infotronAnimation = SKAction.animateWithTextures(infotronTextures.toArray(), timePerFrame: 0.075)
+        let infotronTextures = LevelTile.infotrons().map { self.atlas.textureNamed($0.textureName()) }
+        infotronAnimation = SKAction.animateWithTextures(infotronTextures, timePerFrame: 0.075)
         
-        let quarkTiles = LevelTile.quarks()
-        let quarkTextures = quarkTiles.map { self.atlas.textureNamed($0.textureName()) }
-        quarkAnimation = SKAction.animateWithTextures(quarkTextures.toArray(), timePerFrame: 0.175)
+        let quarkTextures = LevelTile.quarks().map { self.atlas.textureNamed($0.textureName()) }
+        quarkAnimation = SKAction.animateWithTextures(quarkTextures, timePerFrame: 0.175)
         
-        let terminalTiles = LevelTile.terminals()
-        let terminalTextures = terminalTiles.map { self.atlas.textureNamed($0.textureName()) }
-        terminalAnimation = SKAction.animateWithTextures(terminalTextures.toArray(), timePerFrame: 0.175)
+        let terminalTextures = LevelTile.terminals().map { self.atlas.textureNamed($0.textureName()) }
+        terminalAnimation = SKAction.animateWithTextures(terminalTextures, timePerFrame: 0.175)
         
-        let scissorTiles = LevelTile.scissors()
-        let scissorTextures = scissorTiles.map { self.atlas.textureNamed($0.textureName()) }
-        scissorAnimation = SKAction.animateWithTextures(scissorTextures.toArray(), timePerFrame: 0.175)
+        let scissorTextures = LevelTile.scissors().map { self.atlas.textureNamed($0.textureName()) }
+        scissorAnimation = SKAction.animateWithTextures(scissorTextures, timePerFrame: 0.175)
         
-        let oliverTiles = OliverTile.bubs()
-        let oliverTextures = oliverTiles.map { self.atlas.textureNamed($0.textureName()) }
-        oliverAnimation = SKAction.animateWithTextures(oliverTextures.toArray(), timePerFrame: 0.175)
+        let oliverTextures = OliverTile.bubs().map { self.atlas.textureNamed($0.textureName()) }
+        oliverAnimation = SKAction.animateWithTextures(oliverTextures, timePerFrame: 0.175)
     }
     
     func buildStatus() {
@@ -152,7 +146,7 @@ class MurphyLevelScene: SKScene {
     
     func handleKeyEvent(event: NSEvent, pressed: Bool) {
         // XXX where oh where are the key constants I seek?
-        if (event.modifierFlags & NSEventModifierFlags.NumericPadKeyMask) != NSEventModifierFlags.allZeros {
+        if event.modifierFlags.contains(NSEventModifierFlags.NumericPadKeyMask) {
             if let scalars = event.charactersIgnoringModifiers?.unicodeScalars {
                 for keyChar in scalars {
                     switch UInt32(keyChar) {

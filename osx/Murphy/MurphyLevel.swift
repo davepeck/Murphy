@@ -61,10 +61,10 @@ struct MurphyLevel {
     
     static func fromFileNamed(path: String) -> MurphyLevel? {
         var result:MurphyLevel? = nil
-        var error:NSError? = nil
-        if let data:NSData = NSData(contentsOfFile:path, options: nil, error: &error) {
+        do {
+            let data:NSData = try NSData(contentsOfFile:path, options: [])
             result = MurphyLevel.fromData(data)
-        }
+        } catch {}
         return result
     }
     
@@ -85,8 +85,8 @@ struct MurphyLevel {
             if scanner.remaining == expectedRemaining {
                 var grid = Array<LevelTile>()
                 
-                for y in 0..<Int(height!) {
-                    for x in 0..<Int(width!) {
+                for _ in 0..<Int(height!) {
+                    for _ in 0..<Int(width!) {
                         // smooth over stupid thing in old .mbl files
                         let tileMapX:UInt8 = scanner.read()!
                         let tileMapY:UInt8 = scanner.read()!
