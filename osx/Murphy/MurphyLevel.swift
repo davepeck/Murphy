@@ -20,43 +20,35 @@ struct MurphyLevel {
     let grid: Array<LevelTile>
     
     func gridIndexAt(x: Int, y: Int) -> Int? {
-        var gridIndex:Int? = nil
-        
-        if (0 <= x) && (x < width) && (0 <= y) && (y < height) {
-            gridIndex = (y * width) + x
+        guard (0 <= x) && (x < width) && (0 <= y) && (y < height) else {
+            return nil
         }
         
-        return gridIndex
+        return (y * width) + x
     }
     
     func tileAt(x: Int, y: Int) -> LevelTile? {
-        var tile:LevelTile? = nil
-        let i:Int? = gridIndexAt(x, y: y)
-        
-        if let gi = i {
-            tile = grid[gi]
+        guard let i = gridIndexAt(x, y: y) else {
+            return nil
         }
-
-        return tile
+        
+        return grid[i]
     }
     
     func textureNameAt(x: Int, y:Int) -> String? {
-        var textureName:String? = nil
-        
-        if let tile = tileAt(x, y: y) {
-            textureName = tile.textureName()
+        guard let tile = tileAt(x, y: y) else {
+            return nil
         }
-        
-        return textureName
+
+        return tile.textureName()
     }
     
     static func fromResourceNamed(name: String) -> MurphyLevel? {
-        var result:MurphyLevel? = nil
-        let path = NSBundle.mainBundle().pathForResource(name, ofType: "mlv")
-        if let path = path {
-            result = MurphyLevel.fromFileNamed(path)
+        guard let path = NSBundle.mainBundle().pathForResource(name, ofType: "mlv") else {
+            return nil
         }
-        return result
+        
+        return MurphyLevel.fromFileNamed(path)
     }
     
     static func fromFileNamed(path: String) -> MurphyLevel? {
@@ -91,12 +83,10 @@ struct MurphyLevel {
                         let tileMapX:UInt8 = scanner.read()!
                         let tileMapY:UInt8 = scanner.read()!
                         let tileMapRaw = (Int(tileMapY) * TILESET_WIDTH) + Int(tileMapX)
-                        let tile = LevelTile(rawValue:tileMapRaw)  // XXX I suspect fromRaw() is slow
-                        if let tile = tile {
-                            grid.append(tile)
-                        } else {
+                        guard let tile = LevelTile(rawValue:tileMapRaw) else {
                             return nil
                         }
+                        grid.append(tile)
                     }
                 }
                 

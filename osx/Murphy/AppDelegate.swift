@@ -47,15 +47,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, MurphyLevelSceneDelegate {
     var currentScene: MurphyLevelScene?
 
     func buildCurrentScene() {
-        let level = MurphyLevel.fromResourceNamed(LevelNames[currentLevelIndex])
-        
-        if let level = level {
-            currentScene = MurphyLevelScene.sceneWithLevel(level)
-            currentScene!.levelDelegate = self
-            currentScene!.scaleMode = .AspectFit
-        } else {
-            currentScene = nil
+        guard let level = MurphyLevel.fromResourceNamed(LevelNames[currentLevelIndex]) else {
+            return
         }
+        
+        currentScene = MurphyLevelScene.sceneWithLevel(level)
+        currentScene!.levelDelegate = self
+        currentScene!.scaleMode = .AspectFit
     }
     
     func presentCurrentScene() {
