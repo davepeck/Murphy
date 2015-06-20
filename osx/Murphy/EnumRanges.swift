@@ -39,15 +39,7 @@ extension RawRepresentable where Self.RawValue : Comparable, Self.RawValue : For
 }
 
 
-extension AnySequence {
-    func toArray() -> [T]
-    {
-        return [T](self)
-    }
-}
-
-
-// Not all overloads of ... produce a Range in the standard library, but still, this is probably a step too far.
+// This is probably a step too far.
 func ...<T : RawRepresentable where T.RawValue : Comparable, T.RawValue: ForwardIndexType>(start: T, end: T) -> AnySequence<T>
 {
     return start.to(end)
