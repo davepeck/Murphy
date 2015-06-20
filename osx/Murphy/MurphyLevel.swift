@@ -63,37 +63,35 @@ struct MurphyLevel {
     static func fromData(data: NSData) -> MurphyLevel? {
         let scanner = BinaryDataScanner(data: data, littleEndian: false, encoding: NSASCIIStringEncoding)
         
-        let name = scanner.readNullTerminatedString()
-        let graphicsSetName = scanner.readNullTerminatedString()
-        let infotrons:UInt16? = scanner.read()
-        let width:UInt16? = scanner.read()
-        let height:UInt16? = scanner.read()
-
-        var level:MurphyLevel? = nil
+        guard let name = scanner.readNullTerminatedString(),
+            let graphicsSetName = scanner.readNullTerminatedString(),
+            let infotrons:UInt16 = scanner.read(),
+            let width:UInt16 = scanner.read(),
+            let height:UInt16 = scanner.read() else {
+                return nil
+        }
         
-        if (name != nil) && (graphicsSetName != nil) && (infotrons != nil) && (width != nil) && (height != nil) {
-            let expectedRemaining = Int(width!) * Int(height!) * 2
-            
-            if scanner.remaining == expectedRemaining {
-                var grid = Array<LevelTile>()
-                
-                for _ in 0..<Int(height!) {
-                    for _ in 0..<Int(width!) {
-                        // smooth over stupid thing in old .mbl files
-                        let tileMapX:UInt8 = scanner.read()!
-                        let tileMapY:UInt8 = scanner.read()!
-                        let tileMapRaw = (Int(tileMapY) * TILESET_WIDTH) + Int(tileMapX)
-                        guard let tile = LevelTile(rawValue:tileMapRaw) else {
-                            return nil
-                        }
-                        grid.append(tile)
-                    }
+        let expectedRemaining = Int(width) * Int(height) * 2
+        
+        guard scanner.remaining == expectedRemaining else {
+            return nil
+        }
+        
+        var grid = Array<LevelTile>()
+        
+        for _ in 0..<Int(height) {
+            for _ in 0..<Int(width) {
+                // smooth over stupid thing in old .mbl files
+                let tileMapX:UInt8 = scanner.read()!
+                let tileMapY:UInt8 = scanner.read()!
+                let tileMapRaw = (Int(tileMapY) * TILESET_WIDTH) + Int(tileMapX)
+                guard let tile = LevelTile(rawValue:tileMapRaw) else {
+                    return nil
                 }
-                
-                level = MurphyLevel(name: name!, graphicsSetName: graphicsSetName!, infotrons: Int(infotrons!), width: Int(width!), height: Int(height!), grid: grid)
+                grid.append(tile)
             }
         }
         
-        return level
+        return MurphyLevel(name: name, graphicsSetName: graphicsSetName, infotrons: Int(infotrons), width: Int(width), height: Int(height), grid: grid)
     }
 }
