@@ -9,19 +9,16 @@
 import Foundation
 
 class RawRepresentableGenerator <T: RawRepresentable where T.RawValue : Comparable, T.RawValue : ForwardIndexType> : AnyGenerator<T> {
-    typealias Element = T
-    typealias ElementRaw = T.RawValue
+    var current: T.RawValue
+    let last: T.RawValue
     
-    var current: ElementRaw
-    let last: ElementRaw
-    
-    init(first: Element, last: Element) {
+    init(first: T, last: T) {
         self.current = first.rawValue
         self.last = last.rawValue
     }
     
     override func next() -> T? {
-        var v:Element?
+        var v:T?
         if (current <= last) {
             v = T(rawValue:current)
             current = current.successor()
