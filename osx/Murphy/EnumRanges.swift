@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RawRepresentableGenerator <T: RawRepresentable where T.RawValue : Comparable, T.RawValue : ForwardIndexType> : AnyGenerator<T> {
+class RawRepresentableGenerator <T: RawRepresentable where T.RawValue : Comparable, T.RawValue : ForwardIndexType> : GeneratorType {
     var current: T.RawValue
     let last: T.RawValue
     
@@ -17,7 +17,7 @@ class RawRepresentableGenerator <T: RawRepresentable where T.RawValue : Comparab
         self.last = last.rawValue
     }
     
-    override func next() -> T? {
+    func next() -> T? {
         var v:T?
         if (current <= last) {
             v = T(rawValue:current)
@@ -31,7 +31,7 @@ class RawRepresentableGenerator <T: RawRepresentable where T.RawValue : Comparab
 
 extension RawRepresentable where Self.RawValue : Comparable, Self.RawValue : ForwardIndexType {
     func to(last: Self) -> AnySequence<Self> {
-        return AnySequence(RawRepresentableGenerator(first:self, last: last))
+        return AnySequence(AnyGenerator(RawRepresentableGenerator(first:self, last: last)))
     }
 }
 
