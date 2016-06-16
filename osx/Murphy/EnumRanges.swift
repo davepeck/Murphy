@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RawRepresentableGenerator <T: RawRepresentable where T.RawValue : Comparable, T.RawValue : ForwardIndexType> : GeneratorType {
+class RawRepresentableGenerator <T: RawRepresentable where T.RawValue : Strideable> : IteratorProtocol {
     var current: T.RawValue
     let last: T.RawValue
     
@@ -21,7 +21,7 @@ class RawRepresentableGenerator <T: RawRepresentable where T.RawValue : Comparab
         var v:T?
         if (current <= last) {
             v = T(rawValue:current)
-            current = current.successor()
+            current = current.advanced(by: 1)
         }
         return v
     }
@@ -29,15 +29,20 @@ class RawRepresentableGenerator <T: RawRepresentable where T.RawValue : Comparab
 }
 
 
-extension RawRepresentable where Self.RawValue : Comparable, Self.RawValue : ForwardIndexType {
-    func to(last: Self) -> AnySequence<Self> {
-        return AnySequence(AnyGenerator(RawRepresentableGenerator(first:self, last: last)))
+extension Strideable {
+    
+}
+
+
+extension RawRepresentable where Self.RawValue : Strideable {
+    func to(_ last: Self) -> AnySequence<Self> {
+        return AnySequence(AnyIterator(RawRepresentableGenerator(first:self, last: last)))
     }
 }
 
 
 // This is probably a step too far.
-func ...<T : RawRepresentable where T.RawValue : Comparable, T.RawValue: ForwardIndexType>(start: T, end: T) -> AnySequence<T>
+func ...<T : RawRepresentable where T.RawValue : Strideable>(start: T, end: T) -> AnySequence<T>
 {
     return start.to(end)
 }

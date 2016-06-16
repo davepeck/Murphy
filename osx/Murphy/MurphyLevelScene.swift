@@ -19,7 +19,7 @@ let STATUS_WIDTH: CGFloat = 40
 
 
 protocol MurphyLevelSceneDelegate {
-    func levelSceneDidEnd(levelScene: MurphyLevelScene)
+    func levelSceneDidEnd(_ levelScene: MurphyLevelScene)
 }
 
 class MurphyLevelScene: SKScene {
@@ -32,7 +32,7 @@ class MurphyLevelScene: SKScene {
     
     var levelDelegate: MurphyLevelSceneDelegate?
     
-    class func sceneWithLevel(level: MurphyLevel) -> MurphyLevelScene {
+    class func sceneWithLevel(_ level: MurphyLevel) -> MurphyLevelScene {
         let scene = MurphyLevelScene(size:CGSize(width: SCENE_WIDTH, height: SCENE_HEIGHT))
         scene.level = level
         scene.levelSize = CGSize(width: CGFloat(level.width) * TILE_SIZE, height: CGFloat(level.height) * TILE_SIZE)
@@ -41,7 +41,7 @@ class MurphyLevelScene: SKScene {
         return scene
     }
 
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         buildAnimations()
         buildBoard()
         buildStatus()
@@ -56,24 +56,24 @@ class MurphyLevelScene: SKScene {
     func buildAnimations() {
         // XXX any real code would put this stuff somewhere else
         let infotronTextures = LevelTile.infotrons().map { self.atlas.textureNamed($0.textureName()) }
-        infotronAnimation = SKAction.animateWithTextures(infotronTextures, timePerFrame: 0.075)
+        infotronAnimation = SKAction.animate(with: infotronTextures, timePerFrame: 0.075)
         
         let quarkTextures = LevelTile.quarks().map { self.atlas.textureNamed($0.textureName()) }
-        quarkAnimation = SKAction.animateWithTextures(quarkTextures, timePerFrame: 0.175)
+        quarkAnimation = SKAction.animate(with: quarkTextures, timePerFrame: 0.175)
         
         let terminalTextures = LevelTile.terminals().map { self.atlas.textureNamed($0.textureName()) }
-        terminalAnimation = SKAction.animateWithTextures(terminalTextures, timePerFrame: 0.175)
+        terminalAnimation = SKAction.animate(with: terminalTextures, timePerFrame: 0.175)
         
         let scissorTextures = LevelTile.scissors().map { self.atlas.textureNamed($0.textureName()) }
-        scissorAnimation = SKAction.animateWithTextures(scissorTextures, timePerFrame: 0.175)
+        scissorAnimation = SKAction.animate(with: scissorTextures, timePerFrame: 0.175)
         
         let oliverTextures = OliverTile.bubs().map { self.atlas.textureNamed($0.textureName()) }
-        oliverAnimation = SKAction.animateWithTextures(oliverTextures, timePerFrame: 0.175)
+        oliverAnimation = SKAction.animate(with: oliverTextures, timePerFrame: 0.175)
     }
     
     func buildStatus() {
         status = SKSpriteNode(imageNamed: "status-bar-default")
-        status.anchorPoint = CGPointZero
+        status.anchorPoint = CGPoint.zero
         self.addChild(status)
         status.position = CGPoint(x: SCENE_WIDTH - STATUS_WIDTH, y: 0)
         
@@ -101,26 +101,26 @@ class MurphyLevelScene: SKScene {
                 
                 // build animations for a few cases
                 switch (tile) {
-                case .InfotronTile:
-                    node.runAction(SKAction.repeatActionForever(infotronAnimation))
+                case .infotronTile:
+                    node.run(SKAction.repeatForever(infotronAnimation))
                     
-                case .QuarkTile:
-                    node.runAction(SKAction.repeatActionForever(quarkAnimation))
+                case .quarkTile:
+                    node.run(SKAction.repeatForever(quarkAnimation))
                     
-                case .TerminalTile:
-                    node.runAction(SKAction.repeatActionForever(terminalAnimation))
+                case .terminalTile:
+                    node.run(SKAction.repeatForever(terminalAnimation))
 
-                case .UpScissorTile:
+                case .upScissorTile:
                     fallthrough
-                case .LeftScissorTile:
+                case .leftScissorTile:
                     fallthrough
-                case .RightScissorTile:
+                case .rightScissorTile:
                     fallthrough
-                case .DownScissorTile:
-                    node.runAction(SKAction.repeatActionForever(scissorAnimation))
+                case .downScissorTile:
+                    node.run(SKAction.repeatForever(scissorAnimation))
                     
-                case .OliverTile:
-                    node.runAction(SKAction.repeatActionForever(oliverAnimation))
+                case .oliverTile:
+                    node.run(SKAction.repeatForever(oliverAnimation))
                                         
                 default:
                     break
@@ -129,24 +129,24 @@ class MurphyLevelScene: SKScene {
         }
     }
     
-    override func keyDown(theEvent: NSEvent) {
+    override func keyDown(_ theEvent: NSEvent) {
         handleKeyEvent(theEvent, pressed: true)
     }
     
-    override func keyUp(theEvent: NSEvent) {
+    override func keyUp(_ theEvent: NSEvent) {
         handleKeyEvent(theEvent, pressed: false)
     }
 
-    override func mouseUp(theEvent: NSEvent) {
+    override func mouseUp(_ theEvent: NSEvent) {
         levelDelegate?.levelSceneDidEnd(self)
     }
 
     var motionX: CGFloat = 0
     var motionY: CGFloat = 0
     
-    func handleKeyEvent(event: NSEvent, pressed: Bool) {
+    func handleKeyEvent(_ event: NSEvent, pressed: Bool) {
         // XXX where oh where are the key constants I seek?
-        if event.modifierFlags.contains(NSEventModifierFlags.NumericPadKeyMask) {
+        if event.modifierFlags.contains(NSEventModifierFlags.numericPad) {
             if let scalars = event.charactersIgnoringModifiers?.unicodeScalars {
                 for keyChar in scalars {
                     switch UInt32(keyChar) {
@@ -170,7 +170,7 @@ class MurphyLevelScene: SKScene {
         }
     }
     
-    override func update(currentTime: CFTimeInterval) {
+    override func update(_ currentTime: TimeInterval) {
         var rawPosition = CGPoint(x: board.position.x + motionX, y: board.position.y + motionY)
         
         // stoopid bounds code

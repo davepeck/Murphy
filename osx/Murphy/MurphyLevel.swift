@@ -19,7 +19,7 @@ struct MurphyLevel {
     let height: Int
     let grid: Array<LevelTile>
     
-    func gridIndexAt(x: Int, y: Int) -> Int? {
+    func gridIndexAt(_ x: Int, y: Int) -> Int? {
         guard (0 <= x) && (x < width) && (0 <= y) && (y < height) else {
             return nil
         }
@@ -27,7 +27,7 @@ struct MurphyLevel {
         return (y * width) + x
     }
     
-    func tileAt(x: Int, y: Int) -> LevelTile? {
+    func tileAt(_ x: Int, y: Int) -> LevelTile? {
         guard let i = gridIndexAt(x, y: y) else {
             return nil
         }
@@ -35,7 +35,7 @@ struct MurphyLevel {
         return grid[i]
     }
     
-    func textureNameAt(x: Int, y:Int) -> String? {
+    func textureNameAt(_ x: Int, y:Int) -> String? {
         guard let tile = tileAt(x, y: y) else {
             return nil
         }
@@ -43,25 +43,25 @@ struct MurphyLevel {
         return tile.textureName()
     }
     
-    static func fromResourceNamed(name: String) -> MurphyLevel? {
-        guard let path = NSBundle.mainBundle().pathForResource(name, ofType: "mlv") else {
+    static func fromResourceNamed(_ name: String) -> MurphyLevel? {
+        guard let path = Bundle.main().pathForResource(name, ofType: "mlv") else {
             return nil
         }
         
         return MurphyLevel.fromFileNamed(path)
     }
     
-    static func fromFileNamed(path: String) -> MurphyLevel? {
+    static func fromFileNamed(_ path: String) -> MurphyLevel? {
         var result:MurphyLevel? = nil
         do {
-            let data:NSData = try NSData(contentsOfFile:path, options: [])
+            let data:Data = try Data(contentsOf: URL(fileURLWithPath: path), options: [])
             result = MurphyLevel.fromData(data)
         } catch {}
         return result
     }
     
-    static func fromData(data: NSData) -> MurphyLevel? {
-        let scanner = BinaryDataScanner(data: data, littleEndian: false, encoding: NSASCIIStringEncoding)
+    static func fromData(_ data: NSData) -> MurphyLevel? {
+        let scanner = BinaryDataScanner(data: data, littleEndian: false, encoding: String.Encoding.ascii)
         
         guard let name = scanner.readNullTerminatedString(),
             let graphicsSetName = scanner.readNullTerminatedString(),

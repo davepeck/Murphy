@@ -53,7 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MurphyLevelSceneDelegate {
         
         currentScene = MurphyLevelScene.sceneWithLevel(level)
         currentScene!.levelDelegate = self
-        currentScene!.scaleMode = .AspectFit
+        currentScene!.scaleMode = .aspectFit
     }
     
     func presentCurrentScene() {
@@ -65,7 +65,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MurphyLevelSceneDelegate {
         }
     }
     
-    func levelSceneDidEnd(levelScene: MurphyLevelScene) {
+    func levelSceneDidEnd(_ levelScene: MurphyLevelScene) {
         if let currentScene = currentScene {
             currentScene.levelDelegate = nil
             currentLevelIndex = (currentLevelIndex + 1) % LevelNames.count
@@ -74,12 +74,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, MurphyLevelSceneDelegate {
         }
     }
     
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         buildCurrentScene()
         presentCurrentScene()
     }
     
-    func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
+    func applicationShouldTerminate(afterLastWindowClosed sender: NSApplication) -> Bool {
         return true;
     }
     

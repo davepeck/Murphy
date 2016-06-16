@@ -39,12 +39,12 @@ extension UInt64: BinaryReadable {}
 class BinaryDataScanner {
     let data: NSData
     let littleEndian: Bool
-    let encoding: NSStringEncoding
+    let encoding: String.Encoding
 
     var current: UnsafePointer<Void>
     var remaining: Int
     
-    init(data: NSData, littleEndian: Bool, encoding: NSStringEncoding) {
+    init(data: NSData, littleEndian: Bool, encoding: String.Encoding) {
         self.data = data
         self.littleEndian = littleEndian
         self.encoding = encoding
@@ -59,7 +59,7 @@ class BinaryDataScanner {
         }
         
         let tCurrent = UnsafePointer<T>(current)
-        let v = tCurrent.memory
+        let v = tCurrent.pointee
         current = UnsafePointer<Void>(tCurrent.successor())
         remaining -= sizeof(T)
         return littleEndian ? v.littleEndian : v.bigEndian
@@ -71,15 +71,15 @@ class BinaryDataScanner {
         var count: Int = 0
         
         // scan
-        while (remaining > 0 && tCurrent.memory != 0) {
+        while (remaining > 0 && tCurrent.pointee != 0) {
             remaining -= 1
             count += 1
             tCurrent = tCurrent.successor()
         }
         
         // create string if available
-        if (remaining > 0 && tCurrent.memory == 0) {
-            string = NSString(bytes: current, length: count, encoding: encoding) as String?
+        if (remaining > 0 && tCurrent.pointee == 0) {
+            string = NSString(bytes: current, length: count, encoding: encoding.rawValue) as String?
             current = UnsafePointer<()>(tCurrent.successor())
             remaining -= 1
         }
