@@ -79,7 +79,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MurphyLevelSceneDelegate {
         presentCurrentScene()
     }
     
-    func applicationShouldTerminate(afterLastWindowClosed sender: NSApplication) -> Bool {
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return true;
     }
     
