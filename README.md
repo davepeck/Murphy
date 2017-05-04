@@ -5,15 +5,15 @@ Many moons ago, while they were still in High School, [@dangerdave](http://davep
 
 That game was **Infotron!** and it was released in 1994 for the Macintosh. Infotron was based on a PC game called [Supaplex](http://www.elmerproductions.com/sp/).
 
-![Infotron Splash Screen](http://codeorange.com/img/full/info1.png)
+![Infotron Splash Screen](https://davepeck.org/extras/infotron/info1.png)
 
-![Infotron Game Play](http://codeorange.com/img/full/info4.png)
+![Infotron Game Play](https://davepeck.org/extras/infotron/info4.png)
 
 After Infotron was finished, attention was turned to **Murphy's Revenge** -- a planned sequel with smooth scrolling and better graphics. Alas, we went to college and got distracted; Murphy's Revenge was never finished.
 
-![MR Game Play 1](http://codeorange.com/img/full/info2.png)
+![MR Game Play 1](https://davepeck.org/extras/infotron/info2.png)
 
-![MR Game Play 2](http://codeorange.com/img/full/info3.png)
+![MR Game Play 2](https://davepeck.org/extras/infotron/info3.png)
 
 
 
