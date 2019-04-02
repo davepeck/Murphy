@@ -1,1 +1,0 @@
-unit CRedDisk;interface	uses		TCL, GridPieceIntf;implementation	procedure CRedDisk.InitPiece;	begin		inherited InitPiece;		explodes := FALSE;	end;	function CRedDisk.WalkOnto (x, y: integer): boolean;	begin		WalkOnto := TRUE;		CInfoApp(gApplication).GetGPane.GetMurphy.GotRedDisk;{PlaySound?}	end;end.

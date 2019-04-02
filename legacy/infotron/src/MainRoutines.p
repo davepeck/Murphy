@@ -1,1 +1,0 @@
-unit MainRoutines;interface	uses		InfotronIntf;implementation	procedure GetTheKeys;	begin	end;	procedure TheyWonTheLevel;	begin	end;	procedure ClearSuicides;	{clear the hasSuicides array}	begin	end;	procedure DoKillChores;	{actually kill the chores. NEVER call this!!!}	begin	end;	procedure MakeGObjs;	begin	end;	procedure NewPlayer;	begin	end;end.

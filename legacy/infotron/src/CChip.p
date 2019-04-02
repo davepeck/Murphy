@@ -1,1 +1,0 @@
-unit CChip;interface	uses		TCL, GridPieceIntf;implementation	procedure CChip.InitPiece;	begin		inherited InitPiece;		rounded := true;		destructable := true;	end;	function CChip.WalkOnto (x, y: integer): boolean;	begin		WalkOnto := FALSE;	end;end.

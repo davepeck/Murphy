@@ -1,3 +1,0 @@
-#!/bin/sh
-
-g++ -I/opt/local/include/SDL -L/opt/local/lib -L/usr/lib -lobjc -lSDL -F/System/Library/Frameworks -framework AppKit -o Test sdltest.cpp SDLMain.m

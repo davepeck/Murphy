@@ -1,1 +1,0 @@
-program InfotronOOP;	uses		TCL, InfoIntf;begin	new(CInfoApp(gApplication));	CInfoApp(gApplication).IInfoApp;	gApplication.Run;	gApplication.ExitApp;end.

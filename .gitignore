@@ -19,3 +19,4 @@ Debug-toolchain/
 Release-iphonesimulator/
 Release-toolchain/
 Release-iphoneos/
+.vscode/

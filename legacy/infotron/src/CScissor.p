@@ -1,1 +1,0 @@
-unit CScissor;interface	uses		TCL, GridPieceIntf;implementation	procedure CScissor.InitPiece;	begin		inherited InitPiece;		IAmA := scissor;	end;end.

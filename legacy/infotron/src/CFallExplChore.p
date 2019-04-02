@@ -1,1 +1,0 @@
-unit CFallExplChore;interface	uses		TCL, BackChoresIntf;implementation	procedure CFallExplChore.IFallExplChore (x, y: integer);	begin		IFallChore(x, y);	end;	procedure CFallExplChore.HitBottom;	begin		CInfoApp(gApplication).GetGridObj(xq, yq).explode(xq, yq);		remove;	end;end.

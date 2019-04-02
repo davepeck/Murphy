@@ -1,1 +1,0 @@
-unit PascalSucks;interfaceuses Types, Memory, Quickdraw, TextEdit, Dialogs, Events, Devices, Scrap,     GestaltEqu, Traps, PictUtils, Palettes, QDOffscreen, TextUtils, StandardFile,     AppleEvents, Processes, Resources, Fonts, ToolUtils, Icons, Menus, Sound;     implementationend.

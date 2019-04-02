@@ -1,1 +1,0 @@
-unit InfotronIntf;{NON-TCL Version}interface	uses		ObjIntf, QDOffscreen, sound, gammapasLibIntf, {}		coloroffscreen, myRGBColors, CInfoDialog, ColorOffScreen, {}		psst, menubars, QuickDrawProcs, InfoWindows, {}		dataIntf, everything;{, BadScopeFixes, BoardStuff, Murphys, Players, {}{AppStuff, StatusStuff;}implementationend.
