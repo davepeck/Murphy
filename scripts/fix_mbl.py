@@ -85,7 +85,9 @@ class MurphyLevel(object):
                     fixed_grid.append(grid[grid_index])
                 grid_index += 1
 
-        return MurphyLevel(name, graphics, infotrons, actual_width, actual_height, fixed_grid)
+        return MurphyLevel(
+            name, graphics, infotrons, actual_width, actual_height, fixed_grid
+        )
 
     def save_to_mlv_file(self, f):
         writer = BinaryDataWriter(f)
@@ -103,10 +105,9 @@ class MurphyLevel(object):
                 grid_index += 1
 
 
-
 if __name__ == "__main__":
     input_name = sys.argv[1]
-    output_name = '.'.join(input_name.split('.')[:-1]) + ".mlv"
+    output_name = ".".join(input_name.split(".")[:-1]) + ".mlv"
 
     print("Converting from {} to {}...".format(input_name, output_name))
 
@@ -116,4 +117,3 @@ if __name__ == "__main__":
             level.save_to_mlv_file(output_file)
 
     print("\t...done")
-

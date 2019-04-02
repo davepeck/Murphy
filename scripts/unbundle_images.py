@@ -30,8 +30,10 @@ for tile_name in tile_names:
     single_tile_image = tiles_image.copy()
     single_tile_image = single_tile_image.crop(box=crop_box)
 
-    target_file_name = "{}.png".format(os.path.realpath(os.path.join(target_directory_name, tile_name)))
-    print "Saving {}".format(target_file_name)
+    target_file_name = "{}.png".format(
+        os.path.realpath(os.path.join(target_directory_name, tile_name))
+    )
+    print(f"Saving {target_file_name}")
 
     single_tile_image.save(target_file_name)
 
