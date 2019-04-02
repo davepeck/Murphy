@@ -9,6 +9,7 @@ black = "*"
 
 [packages]
 pillow = "*"
+click = "*"
 
 [requires]
 python_version = "3.7"
