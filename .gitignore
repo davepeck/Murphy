@@ -20,3 +20,5 @@ Release-iphonesimulator/
 Release-toolchain/
 Release-iphoneos/
 .vscode/
+dist/
+node_modules
