@@ -1,0 +1,48 @@
+{
+  "height": 110,
+  "infinite": false,
+  "layers": [
+    {
+      "compression": "zlib",
+      "data": "eJzt2U1ugzAUBGDidpUTpBzA+7ZJ23v4/nepkbA0Gr3n+E/tZhazAMPHgzi2Ee/btn0syGfOI+eWk3JecvYzoTHl+PtpXU/LS8062i9gBeP8W4cVOizPS4MWe7y/10rOsbJkyZIlS5ZnxUVWcWatmhM7rJqToK3FqjnRsI41z4XOQSs+qQnXTNZ9cF3sRXASWMmozVozRdq3wzZaXNurcz8RtpNjcW21NVOLFcGpPe8WK511ef8VvPcWy7uu9fvOWqrr/+oqfXmF5e2X9TeWNYbM9An2Rqy3zR6zR63S7o33I1YZN1dY3pxWrrM3WlwbW7U5y7N43uaaWi3sJ2hZ83KrhWsTrmnGsvrxjGW1y5IlS5YsWbJkyZIlSxa3BcfrsYKRmnW8+1jfpC2HPbbKu/yIZQWt3u/2GPyG/5XzvSA/Ob/LxudU",
+      "encoding": "base64",
+      "height": 110,
+      "id": 1,
+      "name": "level",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 19,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 2,
+  "nextobjectid": 1,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "name",
+      "type": "string",
+      "value": "Falling"
+    },
+    {
+      "name": "infotrons",
+      "type": "int",
+      "value": 20
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.2.3",
+  "tileheight": 32,
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "source": "infotron.tileset.json"
+    }
+  ],
+  "tilewidth": 32,
+  "type": "map",
+  "version": "1.2",
+  "width": 19
+}

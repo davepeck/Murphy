@@ -1,0 +1,48 @@
+{
+  "height": 30,
+  "infinite": false,
+  "layers": [
+    {
+      "compression": "zlib",
+      "data": "eJztmN0KwjAMhVu98wlkl1MfwJ+p977/O9nBCqGctonTJgUvPsqWpJylSaA7O+cuxrgGpsCL4JWgGm5E1y7x21f2+ZU91UU1I1+fsX3LTn2iLmTX0uWBrpkNoKW9pEvzOadrXNZhWY+N7b3ly1p9leaqhX6MaM3V3vJlrb64/fKfX33ky1p9We/HSC/za20+OftL6+uQec+tn8iJEV/SNa8D8Kfk+lwaPwJbaX5xSb8XzSNJvOQcJeewtg6Qrk/vkLW658Sjuq/d01rqQvdHbbZAl7X/APfAwxjPwBukpT1i",
+      "encoding": "base64",
+      "height": 30,
+      "id": 1,
+      "name": "level",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 38,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 2,
+  "nextobjectid": 1,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "name",
+      "type": "string",
+      "value": "Achtung!"
+    },
+    {
+      "name": "infotrons",
+      "type": "int",
+      "value": 12
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.2.3",
+  "tileheight": 32,
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "source": "aquatron.tileset.json"
+    }
+  ],
+  "tilewidth": 32,
+  "type": "map",
+  "version": "1.2",
+  "width": 38
+}

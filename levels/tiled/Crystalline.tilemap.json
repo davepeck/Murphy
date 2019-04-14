@@ -1,0 +1,48 @@
+{
+  "height": 24,
+  "infinite": false,
+  "layers": [
+    {
+      "compression": "zlib",
+      "data": "eJztVcsKgzAQjFYq9OhJ8gFCe2trH/Ev8v8/0wi7sAy7SdpiTz0Myibs7MzEeHbOXTbENeGWsACiUrPWrL2HhF3CLDjahBHe2y+xAIcnRHoGetb266A3cqx9jwknqjcZX3BOy6+W6ugVwtLRV2jRvJJzyXcNqEPDYHCwPjlLqMxDZsk9RoND6kCfuT4QtzY/Z+mBIxocXBuVdS96aWe2qdSBnrOXpaxihsMDH/rMnKXvhnVMCgdnMBk6OmVuK7PS2fVQy3lv6fAGhzZTJF/lPZC7G2UeyDGIPTjTlFnzTtdu3SXrviD27wue9DSvhDzrqKOUpVUrra8c94THhniSjtp/xCeY/xxvcfwi8xeM40vH",
+      "encoding": "base64",
+      "height": 24,
+      "id": 1,
+      "name": "level",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 25,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 2,
+  "nextobjectid": 1,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "name",
+      "type": "string",
+      "value": "Crystalline"
+    },
+    {
+      "name": "infotrons",
+      "type": "int",
+      "value": 22
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.2.3",
+  "tileheight": 32,
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "source": "aquatron.tileset.json"
+    }
+  ],
+  "tilewidth": 32,
+  "type": "map",
+  "version": "1.2",
+  "width": 25
+}

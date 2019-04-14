@@ -1,0 +1,48 @@
+{
+  "height": 36,
+  "infinite": false,
+  "layers": [
+    {
+      "compression": "zlib",
+      "data": "eJy1VctywyAMxDRJO/2CmFunMTn33XJzx///TcEz0mS9FpBMm8MO2EjLSgjx4px7vQHeMj4yOkLIeMiIGXv5dy/zMeMuwxOCrM/z34x34E4CnCexT7BvEn4c0c7LiNy6r/pvxDeIfuWOpHcj2IPuUNEdxT4ROKYEdhoD60YdA/k8G7mdsQUNHIsH7mjkL8Jc/3fGP8sXuTWOkkYPPmPFZoB15kZNXBOJ7DiWlu6Snkt1+wp3KbeP8n1o2Hk411qd9O58HzgnHvZBO6xD1j0Bz+wTxJ7vHMaPdlYN6vee/H9kHijf+j2SnfpG4Oa4R7c8A66FQPtZOVPup8JZYx/pIGfRne+MlSfktvqD6hzcugd3wK0j14ty433s3FKHd8v+yvHr/0B+lm6MVTn7AofVG9VHudUe+7fu3xu+uj7RHvoOILfaH41zj26dIz5D5OYaPDT8eW5xt/qJJ+3YH6x+NtHY4q6NLf24z7XcJf2X5qQ0Yk1w78CcWD32Es7We/DXfCPCP3FbWq21a7kZmivWa/UqXdsUuHdG/KxZz3BrcB/dug9dcxeTW76JrLvE3TqHQN87g7umrzTie1HKyYzeOPcIueZ62BV8lPsz4+sG+M44ARCrZ08=",
+      "encoding": "base64",
+      "height": 36,
+      "id": 1,
+      "name": "level",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 23,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 2,
+  "nextobjectid": 1,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "name",
+      "type": "string",
+      "value": "It's Alive!!"
+    },
+    {
+      "name": "infotrons",
+      "type": "int",
+      "value": 30
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.2.3",
+  "tileheight": 32,
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "source": "infotron.tileset.json"
+    }
+  ],
+  "tilewidth": 32,
+  "type": "map",
+  "version": "1.2",
+  "width": 23
+}

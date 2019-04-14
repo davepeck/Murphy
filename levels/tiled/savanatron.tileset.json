@@ -1,0 +1,15 @@
+{
+  "columns": 16,
+  "image": "savanatron.png",
+  "imageheight": 1024,
+  "imagewidth": 512,
+  "margin": 0,
+  "name": "savanatron",
+  "spacing": 0,
+  "tilecount": 512,
+  "tiledversion": "1.2.3",
+  "tileheight": 32,
+  "tilewidth": 32,
+  "type": "tileset",
+  "version": 1.2
+}

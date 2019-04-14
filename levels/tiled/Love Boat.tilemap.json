@@ -1,0 +1,48 @@
+{
+  "height": 31,
+  "infinite": false,
+  "layers": [
+    {
+      "compression": "zlib",
+      "data": "eJzNmM1uGzEMhLVOAAN9AslHp9l727QJ9P4PljWwA4y/DNc95kDI1g81JIek7F+ttd/fSP5s8neTp01OQV43WYu152I+yc//3HfD8bZjun2fmyyb9H1cdjwLpBdrF9Ox7Jh51s9MrAmXME3bo8/rPg4bqXvuWIjPzyc8brfb4phOwRcTZyVjlzXc1zEK12r3a70H/cQkfwi3fC9s03QSl/tttHv7V9N9tnXG7shP9Ctj4nY7rh50pHvJtW5zyU/SL3tmcSexdpsX7oH95FeyN/nJMdD/9FUPdzN+HfPkguak//ogdsThPHW/HNWNifEZcU91RphesIc+SFx2W/2eYf4dLecu7fAxxc5z3vdfwlriNP0sbJ6PPehVvyAmxsTjIb2sr+Rf5RPH6zFwPxAT85d1l7VHe1S3zuFc4mVVH3rhJ8ZnNV87hxxP4rLbkOwgJzVWNfPIzqrX3MYfB/YnXYzdCJhY09hLuOY+81G5lur6UV9JfEr+8BzXPf5W8LeDx9PxsD9o32rzfbf/Uex6u88r99vavvqVvPe8ZH6SGzpb9ZYql13UQz22C3SkPku/s86lHuw2e6x4X6qtVQ/zXJTu2e5t0l7HdA16RtBHu87tK0bNJ9zU53ce8Snd7XxIPVT8Sv0n5Y7ygHF4DZiY36zNzntxPtUc78EVLpdLy/VJODy/HnGcPOP9rGPpnSd9qQcfvX/cXtYe/8z9bhtj4D5PHD/ZnV7zVMuco+RTlQfEl/KX/eGoZvr7lvFgrjhvUvz03WtG9c4jJuYeY8ieVr07WJ/Sb9808new/18w7DP/O6jWqzPV+rU4o/8L/m3y/o3kY5NPVcRg5g==",
+      "encoding": "base64",
+      "height": 31,
+      "id": 1,
+      "name": "level",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 37,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 2,
+  "nextobjectid": 1,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "name",
+      "type": "string",
+      "value": "Love Boat"
+    },
+    {
+      "name": "infotrons",
+      "type": "int",
+      "value": 45
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.2.3",
+  "tileheight": 32,
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "source": "infotron.tileset.json"
+    }
+  ],
+  "tilewidth": 32,
+  "type": "map",
+  "version": "1.2",
+  "width": 37
+}

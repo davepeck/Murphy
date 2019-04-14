@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Converts an ancient .mbl file into a slightly more modern .mlv file
 import sys
 import struct
@@ -37,7 +38,7 @@ class BinaryDataWriter(object):
     def write_ascii_string(self, s):
         b = s.encode("ascii")
         self.f.write(b)
-        self.f.write(chr(0))
+        self.f.write(b"\x00")
 
 
 class MurphyLevel(object):
@@ -50,7 +51,7 @@ class MurphyLevel(object):
         self.grid = grid
 
     @classmethod
-    def load_from_mbl_file(cls, f):
+    def load_from_mbl_file(cls, f, is_world):
         scanner = BinaryDataScanner(f)
         name = scanner.read_ascii_string()
         graphics = scanner.read_ascii_string()
@@ -70,11 +71,12 @@ class MurphyLevel(object):
                 tilemap_y = scanner.read_byte()
                 grid.append((tilemap_x, tilemap_y))
 
-                # Look for bottom-right border
-                tilemap = (tilemap_y * 10) + tilemap_x
-                if tilemap == 37:
-                    actual_width = x + 1
-                    actual_height = y + 1
+                if not is_world:
+                    # Look for bottom-right border
+                    tilemap = (tilemap_y * 10) + tilemap_x
+                    if tilemap == 37:
+                        actual_width = x + 1
+                        actual_height = y + 1
 
         # Pass two: fixed width/height
         fixed_grid = []
@@ -112,7 +114,9 @@ if __name__ == "__main__":
     print("Converting from {} to {}...".format(input_name, output_name))
 
     with open(input_name, "rb") as input_file:
-        level = MurphyLevel.load_from_mbl_file(input_file)
+        level = MurphyLevel.load_from_mbl_file(
+            input_file, is_world="World.mbl" in input_name
+        )
         with open(output_name, "wb") as output_file:
             level.save_to_mlv_file(output_file)
 

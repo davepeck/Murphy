@@ -1,4 +1,5 @@
-# Converts an ancient .mvl file into a still-not-perfect .json file
+#!/usr/bin/env python3
+# Converts an ancient .mlv file into a still-not-perfect .json file
 import json
 import os
 import struct
