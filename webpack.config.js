@@ -43,7 +43,7 @@ module.exports = {
         to: path.resolve(__dirname, 'dist'),
       },
       {
-        from: path.resolve(__dirname, 'assets', '**', '*'),
+        from: path.resolve(__dirname, 'levels', 'tiled', '*'),
         to: path.resolve(__dirname, 'dist'),
       },
     ]),
