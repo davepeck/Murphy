@@ -14,17 +14,28 @@ class MurphyScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('tiles', 'levels/tiled/infotron.png');
-    this.load.tilemapTiledJSON(
-      'map',
-      'levels/tiled/Excavation-big.tilemap.json'
-    );
+    const levelName = 'Stress';
+    this.load.image('tiles-savanatron', 'levels/tiled/savanatron.png');
+    this.load.image('tiles-infotron', 'levels/tiled/infotron.png');
+    this.load.image('tiles-aquatron', 'levels/tiled/aquatron.png');
+    this.load.image('tiles-world', 'levels/tiled/world.png');
+    this.load.tilemapTiledJSON('map', `levels/tiled/${levelName}.tilemap.json`);
   }
 
   create() {
     var map = this.make.tilemap({key: 'map'});
-    var tiles = map.addTilesetImage('infotron', 'tiles');
-    var layer = map.createStaticLayer(0, tiles, 0, 0);
+    console.log(map);
+    let tiles = null;
+    if (map.tilesets[0].name === 'infotron') {
+      tiles = map.addTilesetImage('infotron', 'tiles-infotron');
+    } else if (map.tilesets[0].name === 'savanatron') {
+      tiles = map.addTilesetImage('savanatron', 'tiles-savanatron');
+    } else if (map.tilesets[0].name === 'aquatron') {
+      tiles = map.addTilesetImage('aquatron', 'tiles-aquatron');
+    } else {
+      tiles = map.addTilesetImage('world', 'tiles-world');
+    }
+    map.createStaticLayer(0, tiles!, 0, 0);
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     var cursors = this.input.keyboard.createCursorKeys();
     var controlConfig = {
