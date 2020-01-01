@@ -1,0 +1,48 @@
+{
+  "height": 29,
+  "infinite": false,
+  "layers": [
+    {
+      "compression": "zlib",
+      "data": "eJzFV1sOwzAIS9W/nSDKLfbe/U+2VGokhDCYLNI+LC1dggETaK+llNsibIm9945nx35iO1HFb4ToDLIxzj0Et97D8Mu9FZyphj3JfTxvST6NRvo4eAa3FyeKx8uTFau2IbkjXxlfMj5qbtamzm9GaytuVmvPXua8lfNZm16tRXFLG1l+VFOeHVZvllevm3imtVrBzfqmNUF37Nf4mXq0emp0zuOI7uKA1c+ZfiRxSeQD9XN2ljTnv4xekntFLck10kCumd6SnTFWf7A0RD01yltV8LRFtlBfm+Fl0Qxubw5lNEd2ovkdzWZUR3q+Mzlk63xwtoI1Zuo1qnMvl7MaWzY97tl3BHa/N0uiOR7NTq8vSm49S6x7lJkxUY3rfr4DXqTxXvC3iVd/8rvk1fH+Az4dXwv3KfI=",
+      "encoding": "base64",
+      "height": 29,
+      "id": 1,
+      "name": "level",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 31,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 2,
+  "nextobjectid": 1,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "name",
+      "type": "string",
+      "value": "Bolder"
+    },
+    {
+      "name": "infotrons",
+      "type": "int",
+      "value": 20
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.2.3",
+  "tileheight": 32,
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "source": "infotron.tileset.json"
+    }
+  ],
+  "tilewidth": 32,
+  "type": "map",
+  "version": "1.2",
+  "width": 31
+}

@@ -1,0 +1,48 @@
+{
+  "height": 120,
+  "infinite": false,
+  "layers": [
+    {
+      "compression": "zlib",
+      "data": "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",
+      "encoding": "base64",
+      "height": 120,
+      "id": 1,
+      "name": "level",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 120,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 2,
+  "nextobjectid": 1,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "name",
+      "type": "string",
+      "value": "Work With World Worldview"
+    },
+    {
+      "name": "infotrons",
+      "type": "int",
+      "value": 0
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.2.3",
+  "tileheight": 24,
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "source": "world.tileset.json"
+    }
+  ],
+  "tilewidth": 24,
+  "type": "map",
+  "version": "1.2",
+  "width": 120
+}

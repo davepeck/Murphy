@@ -1,0 +1,48 @@
+{
+  "height": 50,
+  "infinite": false,
+  "layers": [
+    {
+      "compression": "zlib",
+      "data": "eJztmE1u2zAQhSlVToAeIJa0KwpIanb9L3SBpF3q/oepBPDBn15Gjlu4SVxkMaA4JIeP829/TCl9ugD6PNPXmcYLoC/A2s5UzFTOtM/jQlVeK7HvaqY681rjF3mtzvy7me5n+jnTrzwfcbY2+cIgfhFgXXhN/n5n+AvM/V1jfg/52tfg/LJnmOl2pg+40+VLB3qzZBGrv4tzrdfga6wNt8bGsC7UQ5+F7V/eMM3U5bUuz6cA6w0w6k36Fs5r7NljvTE+30sask5vYff9xl5RpFfxiHfMuoj0rf1d5nWmp/bI/T3ky6+lwwLf1YZe6Te052DvoN11D9erE/AOuNP9gb7GO9xfdQ/t2+PsPpAlfmU8xZv0pDwwpTWuHjJHk8E4daxRvA+BviWrC+Q3Nh/Bk9wpz3eGSe/Qu3kHsUoPjEPyh7TOm8xTka49/9KviIV2l/6pr6gW6H7qv4J9F1tdpbXddUeRHmIUL/If6VW4p7SOLd3LnB/lAdlLeyqMUZxt2Z5z+kmdDnlAvC7L7dMhJ3ud8TxQpYc4yO+xThy0BzFSHrFJh5IzGY/yIh9g/Sk37vW83aT1+6M8wP3aMxhW+fWQDn7C+nJqfuX+KCbcXhFO1U71QTVwyS+oV743yq/0Q9mJuGWXNn8Ll+ejqA70kEmfZV7iWGOM+qyF3uL+Y/mfVNo364jOKSaltz6tfaC2db1denhzRK8ev94PNBsj49YxTNCTx1YBPv2+SXHdivo62oJ9isc1zzH+qW/aRvbf5b2qP73dSZ15jRUp/zuePfB6Hnb5kT30TZ3u0rpfZc9L+RFWj6eI3wV89UtViuONxH6A/e9kc9ZZYn2f1n3FFm7vB5hbPKa8Hmgvbb1L65jzPBn5q/jyG+/3GPvLvpt0yEusiw3klNjD/DCltW8wB0f7o7qlfmCAnqlf/YZyfmv31mmtR7fDhDP0zYV/Z/IjH2Bfq7pfQ4bnh2vMPQajfpv+QL3KDn4P3xTFluf/Y3b0vMHz3ufSf7zvpQ/pHdRR5AOU4++P+kPagfomX/tqrHm8sY5GPhH1A97f+e8+j+vC+J4foniM8LYYFXfSN3/veh4ocS/1w/9r/P8MrdHu2sv8VZsc1gvVfmKt8B1hPUbuH09Nwvr9ERJG0XjCmXOTsHoNdIqwPnbm3PSK9RXr/4q1sPElY23Swz7rFet5sJYXgtXnp9BzY1Vfs/UfQROceQ6s7EP/1BZPjZV96kv2Af8f5Jw4zo3V++OXjrW9EKz/0hdPxfotPX2P/zf0Y6bfcSy7kg==",
+      "encoding": "base64",
+      "height": 50,
+      "id": 1,
+      "name": "level",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 43,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 2,
+  "nextobjectid": 1,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "name",
+      "type": "string",
+      "value": "Catacombs"
+    },
+    {
+      "name": "infotrons",
+      "type": "int",
+      "value": 85
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.2.3",
+  "tileheight": 32,
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "source": "aquatron.tileset.json"
+    }
+  ],
+  "tilewidth": 32,
+  "type": "map",
+  "version": "1.2",
+  "width": 43
+}

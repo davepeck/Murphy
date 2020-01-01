@@ -1,0 +1,48 @@
+{
+  "height": 21,
+  "infinite": false,
+  "layers": [
+    {
+      "compression": "zlib",
+      "data": "eJy1VctuxDAItLPbZtUvSH3rxdn2tn0rf+H//5kSLUijkTGrSnsYEYPNAAbnklJ6vzM+BF+CIjgIjoKN0JzvkQ71u/xUHtPtfI+CKcC+bxFUXc9gW1Tu/k4qjedJ188qRxxZ91Vnb1ZZgc94bL0EtUDb5PBMYOO6IU9UM0SDM1lROnzGM8MZjJVzmzrfmXgQL8STqW6L+r8lpxzYvbpxXg9OrFvy8+B9Xh8gz39wdO7HbDanFkc0i94cvwre0rW3sW4b+Y9q3sPs6Dkf1FdYl0FOXl8ykMfiacSFd87xRLM6ysdsreOT+xVtXl9yX+ObxPVb4W5XyrFXs5b8vrbeQK5V5Tld3/Gi39HMRPNjqODfYsBeveXue31QOmeK+rR/kun4nRzhQDyjGKP1aF7xv/At+LkzfgV/27NF3w==",
+      "encoding": "base64",
+      "height": 21,
+      "id": 1,
+      "name": "level",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 26,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 2,
+  "nextobjectid": 1,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "name",
+      "type": "string",
+      "value": "Stress"
+    },
+    {
+      "name": "infotrons",
+      "type": "int",
+      "value": 20
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.2.3",
+  "tileheight": 32,
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "source": "aquatron.tileset.json"
+    }
+  ],
+  "tilewidth": 32,
+  "type": "map",
+  "version": "1.2",
+  "width": 26
+}

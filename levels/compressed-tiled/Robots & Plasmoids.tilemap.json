@@ -1,0 +1,48 @@
+{
+  "height": 29,
+  "infinite": false,
+  "layers": [
+    {
+      "compression": "zlib",
+      "data": "eJztl0EOgjAQRSskLjiBYYcLBXeKqPc/md9Ekglh0up8HWpcvLChvy8zLROOIYSTIz0YQPlk9SIlYe1ZOKzfyLEiHb69t8TisFGeDAdWdmqetReFwKMXo8MONEQHrW5aP2J1SMnL/V78ukMxg2WPWJ78Vss1HTiAPclBy5vOC7nm8W4NWrCN7FElOGh5MYfRnVGHVsnTZpbXefC6E1aHT87NnOow7bWnA3tu5liHJZyHvwMHxv8F6z/rAq6O3MAdNJAhhw==",
+      "encoding": "base64",
+      "height": 29,
+      "id": 1,
+      "name": "level",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 33,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 2,
+  "nextobjectid": 1,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "name",
+      "type": "string",
+      "value": "Robots & Plasmoids"
+    },
+    {
+      "name": "infotrons",
+      "type": "int",
+      "value": 20
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.2.3",
+  "tileheight": 32,
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "source": "infotron.tileset.json"
+    }
+  ],
+  "tilewidth": 32,
+  "type": "map",
+  "version": "1.2",
+  "width": 33
+}

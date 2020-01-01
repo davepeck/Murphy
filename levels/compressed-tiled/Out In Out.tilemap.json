@@ -1,0 +1,48 @@
+{
+  "height": 31,
+  "infinite": false,
+  "layers": [
+    {
+      "compression": "zlib",
+      "data": "eJzNl00OwiAQhQkmLtzrokurB1Drz03a+59ETCCZTBxmBgbaxcuUFMjr11egN+fcfQN6BD2D9kBLgY6F436aoybgZY7VBw2xpjanq7CfR/PmvCygT6qtuGi9WHHBvAe3Lhc8L+XlQHjBz0FxknKReEntnP8cJ0suUi9SLrl8rMGFm6fWC5UfiktLLxSnNbhQ+UlcJPlozaVknLWX9PxeOU7q5RJ0EtZ/c5/jfUm1fkeQiyYnLfJSm5taL/h7GZ1+XbHkAgXXl95e8L6EuWjWmZZcsKy9cOeYEbU96mfNJadaLjuFF+7cy3HJ5WeO1z24cJw4L9JzLsdFkh8JF41acpH+F5Vywfs75aW34Df9CnpvQJ+gLzZW0c0=",
+      "encoding": "base64",
+      "height": 31,
+      "id": 1,
+      "name": "level",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 35,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 2,
+  "nextobjectid": 1,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "name",
+      "type": "string",
+      "value": "Out In Out"
+    },
+    {
+      "name": "infotrons",
+      "type": "int",
+      "value": 24
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.2.3",
+  "tileheight": 32,
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "source": "infotron.tileset.json"
+    }
+  ],
+  "tilewidth": 32,
+  "type": "map",
+  "version": "1.2",
+  "width": 35
+}

@@ -1,0 +1,48 @@
+{
+  "height": 43,
+  "infinite": false,
+  "layers": [
+    {
+      "compression": "zlib",
+      "data": "eJztl11uwyAMgNmmStNOwPI2RT3A/qe8Rdn9zzQixZrnGWzcbo0RD5+aUhD+wAT3MYTw1CDPidfEVYO8dDeXdDeftOR2jWjRbeluFyc26hYRLblFBs9uEX0CB8av5LlHN26fJCxua/sx/LwrzskRzQ1edH8koL/FbfljYO5S3Np2zu2h4FbDaNw/Sx5K+SnVJdOOuE3MBsCFui3hdx5z7zMLwwljtfPi+CW3SJ5L31fGTBzcWG3sufPFtXFu09Y+kTWW7s6hMKcUrzRmVKwRZd48ZuT2mbhT7rtm/ax5lsvbmvabzQfcsC+deyBtGg+ujsDP0tnjxmnmxfmXO28lB01cMXznq+b8Sb+Xziqm5l1Sm1OXpuQ274j1frPcizk3a31Yy/0Z4WLPuf1XPcnFeahsx/moqSetNWJN/QnzleLOAf3pWdvj/7dT8nDvbuBHPel+4n6e3KR91Izz4Eb9tGO8uIFfTX9PbrV0N59IdUlLdDefdDefrG5vifcG+Uh8ASo0c00=",
+      "encoding": "base64",
+      "height": 43,
+      "id": 1,
+      "name": "level",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 55,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 2,
+  "nextobjectid": 1,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "name",
+      "type": "string",
+      "value": "And So It Begins..."
+    },
+    {
+      "name": "infotrons",
+      "type": "int",
+      "value": 10
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.2.3",
+  "tileheight": 32,
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "source": "savanatron.tileset.json"
+    }
+  ],
+  "tilewidth": 32,
+  "type": "map",
+  "version": "1.2",
+  "width": 55
+}

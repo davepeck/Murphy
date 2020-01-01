@@ -1,0 +1,48 @@
+{
+  "height": 23,
+  "infinite": false,
+  "layers": [
+    {
+      "compression": "zlib",
+      "data": "eJzFlktqwzAURW231NAVGC1ATjtL/3gWyP7XVBnehZPLs+NZBhcpsqTzviLnrus+HqTPpu+m16axqQ8tMRb7PcfIva6SrE1YL/F71Vfwx2CsqjGO4C6x/xTjAonhNu3ZKIkvhvvr4wx+gQ2cZ/FYEtWE735xLOa/xiHmivNgcXd7mQvyZ3wjd96wP8uD7GEc/TtjRv4JdnO/fJbemt7jfI19HAfknn5X3K+5+LLp2fLD+ZSseX7oq+fJ6/IKvvfMkdpddTGW7FA90K4e3Gp8nc36MIuN59VrgXzW3xTckuTfc3mkr8mnvxWibZxn/dfjm/uvs6q/mvB5nvmo2Ef7mf9rYsdWvzHmI5jZOdrpPon/YvzVniecZ/95fo7UrPP1Lop/BT97b7L+ozwGe+8pY5L1H9+he2JvqQaYB9ZFNvf+k4aDa/Rt7m5jvRhvxNz5BevZ/QOU9VwWN/mvXu/BKcbfizH5lx3+3N2+X/dEPmMymfbevMx/9c/ee6Wazfxfuu1Y+F3+H2nrTWRv8D1i/iX6zvXsbvrJHs9s5r3av/J/mn4fpL+mf9RSWv0=",
+      "encoding": "base64",
+      "height": 23,
+      "id": 1,
+      "name": "level",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 32,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 2,
+  "nextobjectid": 1,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "name",
+      "type": "string",
+      "value": "Gold Rush"
+    },
+    {
+      "name": "infotrons",
+      "type": "int",
+      "value": 44
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.2.3",
+  "tileheight": 32,
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "source": "savanatron.tileset.json"
+    }
+  ],
+  "tilewidth": 32,
+  "type": "map",
+  "version": "1.2",
+  "width": 32
+}

@@ -1,0 +1,48 @@
+{
+  "height": 30,
+  "infinite": false,
+  "layers": [
+    {
+      "compression": "zlib",
+      "data": "eJzNl0FuwjAQRU1KQOoO2lRRb0B3baHttmpOwP0PU7OINPrMnxknsZTF1+BJcJ4etiPeU0ofK85nziXnuuKcBWOTc3DqE9Txew0ZYx6d69p8kvFI6jOpRzEnVpY+yCgrekRPWNFnCWMvUssj8xr5rXsljPEKn5lHtv40jzhnhI9xTvXYJNur9QyLz/K5J4zM107xN447mLOUDzmjHtm+tTzjMxjLq8NZsh6j65Ktx9+cU86bqH85G+PaFI/eucg8bo1snOsl52P0faPNiemI747cbzEyj2wdRt4zXt/LHI8H59kRdivWnvG+G0mUcarH8Zx7mVk9JsmO6xJdScZa6ZLNaHnVPFrO5bh1xmMvspd2YjyIWIx4n5yzBZ423TPKe6L7vYRxgLkG5RnI1aZ7dsayhEePkfnS+rd4/ylqeNwqrjRGzSfuWc0jMpQyWudsZF97/bmMpbHOEq/vMbJ93Sg9azyHEfve+RhlWpIx4nGJ1PJYKw+FfcyN8Svne8X5yfkHuxCuYA==",
+      "encoding": "base64",
+      "height": 30,
+      "id": 1,
+      "name": "level",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 41,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 2,
+  "nextobjectid": 1,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "name",
+      "type": "string",
+      "value": "Excavation"
+    },
+    {
+      "name": "infotrons",
+      "type": "int",
+      "value": 1
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.2.3",
+  "tileheight": 32,
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "source": "infotron.tileset.json"
+    }
+  ],
+  "tilewidth": 32,
+  "type": "map",
+  "version": "1.2",
+  "width": 41
+}

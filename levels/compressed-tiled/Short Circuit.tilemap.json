@@ -1,0 +1,48 @@
+{
+  "height": 17,
+  "infinite": false,
+  "layers": [
+    {
+      "compression": "zlib",
+      "data": "eJy1k8FuwjAQRAM1AvcLCMcWkOit0AI9NgGS+P8/qBtpRh2tnLaqwuFp411rvBmvX4ui2N+Jg/FuLIwIliPyBv2Z6Pe0iAmxGch3rj6kz3oYgUlGv3b9V7/0uzUuWCfsZwwZ/aVoPxnPEtfGxq2H/pW9BPSm+jPkrhK9/9Fp6H2pLmvUL4XcHNBTrbPnGnDdIaY/6jPX9/NRfM9J6c6g75WcQ/0IP+jrBfEGnSj+8btEnfsj/nOCXCP6P83byviUe0jOj4CeG9H1/nNPCw96jR1ynfRNaqn3tRc5Kzc/Y7yrgN54v+p/izX74Vvh+2nFm0r2J+RZ30r/Oj+Pxtx58F9y8/+AdTkiU+gfjdOdOBtfm4M1RQ==",
+      "encoding": "base64",
+      "height": 17,
+      "id": 1,
+      "name": "level",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 24,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 2,
+  "nextobjectid": 1,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "name",
+      "type": "string",
+      "value": "Short Circuit"
+    },
+    {
+      "name": "infotrons",
+      "type": "int",
+      "value": 1
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.2.3",
+  "tileheight": 32,
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "source": "infotron.tileset.json"
+    }
+  ],
+  "tilewidth": 32,
+  "type": "map",
+  "version": "1.2",
+  "width": 24
+}
