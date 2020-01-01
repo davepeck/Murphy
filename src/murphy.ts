@@ -15,7 +15,10 @@ class MurphyScene extends Phaser.Scene {
 
   preload() {
     this.load.image('tiles', 'levels/tiled/infotron.png');
-    this.load.tilemapTiledJSON('map', 'levels/tiled/Excavation.tilemap.json');
+    this.load.tilemapTiledJSON(
+      'map',
+      'levels/tiled/Excavation-big.tilemap.json'
+    );
   }
 
   create() {
