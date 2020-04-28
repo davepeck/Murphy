@@ -1,19 +1,19 @@
 /** The top-level supaplex level data format. */
 interface SupaplexLevel {
+  /** The name of the level. */
+  name: string;
+
+  /** The number of infotrons required. Must be > 0. */
+  infotrons: number;
+
   /**
-   * The level contents.
+   * The level's primary contents.
    *
    * Supaplex levels were all 60x24, but Infotron and Murphy's Revenge allowed
    * for arbitrary size levels. A border should be drawn around the level;
    * this data format does not contain border tiles.
    */
-  level: Tile[][];
-
-  /** The name of the level. */
-  name: string;
-
-  /** The number of infotrons needed. If not provided, defaults to 'as many as the level has'. */
-  infotrons?: number;
+  board: Tile[][];
 
   /** Whether to freeze zonks initially. Default false if not provided. */
   freezeZonks?: boolean;
