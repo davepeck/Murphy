@@ -174,7 +174,8 @@ enum InfotronTile {
    *
    * We never include outer borders in the `board` array. However,
    * some Infotron and Murphy's Revenge levels contained inner borders too!
-   * So we need to be able to specify this here.
+   * Not surprisingly, inner boders should be treated as indestructible
+   * hardware.
    */
   BorderTopLeft = 100,
 
@@ -236,8 +237,10 @@ enum MurphysRevengeTile {
    * This special kind of disk acts like an explosive rocket. It is not
    * affected by gravity. Murphy can push the disk exactly once. At that point,
    * it "takes off", continuing to head in the same direction and exploding
-   * everything in its path until it hits any type of hardware. At that point,
-   * it's done.
+   * everything in its path until it hits any indestructible hardware. At
+   * that point, it goes away. The explosions along the way are only one
+   * tile in size -- not the standard 9-tiles of a typical disk explosion.
+   * But, of course, they can set *off* larger chain reactions.
    *
    * Several MR levels make extensive use of this new type of disk.
    */
