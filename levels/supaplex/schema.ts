@@ -172,7 +172,7 @@ enum InfotronTile {
   /**
    * A top-left level border tile.
    *
-   * We never include outer borders in the `level` array. However,
+   * We never include outer borders in the `board` array. However,
    * some Infotron and Murphy's Revenge levels contained inner borders too!
    * So we need to be able to specify this here.
    */
