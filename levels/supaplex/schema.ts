@@ -1,5 +1,7 @@
+/** TODO: separate visual appearance from behavior */
+
 /** The top-level supaplex level data format. */
-interface SupaplexLevel {
+export interface SupaplexLevel {
   /** The name of the level. */
   name: string;
 
@@ -23,7 +25,7 @@ interface SupaplexLevel {
 }
 
 /** Special port metadata (rare, but defined in SPFIX63a). */
-interface SpecialPort {
+export interface SpecialPort {
   /** Where the special port is located in the level. */
   location: Point;
 
@@ -38,13 +40,13 @@ interface SpecialPort {
 }
 
 /** An x, y coordinate */
-type Point = [number, number];
+export type Point = [number, number];
 
 /** All known tile types. */
-type Tile = SupaplexTile | InfotronTile | MurphysRevengeTile;
+export type Tile = SupaplexTile | InfotronTile | MurphysRevengeTile;
 
 /** Known tile types from supaplex, defined in SPFIX63a. */
-enum SupaplexTile {
+export enum SupaplexTile {
   /** A blank space. */
   Space = 0,
 
@@ -161,14 +163,14 @@ enum SupaplexTile {
   RamChipVerticalTop = 38,
 
   /** RAM chip (vertical bottom) */
-  RamChipVerticalButtom = 39,
+  RamChipVerticalBottom = 39,
 
   /** Invisible wall (?) */
   InvisibleWall = 40,
 }
 
 /** Special tile types only found in Infotron for classic MacOS. */
-enum InfotronTile {
+export enum InfotronTile {
   /**
    * A top-left level border tile.
    *
@@ -216,7 +218,7 @@ enum InfotronTile {
 }
 
 /** Special tile types only found in Murphy's Revenge for classic MacOS. */
-enum MurphysRevengeTile {
+export enum MurphysRevengeTile {
   /**
    * A zonk that floats upward, against gravity.
    *
@@ -257,7 +259,7 @@ enum MurphysRevengeTile {
    * zonks roll off of them. Like standard RAM chips, they can be destroyed
    * by explosions.
    */
-  MovableRAMChip = 202,
+  MovableRamChip = 202,
 
   /* TODO: There were a few other new pieces that we were experimenting with
    * in MR, most notably lasers and mirrors, but we don't have many levels
