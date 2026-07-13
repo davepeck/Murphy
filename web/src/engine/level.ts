@@ -24,6 +24,7 @@ export interface LevelIndexEntry {
   world: string;
   quota: number;
   timed: boolean;
+  time: LevelTime | null;
   hint: string;
 }
 

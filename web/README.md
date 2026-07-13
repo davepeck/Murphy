@@ -45,6 +45,24 @@ in `dist/`.
   archive, and three hints that the old dump tool truncated at a colon are
   restored.
 
+## The map room
+
+Start walks you into the real overworld from the original (`World.lvl` +
+`MRMap.c`): a 120×120 island world on the 18-wide 24px tileset, with the
+animated ocean, whirlpools, and level beacons. You begin on the start island
+where only *And So It Begins...* is reachable; **switch tiles** swap every
+map cell sharing their trigger ID, opening causeways and revealing routes
+(two levels — Daylight and Wizard — are hidden until the right switches are
+thrown). Standing on a beacon pops the level-stats card (title, goal, status,
+hint) after 250 ms; Enter or the Play button enters the level. You can't walk
+off an unpassed level's beacon except back the way you came, exactly like the
+original. Passed levels switch to their red beacon variant. Thrown switches,
+your map position, and passed levels persist. The unfinished second area's
+empty markers show the original's "Nonexistant Level" behavior.
+
+Press **L** on the map for a quick level list (a web extra; the original had
+no list).
+
 ## Faithful vs. adapted
 
 Faithful: tile IDs, piece property table (including the switch fall-throughs),
@@ -52,10 +70,12 @@ movement speeds (8 px/frame walk, 4 px/frame push/enemies), cascade order,
 explosion timing and chain-reaction frames, enemy AI scan order
 (left/straight/right/back), sound events with Manhattan-distance proximity +
 stereo panning, the proportional catch-up camera, the pause screen-door dim,
-and the "You goofed!" replay dialog.
+the map room's passability/trigger/gating rules, and the "You goofed!" replay
+dialog.
 
-Adapted for the web: the level list stands in for the original (unfinished)
-map-room overworld; arrow keys/WASD replace the 8-4-6-2 defaults (Space =
+Adapted for the web: arrow keys/WASD replace the 8-4-6-2 defaults (Space =
 snap/drop, P or Tab = pause, Esc = suicide); progress and volumes persist in
-localStorage; music volume defaults to "Pleasant" rather than the original
-default of "Excruciating".
+localStorage (the original only saved at clean app exit); the trig-0 switch at
+(43,30) — which in the original would corrupt the whole map if stepped on — is
+inert; music volume defaults to "Pleasant" rather than the original default of
+"Excruciating"; no player profiles yet (single implicit player).

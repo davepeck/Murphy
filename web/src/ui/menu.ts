@@ -102,7 +102,7 @@ export class MenuScreen implements Screen {
     switch (id) {
       case "start":
         ctx.audio.stopMusic();
-        void import("./select").then(({ SelectScreen }) => ctx.switchScreen(new SelectScreen()));
+        void import("./map").then(({ MapScreen }) => ctx.switchScreen(new MapScreen()));
         break;
       case "intro":
       case "credits":

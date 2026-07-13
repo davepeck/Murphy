@@ -26,12 +26,13 @@ export class Camera {
     this.clamp();
   }
 
-  /** Original proportional catch-up scroll (Scroll_LevWorldMove). */
-  follow(px: number, py: number): void {
+  /** Original proportional catch-up scroll (Scroll_LevWorldMove); the map
+   *  room uses the same formula with its slower sprite speed. */
+  follow(px: number, py: number, moveDelta: number = SPRITE_MOVE_DELTA): void {
     const midX = this.x + (this.viewW - TILE_SIZE) / 2;
     const midY = this.y + (this.viewH - TILE_SIZE) / 2;
-    this.x += Math.trunc((SPRITE_MOVE_DELTA * (px - midX)) / SPRITE_MOVE_DISTANCE);
-    this.y += Math.trunc((SPRITE_MOVE_DELTA * (py - midY)) / SPRITE_MOVE_DISTANCE);
+    this.x += Math.trunc((moveDelta * (px - midX)) / SPRITE_MOVE_DISTANCE);
+    this.y += Math.trunc((moveDelta * (py - midY)) / SPRITE_MOVE_DISTANCE);
     this.clamp();
   }
 

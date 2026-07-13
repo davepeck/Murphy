@@ -5,6 +5,11 @@
     "world": "savanatron",
     "quota": 10,
     "timed": true,
+    "time": {
+      "hours": 0,
+      "mins": 1,
+      "secs": 30
+    },
     "hint": "Take heed: the puzzles have only just begun..."
   },
   {
@@ -13,6 +18,11 @@
     "world": "infotron",
     "quota": 20,
     "timed": true,
+    "time": {
+      "hours": 0,
+      "mins": 8,
+      "secs": 0
+    },
     "hint": "Assert yourself, but don't get crushed!"
   },
   {
@@ -21,6 +31,11 @@
     "world": "aquatron",
     "quota": 12,
     "timed": true,
+    "time": {
+      "hours": 0,
+      "mins": 4,
+      "secs": 0
+    },
     "hint": "Robots verboten."
   },
   {
@@ -29,6 +44,11 @@
     "world": "infotron",
     "quota": 15,
     "timed": true,
+    "time": {
+      "hours": 0,
+      "mins": 10,
+      "secs": 0
+    },
     "hint": "Have a blast! - but don't get too close..."
   },
   {
@@ -37,6 +57,11 @@
     "world": "infotron",
     "quota": 20,
     "timed": true,
+    "time": {
+      "hours": 0,
+      "mins": 8,
+      "secs": 0
+    },
     "hint": "These little critters can be a pain in the patookus, so blow 'em up!"
   },
   {
@@ -45,6 +70,7 @@
     "world": "infotron",
     "quota": 1,
     "timed": false,
+    "time": null,
     "hint": "One wrong move, and that Infotron is buried forever."
   },
   {
@@ -53,6 +79,7 @@
     "world": "savanatron",
     "quota": 53,
     "timed": false,
+    "time": null,
     "hint": "An exit is far more important than an infotron."
   },
   {
@@ -61,6 +88,11 @@
     "world": "infotron",
     "quota": 45,
     "timed": true,
+    "time": {
+      "hours": 0,
+      "mins": 15,
+      "secs": 0
+    },
     "hint": "Golden shells pack a punch - but which ones do you push first?"
   },
   {
@@ -69,6 +101,7 @@
     "world": "infotron",
     "quota": 45,
     "timed": false,
+    "time": null,
     "hint": "Careful, it's not a straight shot out! Not everything goes down, you know..."
   },
   {
@@ -77,6 +110,7 @@
     "world": "savanatron",
     "quota": 44,
     "timed": false,
+    "time": null,
     "hint": "Push 'em at the right time, and the Infotrons will come."
   },
   {
@@ -85,6 +119,11 @@
     "world": "infotron",
     "quota": 20,
     "timed": true,
+    "time": {
+      "hours": 0,
+      "mins": 15,
+      "secs": 0
+    },
     "hint": "Don't ignite the yellow disks until 2-3, 5-6!"
   },
   {
@@ -93,6 +132,11 @@
     "world": "aquatron",
     "quota": 20,
     "timed": true,
+    "time": {
+      "hours": 0,
+      "mins": 2,
+      "secs": 30
+    },
     "hint": "Hurry the !@#^ up!"
   },
   {
@@ -101,6 +145,7 @@
     "world": "aquatron",
     "quota": 85,
     "timed": false,
+    "time": null,
     "hint": "Each small puzzle is part of a larger enigma."
   },
   {
@@ -109,6 +154,7 @@
     "world": "aquatron",
     "quota": 10,
     "timed": false,
+    "time": null,
     "hint": "They're stuck, but you can get 'em out if you think about it."
   },
   {
@@ -117,6 +163,7 @@
     "world": "infotron",
     "quota": 30,
     "timed": false,
+    "time": null,
     "hint": "All evil contains some good"
   },
   {
@@ -125,6 +172,7 @@
     "world": "infotron",
     "quota": 20,
     "timed": false,
+    "time": null,
     "hint": "You can't defy gravity, punk."
   },
   {
@@ -133,6 +181,7 @@
     "world": "aquatron",
     "quota": 22,
     "timed": false,
+    "time": null,
     "hint": "T3: (try trance techno)"
   },
   {
@@ -141,6 +190,11 @@
     "world": "infotron",
     "quota": 90,
     "timed": true,
+    "time": {
+      "hours": 0,
+      "mins": 20,
+      "secs": 0
+    },
     "hint": "Every little bit counts."
   },
   {
@@ -149,6 +203,7 @@
     "world": "infotron",
     "quota": 40,
     "timed": false,
+    "time": null,
     "hint": "These ain't potato chips, no sir."
   },
   {
@@ -157,6 +212,7 @@
     "world": "infotron",
     "quota": 45,
     "timed": false,
+    "time": null,
     "hint": "We've been waiting for you..."
   },
   {
@@ -165,6 +221,7 @@
     "world": "infotron",
     "quota": 17,
     "timed": false,
+    "time": null,
     "hint": ""
   },
   {
@@ -173,6 +230,7 @@
     "world": "infotron",
     "quota": 24,
     "timed": false,
+    "time": null,
     "hint": "Death is (still) right around the corner."
   },
   {
@@ -181,6 +239,7 @@
     "world": "aquatron",
     "quota": 24,
     "timed": false,
+    "time": null,
     "hint": "Death is right around the corner."
   },
   {
@@ -189,6 +248,7 @@
     "world": "savanatron",
     "quota": 72,
     "timed": false,
+    "time": null,
     "hint": "I'm dreaming of France"
   },
   {
@@ -197,6 +257,7 @@
     "world": "infotron",
     "quota": 39,
     "timed": false,
+    "time": null,
     "hint": "The secret is speed."
   },
   {
@@ -205,6 +266,11 @@
     "world": "infotron",
     "quota": 1,
     "timed": true,
+    "time": {
+      "hours": 0,
+      "mins": 0,
+      "secs": 35
+    },
     "hint": "Nonstop explosions for the violence within you..."
   },
   {
@@ -213,6 +279,7 @@
     "world": "infotron",
     "quota": 1,
     "timed": false,
+    "time": null,
     "hint": "Pay attention: the correct drops will get you out."
   },
   {
@@ -221,6 +288,7 @@
     "world": "infotron",
     "quota": 121,
     "timed": false,
+    "time": null,
     "hint": "(Just Do It™)"
   },
   {
@@ -229,6 +297,7 @@
     "world": "infotron",
     "quota": 1,
     "timed": false,
+    "time": null,
     "hint": "Power Up, aim those optics, and fire. Oh, and stand out of the way..."
   }
 ]

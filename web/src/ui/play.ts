@@ -50,7 +50,10 @@ export class PlayScreen implements Screen {
   private winTick: number | null = null;
   private dimPattern: CanvasPattern | null = null;
 
-  constructor(private file: string) {}
+  constructor(
+    private file: string,
+    private returnTo: "map" | "select" = "select"
+  ) {}
 
   async enter(ctx: GameContext): Promise<void> {
     const a = ctx.assets;
@@ -84,12 +87,16 @@ export class PlayScreen implements Screen {
     ctx.audio.stopMusic();
   }
 
-  private exitToSelect(ctx: GameContext): void {
-    void import("./select").then(({ SelectScreen }) => ctx.switchScreen(new SelectScreen()));
+  private exitBack(ctx: GameContext): void {
+    if (this.returnTo === "map") {
+      void import("./map").then(({ MapScreen }) => ctx.switchScreen(new MapScreen()));
+    } else {
+      void import("./select").then(({ SelectScreen }) => ctx.switchScreen(new SelectScreen()));
+    }
   }
 
   private restart(ctx: GameContext): void {
-    ctx.switchScreen(new PlayScreen(this.file));
+    ctx.switchScreen(new PlayScreen(this.file, this.returnTo));
   }
 
   tick(ctx: GameContext): void {
@@ -141,7 +148,7 @@ export class PlayScreen implements Screen {
       }
       if (no) {
         ctx.audio.play(UI_SOUNDS.click);
-        this.exitToSelect(ctx);
+        this.exitBack(ctx);
         return;
       }
     } else if (input.wasPressed("escape") && game.oliver) {
@@ -165,7 +172,7 @@ export class PlayScreen implements Screen {
       if (this.winTick === null) this.winTick = game.tickCount;
       else if (game.tickCount - this.winTick > 60) {
         markPassed(this.file);
-        this.exitToSelect(ctx);
+        this.exitBack(ctx);
       }
     } else if (!game.oliver && !this.showDialog) {
       this.showDialog = true; // death animation finished

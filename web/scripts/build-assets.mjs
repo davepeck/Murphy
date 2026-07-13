@@ -206,7 +206,7 @@ function buildLevels() {
       grid: cropped,
     };
     writeFileSync(path.join(levelsOut, `${base}.json`), JSON.stringify(level));
-    index.push({ file: base, name: header.name, world: header.world, quota: header.quota, timed, hint: header.hint });
+    index.push({ file: base, name: header.name, world: header.world, quota: header.quota, timed, time: level.time, hint: header.hint });
     console.log(`levels/${base}.json  (${width}x${height} ${header.world}${timed ? " timed" : ""})`);
   }
   writeFileSync(path.join(levelsOut, "levels.json"), JSON.stringify(index, null, 2));
@@ -227,6 +227,77 @@ function buildAudio() {
     for (const f of files) cpSync(path.join(soundsSrc, world, f), path.join(dest, f));
     console.log(`sounds/${world.toLowerCase()}/  (${files.length} files)`);
   }
+}
+
+// --- the overworld map --------------------------------------------------------
+
+// World.lvl is the map room: 120x120 cells, 8 fields per cell. Tile IDs use the
+// 18-wide world sheet (iconY*18 + iconX), and the trigger/kind/levelID fields
+// are live data (unlike game levels, where they are all zero).
+const WORLD_TILES_WIDE = 18;
+const OLIVER_START_TILE = 18; // icon (0,1): the map start marker
+
+function buildWorld() {
+  const worldOut = outDir("world");
+  const text = readFileSync(path.join(repo, "legacy", "murphy", "levels", "World.lvl"), "utf8");
+  const lines = text.split("\n").map((l) => l.trim());
+  const n = FULL * FULL;
+  const tiles = new Array(n);
+  const trig = new Array(n);
+  const trigTiles = new Array(n);
+  const kind = new Array(n);
+  const levelID = new Array(n);
+  let start = null;
+  let line = 9;
+  for (let i = 0; i < n; i++, line += 8) {
+    const iconX = parseInt(lines[line], 10);
+    const iconY = parseInt(lines[line + 1], 10);
+    tiles[i] = iconY * WORLD_TILES_WIDE + iconX;
+    trig[i] = parseInt(lines[line + 2], 10);
+    const trigX = parseInt(lines[line + 3], 10);
+    const trigY = parseInt(lines[line + 4], 10);
+    trigTiles[i] = trigY * WORLD_TILES_WIDE + trigX;
+    kind[i] = parseInt(lines[line + 5], 10);
+    levelID[i] = parseInt(lines[line + 7], 10);
+    if (tiles[i] === OLIVER_START_TILE) start = [i % FULL, Math.floor(i / FULL)];
+  }
+  if (!start) throw new Error("World.lvl: no start marker (tile 18)");
+  writeFileSync(
+    path.join(worldOut, "map.json"),
+    JSON.stringify({
+      width: FULL,
+      height: FULL,
+      tilesWide: WORLD_TILES_WIDE,
+      start,
+      tiles,
+      trig,
+      trigTiles,
+      kind,
+      levelID,
+    })
+  );
+  console.log(`world/map.json  (start at ${start})`);
+}
+
+// Bake the map Oliver's transparency: oliver-mini.bmp is two 24x24 frames
+// stacked with a 1px gutter; oliver-mini-masks.bmp is black=opaque on white.
+async function buildMiniOliver() {
+  const worldOut = outDir("world");
+  const art = path.join(repo, "legacy", "murphy", "artwork", "World");
+  const img = await Jimp.read(path.join(art, "oliver-mini.bmp"));
+  const mask = await Jimp.read(path.join(art, "oliver-mini-masks.bmp"));
+  for (let frame = 0; frame < 2; frame++) {
+    const out = new Jimp(24, 24, 0x00000000);
+    const srcY = frame * 25; // 24px frame + 1px gutter
+    for (let y = 0; y < 24; y++) {
+      for (let x = 0; x < 24; x++) {
+        const m = Jimp.intToRGBA(mask.getPixelColor(x, srcY + y));
+        if (m.r < 128) out.setPixelColor((img.getPixelColor(x, srcY + y) | 0xff) >>> 0, x, y);
+      }
+    }
+    await out.writeAsync(path.join(worldOut, `oliver-mini-${frame}.png`));
+  }
+  console.log("world/oliver-mini-{0,1}.png  (masked)");
 }
 
 // --- interface art ----------------------------------------------------------
@@ -252,6 +323,10 @@ async function buildInterface() {
 const only = process.argv[2];
 if (!only || only === "atlas") await buildAtlases();
 if (!only || only === "levels") buildLevels();
+if (!only || only === "world") {
+  buildWorld();
+  await buildMiniOliver();
+}
 if (!only || only === "audio") buildAudio();
 if (!only || only === "interface") await buildInterface();
 console.log("assets done.");

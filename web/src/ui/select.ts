@@ -56,13 +56,15 @@ export class SelectScreen implements Screen {
     ctx.audio.play(UI_SOUNDS.click);
     ctx.audio.stopMusic();
     localStorage.setItem("murphy.lastLevel", entry.file);
-    void import("./play").then(({ PlayScreen }) => ctx.switchScreen(new PlayScreen(entry.file)));
+    void import("./play").then(({ PlayScreen }) =>
+      ctx.switchScreen(new PlayScreen(entry.file, "select"))
+    );
   }
 
   private back(ctx: GameContext): void {
     ctx.audio.play(UI_SOUNDS.click);
     ctx.audio.stopMusic();
-    void import("./menu").then(({ MenuScreen }) => ctx.switchScreen(new MenuScreen()));
+    void import("./map").then(({ MapScreen }) => ctx.switchScreen(new MapScreen()));
   }
 
   tick(ctx: GameContext): void {
