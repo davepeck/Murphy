@@ -1,0 +1,234 @@
+[
+  {
+    "file": "And So It Begins",
+    "name": "And So It Begins...",
+    "world": "savanatron",
+    "quota": 10,
+    "timed": true,
+    "hint": "Take heed: the puzzles have only just begun..."
+  },
+  {
+    "file": "Bolder",
+    "name": "Bolder",
+    "world": "infotron",
+    "quota": 20,
+    "timed": true,
+    "hint": "Assert yourself, but don't get crushed!"
+  },
+  {
+    "file": "Achtung!",
+    "name": "Achtung!",
+    "world": "aquatron",
+    "quota": 12,
+    "timed": true,
+    "hint": "Robots verboten."
+  },
+  {
+    "file": "Inflamatory",
+    "name": "Inflamatory",
+    "world": "infotron",
+    "quota": 15,
+    "timed": true,
+    "hint": "Have a blast! - but don't get too close..."
+  },
+  {
+    "file": "Robots & Plasmoids",
+    "name": "Robots & Plasmoids",
+    "world": "infotron",
+    "quota": 20,
+    "timed": true,
+    "hint": "These little critters can be a pain in the patookus, so blow 'em up!"
+  },
+  {
+    "file": "Excavation",
+    "name": "Excavation",
+    "world": "infotron",
+    "quota": 1,
+    "timed": false,
+    "hint": "One wrong move, and that Infotron is buried forever."
+  },
+  {
+    "file": "Thriller",
+    "name": "Thriller",
+    "world": "savanatron",
+    "quota": 53,
+    "timed": false,
+    "hint": "An exit is far more important than an infotron."
+  },
+  {
+    "file": "Golden Rule",
+    "name": "Golden Rule",
+    "world": "infotron",
+    "quota": 45,
+    "timed": true,
+    "hint": "Golden shells pack a punch - but which ones do you push first?"
+  },
+  {
+    "file": "Going Up",
+    "name": "Going Up",
+    "world": "infotron",
+    "quota": 45,
+    "timed": false,
+    "hint": "Careful, it's not a straight shot out! Not everything goes down, you know..."
+  },
+  {
+    "file": "Gold Rush",
+    "name": "Gold Rush",
+    "world": "savanatron",
+    "quota": 44,
+    "timed": false,
+    "hint": "Push 'em at the right time, and the Infotrons will come."
+  },
+  {
+    "file": "Daylight",
+    "name": "Daylight",
+    "world": "infotron",
+    "quota": 20,
+    "timed": true,
+    "hint": "Don't ignite the yellow disks until 2-3, 5-6!"
+  },
+  {
+    "file": "Stress",
+    "name": "Stress",
+    "world": "aquatron",
+    "quota": 20,
+    "timed": true,
+    "hint": "Hurry the !@#^ up!"
+  },
+  {
+    "file": "Catacombs-Aquatron",
+    "name": "Catacombs",
+    "world": "aquatron",
+    "quota": 85,
+    "timed": false,
+    "hint": "Each small puzzle is part of a larger enigma."
+  },
+  {
+    "file": "Trapped Inside",
+    "name": "Trapped Inside",
+    "world": "aquatron",
+    "quota": 10,
+    "timed": false,
+    "hint": "They're stuck, but you can get 'em out if you think about it."
+  },
+  {
+    "file": "It's Alive!!",
+    "name": "It's Alive!!",
+    "world": "infotron",
+    "quota": 30,
+    "timed": false,
+    "hint": "All evil contains some good"
+  },
+  {
+    "file": "Falling",
+    "name": "Falling",
+    "world": "infotron",
+    "quota": 20,
+    "timed": false,
+    "hint": "You can't defy gravity, punk."
+  },
+  {
+    "file": "Crystalline",
+    "name": "Crystalline",
+    "world": "aquatron",
+    "quota": 22,
+    "timed": false,
+    "hint": "T3: (try trance techno)"
+  },
+  {
+    "file": "Dot Dot",
+    "name": "Dot Dot",
+    "world": "infotron",
+    "quota": 90,
+    "timed": true,
+    "hint": "Every little bit counts."
+  },
+  {
+    "file": "Dash Dash",
+    "name": "Dash Dash",
+    "world": "infotron",
+    "quota": 40,
+    "timed": false,
+    "hint": "These ain't potato chips, no sir."
+  },
+  {
+    "file": "Love Boat",
+    "name": "Love Boat",
+    "world": "infotron",
+    "quota": 45,
+    "timed": false,
+    "hint": "We've been waiting for you..."
+  },
+  {
+    "file": "Wizard",
+    "name": "Wizard",
+    "world": "infotron",
+    "quota": 17,
+    "timed": false,
+    "hint": ""
+  },
+  {
+    "file": "Out In Out",
+    "name": "Out In Out",
+    "world": "infotron",
+    "quota": 24,
+    "timed": false,
+    "hint": "Death is (still) right around the corner."
+  },
+  {
+    "file": "In Out In",
+    "name": "In Out In",
+    "world": "aquatron",
+    "quota": 24,
+    "timed": false,
+    "hint": "Death is right around the corner."
+  },
+  {
+    "file": "Labyrinth",
+    "name": "Labyrinth",
+    "world": "savanatron",
+    "quota": 72,
+    "timed": false,
+    "hint": "I'm dreaming of France"
+  },
+  {
+    "file": "No More Secrets",
+    "name": "No More Secrets",
+    "world": "infotron",
+    "quota": 39,
+    "timed": false,
+    "hint": "The secret is speed."
+  },
+  {
+    "file": "Short Circuit",
+    "name": "Short Circuit",
+    "world": "infotron",
+    "quota": 1,
+    "timed": true,
+    "hint": "Nonstop explosions for the violence within you..."
+  },
+  {
+    "file": "Combinations",
+    "name": "Combinations",
+    "world": "infotron",
+    "quota": 1,
+    "timed": false,
+    "hint": "Pay attention: the correct drops will get you out."
+  },
+  {
+    "file": "Insane Infotrons (tm)",
+    "name": "Insane Infotrons™",
+    "world": "infotron",
+    "quota": 121,
+    "timed": false,
+    "hint": "(Just Do It™)"
+  },
+  {
+    "file": "test level",
+    "name": "test level",
+    "world": "infotron",
+    "quota": 1,
+    "timed": false,
+    "hint": "Power Up, aim those optics, and fire. Oh, and stand out of the way..."
+  }
+]
