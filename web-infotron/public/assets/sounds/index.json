@@ -1,0 +1,172 @@
+[
+  {
+    "id": 128,
+    "name": "GotInfotron",
+    "format": 1,
+    "channels": 1,
+    "bitsPerSample": 8,
+    "sampleRate": 22254.55,
+    "frames": 1664,
+    "seconds": 0.07
+  },
+  {
+    "id": 129,
+    "name": "Thud",
+    "format": 1,
+    "channels": 1,
+    "bitsPerSample": 8,
+    "sampleRate": 22254.55,
+    "frames": 2528,
+    "seconds": 0.11
+  },
+  {
+    "id": 131,
+    "name": "Explode",
+    "format": 1,
+    "channels": 2,
+    "bitsPerSample": 8,
+    "sampleRate": 22254.55,
+    "frames": 32512,
+    "seconds": 1.46
+  },
+  {
+    "id": 132,
+    "name": "QuarkExplode",
+    "format": 1,
+    "channels": 1,
+    "bitsPerSample": 8,
+    "sampleRate": 22254.55,
+    "frames": 33735,
+    "seconds": 1.52
+  },
+  {
+    "id": 133,
+    "name": "GotRedDisk",
+    "format": 1,
+    "channels": 1,
+    "bitsPerSample": 8,
+    "sampleRate": 22254.55,
+    "frames": 1793,
+    "seconds": 0.08
+  },
+  {
+    "id": 134,
+    "name": "RedDiskReady",
+    "format": 1,
+    "channels": 1,
+    "bitsPerSample": 8,
+    "sampleRate": 11127.27,
+    "frames": 6175,
+    "seconds": 0.55
+  },
+  {
+    "id": 135,
+    "name": "GotLastInfo",
+    "format": 1,
+    "channels": 1,
+    "bitsPerSample": 8,
+    "sampleRate": 11127.27,
+    "frames": 16766,
+    "seconds": 1.51
+  },
+  {
+    "id": 137,
+    "name": "MurphyDied",
+    "format": 1,
+    "channels": 1,
+    "bitsPerSample": 8,
+    "sampleRate": 11127.27,
+    "frames": 10936,
+    "seconds": 0.98
+  },
+  {
+    "id": 138,
+    "name": "Pause",
+    "format": 1,
+    "channels": 1,
+    "bitsPerSample": 8,
+    "sampleRate": 11128,
+    "frames": 10009,
+    "seconds": 0.9
+  },
+  {
+    "id": 139,
+    "name": "Unpause",
+    "format": 1,
+    "channels": 1,
+    "bitsPerSample": 8,
+    "sampleRate": 11128,
+    "frames": 10009,
+    "seconds": 0.9
+  },
+  {
+    "id": 140,
+    "name": "BugZap",
+    "format": 1,
+    "channels": 1,
+    "bitsPerSample": 8,
+    "sampleRate": 22254.55,
+    "frames": 11904,
+    "seconds": 0.53
+  },
+  {
+    "id": 141,
+    "name": "Push",
+    "format": 1,
+    "channels": 1,
+    "bitsPerSample": 8,
+    "sampleRate": 22254.55,
+    "frames": 3536,
+    "seconds": 0.16
+  },
+  {
+    "id": 144,
+    "name": "Click",
+    "format": 1,
+    "channels": 1,
+    "bitsPerSample": 8,
+    "sampleRate": 22287.14,
+    "frames": 2398,
+    "seconds": 0.11
+  },
+  {
+    "id": 145,
+    "name": "Tick",
+    "format": 1,
+    "channels": 1,
+    "bitsPerSample": 8,
+    "sampleRate": 22254.55,
+    "frames": 1777,
+    "seconds": 0.08
+  },
+  {
+    "id": 146,
+    "name": "Ding!",
+    "format": 1,
+    "channels": 1,
+    "bitsPerSample": 8,
+    "sampleRate": 22254.55,
+    "frames": 13312,
+    "seconds": 0.6
+  },
+  {
+    "id": 150,
+    "name": "QLogoSnd",
+    "format": 1,
+    "channels": 1,
+    "bitsPerSample": 8,
+    "sampleRate": 22254.55,
+    "frames": 162304,
+    "seconds": 7.29
+  },
+  {
+    "id": 151,
+    "name": "endLevel",
+    "format": 1,
+    "channels": 1,
+    "bitsPerSample": 8,
+    "sampleRate": 22254.55,
+    "frames": 56064,
+    "seconds": 2.52
+  }
+]

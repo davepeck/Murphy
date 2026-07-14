@@ -133,26 +133,38 @@ export class AudioEngine {
   }
 
   /**
-   * Fire-and-forget SFX. vol is 0..1 (proximity already applied);
-   * pan is -10..10 as in the original.
+   * Fire-and-forget SFX. vol is 0..1 (proximity already applied). pan is
+   * -10..10; pass undefined for non-positional plays (PlaySoundID /
+   * PlaySoundIDProx) — a *positional* sound at pan 0 is halved per channel.
    */
-  play(rel: string, vol = 1, pan = 0): void {
+  play(rel: string, vol = 1, pan?: number): void {
     if (!this.ctx || this.soundVolume === 0 || vol <= 0) return;
     void this.buffer(rel).then((buf) => {
       if (!buf || !this.ctx || !this.sfxGain) return;
       const src = this.ctx.createBufferSource();
       src.buffer = buf;
-      const gain = this.ctx.createGain();
-      gain.gain.value = (this.soundVolume / 255) * Math.min(1, vol);
-      src.connect(gain);
-      const p = Math.max(-10, Math.min(10, pan)) / 10;
-      if (p !== 0 && typeof this.ctx.createStereoPanner === "function") {
-        const panner = this.ctx.createStereoPanner();
-        panner.pan.value = p;
-        gain.connect(panner);
-        panner.connect(this.sfxGain);
-      } else {
+      const base = (this.soundVolume / 255) * Math.min(1, vol);
+      if (pan === undefined) {
+        // Non-positional plays: full volume on both channels (PlaySoundID).
+        const gain = this.ctx.createGain();
+        gain.gain.value = base;
+        src.connect(gain);
         gain.connect(this.sfxGain);
+      } else {
+        // The original's linear pan law (PlaySoundIDStereo): with
+        // p = (pan+10)/20, right = vol*p and left = vol*(1-p) — a centered
+        // positional sound plays at half volume per channel.
+        const p = (Math.max(-10, Math.min(10, pan)) + 10) / 20;
+        const gL = this.ctx.createGain();
+        const gR = this.ctx.createGain();
+        gL.gain.value = base * (1 - p);
+        gR.gain.value = base * p;
+        const merger = this.ctx.createChannelMerger(2);
+        src.connect(gL);
+        src.connect(gR);
+        gL.connect(merger, 0, 0);
+        gR.connect(merger, 0, 1);
+        merger.connect(this.sfxGain);
       }
       src.start();
     });
@@ -174,7 +186,13 @@ export class AudioEngine {
     this.musicSpec = spec;
     this.musicIdx = spec.startAt;
     this.musicNextTime = this.ctx.currentTime + 0.05;
-    this.musicGain.gain.value = this.musicVolume / 255;
+    // The original fades every music start in from silence: +1/255 every
+    // 2 ticks, i.e. musicVolume*2 ticks total (8.5 s at 255, 5.7 s at 171).
+    const gain = this.musicGain.gain;
+    const now = this.ctx.currentTime;
+    gain.cancelScheduledValues(now);
+    gain.setValueAtTime(0, now);
+    gain.linearRampToValueAtTime(this.musicVolume / 255, now + (this.musicVolume * 2) / 60);
 
     const pump = () => {
       if (!this.ctx || !this.musicGain || !this.musicSpec || token !== this.musicToken) return;
@@ -217,13 +235,24 @@ export class AudioEngine {
   /** Mute (keep playing) — used for pause, like the original's FadeMusicOut. */
   fadeMusicOut(): void {
     if (this.ctx && this.musicGain) {
-      this.musicGain.gain.linearRampToValueAtTime(0, this.ctx.currentTime + 0.5);
+      const g = this.musicGain.gain;
+      const now = this.ctx.currentTime;
+      const cur = g.value;
+      g.cancelScheduledValues(now);
+      g.setValueAtTime(cur, now); // anchor so the ramp starts from here
+      g.linearRampToValueAtTime(0, now + 0.5); // 15 steps x 2 ticks
     }
   }
 
+  /** Re-runs the full fade-in ramp on the playing music (used at unpause). */
   fadeMusicIn(): void {
     if (this.ctx && this.musicGain) {
-      this.musicGain.gain.linearRampToValueAtTime(this.musicVolume / 255, this.ctx.currentTime + 0.5);
+      const g = this.musicGain.gain;
+      const now = this.ctx.currentTime;
+      const cur = g.value;
+      g.cancelScheduledValues(now);
+      g.setValueAtTime(cur, now);
+      g.linearRampToValueAtTime(this.musicVolume / 255, now + (this.musicVolume * 2) / 60);
     }
   }
 }
@@ -293,7 +322,7 @@ export class GameSounds {
       if (e.prox > MAX_PROXIMITY) return;
       vol = (MAX_PROXIMITY - e.prox) / MAX_PROXIMITY;
     }
-    this.engine.play(rel, vol, e.pan ?? 0);
+    this.engine.play(rel, vol, e.pan);
   }
 
   pause(): void {

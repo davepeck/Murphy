@@ -116,7 +116,8 @@ export class MapScreen implements Screen {
       VIEW_W,
       VIEW_H,
       this.world.width * WORLD_TILE_SIZE,
-      this.world.height * WORLD_TILE_SIZE
+      this.world.height * WORLD_TILE_SIZE,
+      WORLD_TILE_SIZE
     );
     this.cam.centerOn(this.px, this.py);
     this.enterCell(ctx, this.cellX, this.cellY, true);

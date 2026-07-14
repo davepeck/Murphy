@@ -171,8 +171,11 @@ export class MenuScreen implements Screen {
   private closePrefs(ctx: GameContext, save: boolean): void {
     if (save) {
       ctx.audio.saveVolumes();
-      if (ctx.audio.musicVolume === 0) ctx.audio.stopMusic();
-      else void ctx.audio.playMusic(INTERFACE_MUSIC);
+      // The original restarts the music only if its volume actually changed.
+      if (ctx.audio.musicVolume !== this.prefsSnapshot.music) {
+        if (ctx.audio.musicVolume === 0) ctx.audio.stopMusic();
+        else void ctx.audio.playMusic(INTERFACE_MUSIC);
+      }
     } else {
       ctx.audio.musicVolume = this.prefsSnapshot.music;
       ctx.audio.soundVolume = this.prefsSnapshot.sound;
@@ -189,7 +192,7 @@ export class MenuScreen implements Screen {
 
     if (this.sub !== "menu") {
       const art = SUB_ART[this.sub];
-      g.drawImage(ctx.assets.img(art.bar), 40, 0);
+      g.drawImage(ctx.assets.img(art.bar), 0, 0); // flush left, like WipePictIntoWindow
       g.drawImage(ctx.assets.img(art.text), 120, 0);
       return;
     }

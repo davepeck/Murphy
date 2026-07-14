@@ -12,25 +12,36 @@ const SPRITE_MOVE_DISTANCE = 100;
 export class Camera {
   x = 0;
   y = 0;
+  // The original centers the followed sprite in the offscreen work area,
+  // which is the viewport rounded UP to a tile multiple (608px for the
+  // 600px level view) — not the viewport itself.
+  private offW: number;
+  private offH: number;
+  private tile: number;
 
   constructor(
     private viewW: number,
     private viewH: number,
     private mapW: number,
-    private mapH: number
-  ) {}
+    private mapH: number,
+    tileSize: number = TILE_SIZE
+  ) {
+    this.tile = tileSize;
+    this.offW = Math.ceil(viewW / tileSize) * tileSize;
+    this.offH = Math.ceil(viewH / tileSize) * tileSize;
+  }
 
   centerOn(px: number, py: number): void {
-    this.x = px + TILE_SIZE / 2 - this.viewW / 2;
-    this.y = py + TILE_SIZE / 2 - this.viewH / 2;
+    this.x = px + this.tile / 2 - this.viewW / 2;
+    this.y = py + this.tile / 2 - this.viewH / 2;
     this.clamp();
   }
 
   /** Original proportional catch-up scroll (Scroll_LevWorldMove); the map
    *  room uses the same formula with its slower sprite speed. */
   follow(px: number, py: number, moveDelta: number = SPRITE_MOVE_DELTA): void {
-    const midX = this.x + (this.viewW - TILE_SIZE) / 2;
-    const midY = this.y + (this.viewH - TILE_SIZE) / 2;
+    const midX = this.x + (this.offW - this.tile) / 2;
+    const midY = this.y + (this.offH - this.tile) / 2;
     this.x += Math.trunc((moveDelta * (px - midX)) / SPRITE_MOVE_DISTANCE);
     this.y += Math.trunc((moveDelta * (py - midY)) / SPRITE_MOVE_DISTANCE);
     this.clamp();

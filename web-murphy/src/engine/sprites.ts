@@ -640,9 +640,11 @@ export class OliverSprite extends Sprite {
       this.lastWasPort = true;
       this.portDh = dh;
       this.portDv = dv;
-      g.sound({ kind: "portUse", prox: 8, pan: 0 });
+      g.sound({ kind: "portUse", prox: 8 }); // PlaySoundIDProx: no stereo pan
     } else if (edible) {
       g.eatPiece(newTile);
+      // Eating the 10th red disk kills him; don't clobber the death anim.
+      if (this.dead) return;
     } else if (newTile === T.LastExit) {
       g.winLevel();
       return;

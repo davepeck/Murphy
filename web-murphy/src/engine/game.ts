@@ -237,7 +237,9 @@ export class Game {
           if (this.oliver) this.killOliver(false);
         }
       }
-      if (this.timerEnabled && this.hours === 0 && this.mins === 0 && this.secs <= 10) {
+      // No timerEnabled check here: the original plays the sting on the
+      // final timeout tick too, right alongside the death sound.
+      if (this.hours === 0 && this.mins === 0 && this.secs <= 10) {
         this.sound({ kind: "noMoreTime", prox: Math.floor(this.secs * 1.5) });
       }
     }
@@ -588,11 +590,14 @@ export class Game {
 
   spatial(h: number, v: number): { prox: number; pan: number } {
     const o = this.oliver?.loc ?? { h, v };
+    // Raw, unclamped Manhattan distance: the audio layer rejects prox > 22
+    // (like PlaySoundIDProx), and thud halves the RAW distance first, so
+    // distant thuds taper to silence instead of holding at 50% volume.
     const prox = Math.abs(o.h - h) + Math.abs(o.v - v);
     let pan = (h - o.h) >> 1;
     if (pan > 10) pan = 10;
     if (pan < -10) pan = -10;
-    return { prox: Math.min(prox, MAX_PROXIMITY), pan };
+    return { prox, pan };
   }
 }
 
@@ -710,10 +715,16 @@ export class ZapChore implements Chore {
 export class RDBlinkChore implements Chore {
   private blinks = 0;
   private showFirst = true;
+  private lastTick: number;
+
   constructor(
     private loc: Loc,
-    private lastTick: number
-  ) {}
+    now: number
+  ) {
+    // First blink draws immediately; detonation lands at exactly
+    // kRDBlinkCount * kRDBlinkDelayTicks = 240 ticks (4 s) after the drop.
+    this.lastTick = now - RD_BLINK_DELAY;
+  }
 
   process(g: Game): boolean {
     if (g.tickCount - this.lastTick < RD_BLINK_DELAY) return true;
@@ -796,7 +807,10 @@ export class LaserChore implements Chore {
       } else if (
         k.isExplodable &&
         t !== T.Blank &&
-        !(t > T.Laser && t <= T.LaserPower) &&
+        // The original excludes IDs in (67,81) and (81,93] from beam blasts —
+        // batteries, MIRRORS, phase pieces, and beam/light art all let the
+        // beam pass (mirrors reflect it below instead of exploding).
+        !(t > T.Laser && t < T.LaserEmptyPiece) &&
         !(t > T.LaserEmptyPiece && t <= T.BLTRLaserBackMirrorLight)
       ) {
         g.startExplosion(h, v, false);
